@@ -62,6 +62,13 @@ module.exports = {
       fontFamily: {
         mono: ["IBM Plex Mono", "monospace"],
       },
+      textDecorationColor: {
+        skin: {
+          base: withOpacity("--color-text-base"),
+          accent: withOpacity("--color-accent"),
+          inverted: withOpacity("--color-fill"),
+        },
+      },
 
       typography: {
         DEFAULT: {
