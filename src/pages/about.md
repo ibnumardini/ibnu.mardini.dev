@@ -20,7 +20,7 @@ title: "About"
       Always eager to learn and grow, I’m dedicated to contributing value to every project I work on.
     </p>
     <p class="mt-2 text-gray-800">
-      More details <a href="https://ibnu.mardini.dev" target="_blank">about me</a>.
+      More details about me, please grab <a href="https://s.id/fatkur-cv-download" target="_blank">my CV</a>.
     </p>
   </div>
 </div>
