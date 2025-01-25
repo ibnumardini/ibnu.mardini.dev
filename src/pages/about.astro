@@ -1,0 +1,43 @@
+---
+import Layout from "@layouts/AboutLayout.astro";
+import { Image } from "astro:assets";
+import avatar from "../assets/images/avatar.png";
+import { SITE } from "@config";
+---
+
+<Layout frontmatter={{ title: "About" }}>
+  <div
+    class="flex flex-col items-center gap-0 rounded-md border border-skin-line px-5 py-2 sm:flex-row sm:gap-6"
+  >
+    <Image
+      src={avatar}
+      alt={SITE.author}
+      class="mx-auto h-32 w-32 rounded-lg sm:mx-0 sm:h-48 sm:w-48"
+    />
+    <div class="text-center sm:text-left">
+      <p class="text-gray-800">
+        Hi, I’m <span class="font-semibold text-skin-accent"
+          >Muhammad Fatkurozi</span
+        > aka <span
+          class="italic underline decoration-skin-accent decoration-wavy underline-offset-4"
+          >ibnumardini</span
+        >. I’m passionate about innovation and have hands-on experience in web
+        development and IT services.
+      </p>
+      <p class="mt-2 text-gray-800">
+        With skills in PHP, JavaScript, and Go, I enjoy tackling challenges and
+        staying up-to-date with the latest tech trends.
+      </p>
+      <p class="mt-2 text-gray-800">
+        Always eager to learn and grow, I’m dedicated to contributing value to
+        every project I work on.
+      </p>
+      <p class="mt-2 text-gray-800">
+        More details about me, please grab <a
+          href="https://s.id/fatkur-cv-download"
+          target="_blank">my CV</a
+        >.
+      </p>
+    </div>
+  </div>
+</Layout>
