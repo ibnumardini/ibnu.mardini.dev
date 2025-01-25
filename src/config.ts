@@ -6,7 +6,7 @@ export const SITE: Site = {
   profile: "https://ibnu.mardini.dev/",
   desc: "Welcome to my blog where I share my thoughts and ideas.",
   title: "😼 ibnumardini",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "og.webp",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 6,
