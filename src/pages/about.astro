@@ -3,12 +3,18 @@ import Layout from "@layouts/AboutLayout.astro";
 import { Image } from "astro:assets";
 import avatar from "../assets/images/avatar.png";
 import { SITE } from "@config";
+
+const otherLinks: Array<{ title: string; href: string; desc: string }> = [
+  {
+    title: "Fatkur's Writing",
+    href: "https://rit.fatkur.id/",
+    desc: "A collection of things from my journey and experiences.",
+  },
+];
 ---
 
 <Layout frontmatter={{ title: "About" }}>
-  <div
-    class="flex flex-col items-center gap-0 rounded-md border border-skin-line px-5 py-2 sm:flex-row sm:gap-6"
-  >
+  <div class="flex flex-col">
     <Image
       src={avatar}
       alt={SITE.author}
@@ -16,7 +22,7 @@ import { SITE } from "@config";
     />
     <div class="text-center sm:text-left">
       <p class="text-gray-800">
-        Hi, I’m <span class="font-semibold text-skin-accent"
+        Hi 👋, I’m <span class="font-semibold text-skin-accent"
           >Muhammad Fatkurozi</span
         > aka <span
           class="italic underline decoration-skin-accent decoration-wavy underline-offset-4"
@@ -38,6 +44,19 @@ import { SITE } from "@config";
           target="_blank">my CV</a
         >.
       </p>
+    </div>
+    <h2>Other links</h2>
+    <div class="flex flex-wrap gap-4">
+      {
+        otherLinks.map(({ title, href, desc }) => (
+          <div class="flex w-full flex-grow flex-col flex-nowrap gap-4 border p-6 sm:max-w-[calc(50%-1rem)]">
+            <a href={href} target="_blank" class="text-lg font-semibold">
+              {title}
+            </a>
+            <p class="m-0 text-base">{desc}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </Layout>
