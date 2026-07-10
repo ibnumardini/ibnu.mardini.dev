@@ -127,7 +127,7 @@ export const profile = {
 		{
 			title: 'SIMALU',
 			description:
-				'Sistem Informasi Manajemen Alumni — specialized software crafted to help educational institutions and organizations efficiently manage and maintain alumni relations.',
+				'Sistem Informasi Manajemen Alumni: specialized software crafted to help educational institutions and organizations efficiently manage and maintain alumni relations.',
 			tags: ['PHP', 'Laravel 11', 'MySQL 8', 'JavaScript', 'Bootstrap 5', 'Tabler.io'],
 			repoUrl: 'https://github.com/ibnumardini/simalu',
 		},

@@ -1,5 +1,5 @@
 ---
-import { Mail, Link, Code } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 import { profile } from '../data/profile';
 
 interface Props {
@@ -9,25 +9,22 @@ interface Props {
 const { size = 20 } = Astro.props;
 
 const iconMap = {
-	mail: Mail,
-	linkedin: Link,
-	github: Code,
+	mail: 'lucide:mail',
+	linkedin: 'simple-icons:linkedin',
+	github: 'simple-icons:github',
 };
 ---
 
 <div class="flex items-center gap-4">
-	{profile.socials.map((social) => {
-		const Icon = iconMap[social.icon];
-		return (
-			<a
-				href={social.url}
-				aria-label={social.label}
-				target={social.icon === 'mail' ? undefined : '_blank'}
-				rel={social.icon === 'mail' ? undefined : 'noopener noreferrer'}
-				class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-			>
-				<Icon size={size} />
-			</a>
-		);
-	})}
+	{profile.socials.map((social) => (
+		<a
+			href={social.url}
+			aria-label={social.label}
+			target={social.icon === 'mail' ? undefined : '_blank'}
+			rel={social.icon === 'mail' ? undefined : 'noopener noreferrer'}
+			class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+		>
+			<Icon name={iconMap[social.icon]} size={size} />
+		</a>
+	))}
 </div>

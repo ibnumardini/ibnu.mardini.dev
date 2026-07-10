@@ -12,9 +12,9 @@ const posts = (await getCollection('blog'))
 	.slice(0, 3);
 ---
 
-<Layout title={`${profile.name} — ${profile.title}`}>
+<Layout title={`${profile.name} - ${profile.title}`}>
 	<section class="py-16">
-		<h1 class="text-3xl font-bold sm:text-4xl">{profile.name}</h1>
+		<h1 class="font-heading text-3xl font-bold sm:text-4xl">{profile.name}</h1>
 		<p class="mt-2 text-lg text-slate-600 dark:text-slate-300">{profile.title}</p>
 		<p class="mt-4 max-w-xl text-slate-600 dark:text-slate-300">{profile.summary}</p>
 		<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{profile.location}</p>
@@ -24,7 +24,7 @@ const posts = (await getCollection('blog'))
 	</section>
 
 	<section class="py-10">
-		<h2 class="text-xl font-semibold">Skills</h2>
+		<h2 class="font-heading text-xl font-semibold">Skills</h2>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
 			{profile.skills.map((group) => (
 				<div>
@@ -36,14 +36,14 @@ const posts = (await getCollection('blog'))
 	</section>
 
 	<section class="py-10">
-		<h2 class="text-xl font-semibold">Experience</h2>
+		<h2 class="font-heading text-xl font-semibold">Experience</h2>
 		<div class="mt-4 space-y-6">
 			{profile.experience.map((entry) => <ExperienceItem {...entry} />)}
 		</div>
 	</section>
 
 	<section id="portfolio" class="py-10">
-		<h2 class="text-xl font-semibold">Portfolio</h2>
+		<h2 class="font-heading text-xl font-semibold">Portfolio</h2>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
 			{profile.projects.map((project) => <ProjectCard {...project} />)}
 		</div>
@@ -51,7 +51,7 @@ const posts = (await getCollection('blog'))
 
 	<section class="py-10">
 		<div class="flex items-baseline justify-between">
-			<h2 class="text-xl font-semibold">Blog</h2>
+			<h2 class="font-heading text-xl font-semibold">Blog</h2>
 			<a href="/blog" class="text-sm hover:underline">View all</a>
 		</div>
 		<div class="mt-2 divide-y divide-slate-200 dark:divide-slate-800">
