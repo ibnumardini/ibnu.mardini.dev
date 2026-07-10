@@ -52,7 +52,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 		<div class="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
 			{posts.map((post) => (
-				<BlogCard id={post.id} title={post.data.title} date={post.data.date} description={post.data.description} />
+				<BlogCard id={post.id} title={post.data.title} date={post.data.date} description={post.data.description} language={post.data.language} />
 			))}
 		</div>
 	</section>
