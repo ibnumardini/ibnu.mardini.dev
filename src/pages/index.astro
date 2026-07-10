@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
+import EducationItem from '../components/EducationItem.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { profile } from '../data/profile';
@@ -16,7 +17,7 @@ const posts = (await getCollection('blog'))
 	<section class="py-16">
 		<h1 class="font-heading text-3xl font-bold sm:text-4xl">{profile.name}</h1>
 		<p class="mt-2 text-lg text-slate-600 dark:text-slate-300">{profile.title}</p>
-		<p class="mt-4 max-w-xl text-slate-600 dark:text-slate-300">{profile.summary}</p>
+		<p class="mt-4 text-slate-600 dark:text-slate-300">{profile.summary}</p>
 		<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{profile.location}</p>
 		<div class="mt-6">
 			<SocialLinks size={22} />
@@ -42,8 +43,15 @@ const posts = (await getCollection('blog'))
 		</div>
 	</section>
 
-	<section id="portfolio" class="py-10">
-		<h2 class="font-heading text-xl font-semibold">Portfolio</h2>
+	<section class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Education</h2>
+		<div class="mt-4 space-y-6">
+			{profile.education.map((entry) => <EducationItem {...entry} />)}
+		</div>
+	</section>
+
+	<section id="projects" class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Projects</h2>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
 			{profile.projects.map((project) => <ProjectCard {...project} />)}
 		</div>

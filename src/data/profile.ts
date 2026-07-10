@@ -24,6 +24,13 @@ export interface Project {
 	repoUrl: string;
 }
 
+export interface EducationEntry {
+	institution: string;
+	institutionUrl?: string;
+	program: string;
+	dates: string;
+}
+
 export const profile = {
 	name: 'Muhammad Fatkurozi',
 	title: 'Software Engineer | Back-end Developer',
@@ -123,6 +130,19 @@ export const profile = {
 			],
 		},
 	] satisfies ExperienceEntry[],
+	education: [
+		{
+			institution: 'Universitas Mercu Buana Yogyakarta (UMBY)',
+			program: 'S.Kom, Computer Science (GPA: 3.86/4)',
+			dates: 'Sept 2023 - Present',
+		},
+		{
+			institution: 'Qodr.id',
+			institutionUrl: 'https://qodr.id',
+			program: 'Senior Web Developer, Bootcamp',
+			dates: 'July 2019 - July 2022',
+		},
+	] satisfies EducationEntry[],
 	projects: [
 		{
 			title: 'SIMALU',

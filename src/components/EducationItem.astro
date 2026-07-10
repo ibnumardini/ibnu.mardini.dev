@@ -1,0 +1,23 @@
+---
+import type { EducationEntry } from '../data/profile';
+
+type Props = EducationEntry;
+
+const { institution, institutionUrl, program, dates } = Astro.props;
+---
+
+<div class="border-l-2 border-slate-200 dark:border-slate-800 pl-4 py-2">
+	<div class="flex flex-wrap items-baseline justify-between gap-x-4">
+		<h3 class="font-semibold">
+			{institutionUrl ? (
+				<a href={institutionUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+					{institution}
+				</a>
+			) : (
+				institution
+			)}
+		</h3>
+		<span class="text-sm text-slate-500 dark:text-slate-400">{dates}</span>
+	</div>
+	<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{program}</p>
+</div>
