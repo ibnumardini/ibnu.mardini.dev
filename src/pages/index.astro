@@ -9,6 +9,8 @@ import { profile } from '../data/profile';
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 	.slice(0, 3);
+
+const pinnedProjects = profile.projects.filter((project) => project.pinned);
 ---
 
 <Layout title={`${profile.name} - ${profile.title}`}>
@@ -23,9 +25,12 @@ const posts = (await getCollection('blog'))
 	</section>
 
 	<section id="projects" class="py-10">
-		<h2 class="font-heading text-xl font-semibold">Projects</h2>
+		<div class="flex items-baseline justify-between">
+			<h2 class="font-heading text-xl font-semibold">Projects</h2>
+			<a href="/projects" class="text-sm hover:underline">View all</a>
+		</div>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
-			{profile.projects.map((project) => <ProjectCard {...project} />)}
+			{pinnedProjects.map((project) => <ProjectCard {...project} />)}
 		</div>
 	</section>
 

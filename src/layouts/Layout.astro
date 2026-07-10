@@ -10,6 +10,13 @@ interface Props {
 }
 
 const { title, description = profile.summary } = Astro.props;
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const navLinks = [
+	{ href: '/about', label: 'About', active: path === '/about' },
+	{ href: '/projects', label: 'Projects', active: path === '/projects' },
+	{ href: '/blog', label: 'Blog', active: path === '/blog' || path.startsWith('/blog/') },
+];
 ---
 
 <!doctype html>
@@ -43,9 +50,11 @@ const { title, description = profile.summary } = Astro.props;
 				<span class="font-semibold">ibnumardini</span>
 			</a>
 			<nav class="flex items-center gap-6">
-				<a href="/about" class="text-sm hover:underline">About</a>
-				<a href="/#projects" class="text-sm hover:underline">Projects</a>
-				<a href="/blog" class="text-sm hover:underline">Blog</a>
+				{navLinks.map((link) => (
+					<a href={link.href} class:list={['text-sm hover:underline', { underline: link.active }]}>
+						{link.label}
+					</a>
+				))}
 				<ThemeToggle />
 			</nav>
 		</header>
