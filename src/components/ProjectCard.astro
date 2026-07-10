@@ -4,18 +4,22 @@ import type { Project } from '../data/profile';
 
 type Props = Project;
 
-const { title, description, tags, repoUrl } = Astro.props;
+const { title, description, tags, repoUrl, liveUrl } = Astro.props;
 ---
 
-<a
-	href={repoUrl}
-	target="_blank"
-	rel="noopener noreferrer"
-	class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-600 transition-colors"
->
+<div class="rounded-lg border border-slate-200 p-5 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-600 transition-colors">
 	<div class="flex items-center justify-between">
 		<h3 class="font-semibold">{title}</h3>
-		<Icon name="tabler:brand-github" size={18} class="text-slate-400" />
+		<div class="flex items-center gap-3">
+			{liveUrl && (
+				<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`}>
+					<Icon name="tabler:external-link" size={18} class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" />
+				</a>
+			)}
+			<a href={repoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} source on GitHub`}>
+				<Icon name="tabler:brand-github" size={18} class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" />
+			</a>
+		</div>
 	</div>
 	<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{description}</p>
 	<div class="mt-3 flex flex-wrap gap-2">
@@ -25,4 +29,4 @@ const { title, description, tags, repoUrl } = Astro.props;
 			</span>
 		))}
 	</div>
-</a>
+</div>

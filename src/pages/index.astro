@@ -55,4 +55,23 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			))}
 		</div>
 	</section>
+
+	<section class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Elsewhere</h2>
+		<ul class="mt-4 space-y-2">
+			{profile.elsewhere.map((link) => (
+				<li>
+					<a
+						href={link.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white"
+					>
+						{link.title}
+					</a>
+					<span class="text-sm text-slate-500 dark:text-slate-400"> &middot; {link.description}</span>
+				</li>
+			))}
+		</ul>
+	</section>
 </Layout>

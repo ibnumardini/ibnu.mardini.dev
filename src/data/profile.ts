@@ -22,6 +22,7 @@ export interface Project {
 	description: string;
 	tags: string[];
 	repoUrl: string;
+	liveUrl?: string;
 	pinned?: boolean;
 }
 
@@ -38,6 +39,12 @@ export interface CertificationEntry {
 	year: string;
 }
 
+export interface ExternalLink {
+	title: string;
+	description: string;
+	url: string;
+}
+
 export const profile = {
 	name: 'Muhammad Fatkurozi',
 	title: 'Software Engineer | Back-end Developer',
@@ -52,6 +59,23 @@ export const profile = {
 		{ label: 'LinkedIn', url: 'https://linkedin.com/in/ibnumardini', icon: 'linkedin' },
 		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'mail' },
 	] satisfies SocialLink[],
+	elsewhere: [
+		{
+			title: 'link.mardini.dev',
+			description: 'All my links and profiles in one place.',
+			url: 'https://link.mardini.dev/',
+		},
+		{
+			title: 'write.fatkur.id',
+			description: 'A more personal blog and journal.',
+			url: 'https://write.fatkur.id/',
+		},
+		{
+			title: 'Medium',
+			description: 'Articles and writing published on Medium.',
+			url: 'https://ibnumardini.medium.com/',
+		},
+	] satisfies ExternalLink[],
 	skills: [
 		{
 			category: 'Backend',
@@ -179,6 +203,7 @@ export const profile = {
 				'SIMALU is specialized software crafted to assist educational institutions and organizations in effectively overseeing alumni relations',
 			tags: ['PHP', 'Laravel 11', 'MySQL 8', 'JavaScript', 'Bootstrap 5', 'Tabler.io'],
 			repoUrl: 'https://github.com/ibnumardini/simalu',
+			liveUrl: 'https://simalu.mardini.dev/',
 			pinned: true,
 		},
 		{
@@ -187,12 +212,14 @@ export const profile = {
 				'An API Gateway for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta, including scraping and validating data from official academic sources.',
 			tags: ['JavaScript', 'Node.js', 'Express.js'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile-api',
+			liveUrl: 'https://my-umby-profile-api.vercel.app/',
 		},
 		{
 			title: 'My UMBY Profile',
 			description: 'A web interface for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta.',
-			tags: ['JavaScript'],
+			tags: ['JavaScript', 'React', 'Vite'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile',
+			liveUrl: 'https://umby.mardini.dev/',
 		},
 		{
 			title: 'Wilayah Indonesia',
@@ -206,6 +233,7 @@ export const profile = {
 				'A RESTful API that provides structured Indonesian administrative region data from provinces to villages, designed to simplify integration of regional data into various applications.',
 			tags: ['Go', 'MySQL', 'go-chi'],
 			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia-api',
+			liveUrl: 'https://wilayah-indonesia-api.mardini.dev/swagger/index.html',
 			pinned: true,
 		},
 		{
@@ -213,12 +241,14 @@ export const profile = {
 			description: 'An expert system for diagnosing dengue fever (DBD) using rule-based reasoning.',
 			tags: ['PHP', 'Laravel', 'Filament'],
 			repoUrl: 'https://github.com/ibnumardini/dengue-expert-app',
+			liveUrl: 'https://es-dbd-backend.umby.dev/',
 		},
 		{
 			title: 'MeetKeep',
 			description: 'A Chrome extension that automatically injects a meeting timer into Google Meet.',
 			tags: ['JavaScript'],
 			repoUrl: 'https://github.com/ibnumardini/meetkeep',
+			liveUrl: 'https://ibnumardini.github.io/meetkeep/',
 		},
 		{
 			title: 'NoteSpace',
