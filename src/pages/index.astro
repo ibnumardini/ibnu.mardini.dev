@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -58,18 +59,21 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 
 	<section class="py-10">
 		<h2 class="font-heading text-xl font-semibold">Elsewhere</h2>
-		<ul class="mt-4 space-y-2">
+		<ul class="mt-4 space-y-4">
 			{profile.elsewhere.map((link) => (
 				<li>
 					<a
 						href={link.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white"
+						class="group flex items-center gap-3"
 					>
-						{link.title}
+						<Icon name={link.icon} size={20} class="shrink-0 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
+						<span>
+							<span class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">{link.title}</span>
+							<span class="text-sm text-slate-500 dark:text-slate-400"> &middot; {link.description}</span>
+						</span>
 					</a>
-					<span class="text-sm text-slate-500 dark:text-slate-400"> &middot; {link.description}</span>
 				</li>
 			))}
 		</ul>

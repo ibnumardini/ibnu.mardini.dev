@@ -43,6 +43,7 @@ export interface ExternalLink {
 	title: string;
 	description: string;
 	url: string;
+	icon: string;
 }
 
 export const profile = {
@@ -64,16 +65,19 @@ export const profile = {
 			title: 'link.mardini.dev',
 			description: 'All my links and profiles in one place.',
 			url: 'https://link.mardini.dev/',
+			icon: 'tabler:link',
 		},
 		{
 			title: 'write.fatkur.id',
 			description: 'A more personal blog and journal.',
 			url: 'https://write.fatkur.id/',
+			icon: 'tabler:notebook',
 		},
 		{
 			title: 'Medium',
 			description: 'Articles and writing published on Medium.',
 			url: 'https://ibnumardini.medium.com/',
+			icon: 'tabler:brand-medium',
 		},
 	] satisfies ExternalLink[],
 	skills: [
@@ -246,7 +250,7 @@ export const profile = {
 		{
 			title: 'MeetKeep',
 			description: 'A Chrome extension that automatically injects a meeting timer into Google Meet.',
-			tags: ['JavaScript'],
+			tags: ['JavaScript', 'Chrome Extension'],
 			repoUrl: 'https://github.com/ibnumardini/meetkeep',
 			liveUrl: 'https://ibnumardini.github.io/meetkeep/',
 		},
