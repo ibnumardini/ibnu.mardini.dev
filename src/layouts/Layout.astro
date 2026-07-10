@@ -18,7 +18,7 @@ const { title, description = profile.summary } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
-		<link rel="icon" type="image/png" href="/images/light_logo.png" />
+		<link rel="icon" type="image/png" href="/images/light.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,8 +38,8 @@ const { title, description = profile.summary } = Astro.props;
 	<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors">
 		<header class="mx-auto flex max-w-3xl items-center justify-between px-6 py-6">
 			<a href="/" class="flex items-center gap-2">
-				<img src="/images/light_logo.png" alt="ibnumardini logo" class="h-8 w-auto dark:hidden" />
-				<img src="/images/dark_logo.png" alt="ibnumardini logo" class="hidden h-8 w-auto dark:block" />
+				<img src="/images/light.png" alt="ibnumardini logo" class="h-6 w-auto dark:hidden" />
+				<img src="/images/dark.png" alt="ibnumardini logo" class="hidden h-6 w-auto dark:block" />
 				<span class="font-semibold">ibnumardini</span>
 			</a>
 			<nav class="flex items-center gap-6">
