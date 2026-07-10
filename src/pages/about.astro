@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import EducationItem from '../components/EducationItem.astro';
+import { profile } from '../data/profile';
+---
+
+<Layout title={`About - ${profile.name}`} description={profile.summary}>
+	<section class="py-16">
+		<h1 class="font-heading text-2xl font-bold">About</h1>
+		<p class="mt-4 text-slate-600 dark:text-slate-300">{profile.summary}</p>
+	</section>
+
+	<section class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Skills</h2>
+		<div class="mt-4 grid gap-4 sm:grid-cols-2">
+			{profile.skills.map((group) => (
+				<div>
+					<h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">{group.category}</h3>
+					<p class="mt-1 text-sm text-slate-700 dark:text-slate-300">{group.items.join(', ')}</p>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Experience</h2>
+		<div class="mt-4 space-y-6">
+			{profile.experience.map((entry) => <ExperienceItem {...entry} />)}
+		</div>
+	</section>
+
+	<section class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Education</h2>
+		<div class="mt-4 space-y-6">
+			{profile.education.map((entry) => <EducationItem {...entry} />)}
+		</div>
+	</section>
+
+	<section class="py-10">
+		<h2 class="font-heading text-xl font-semibold">Certifications</h2>
+		<ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+			{profile.certifications.map((cert) => (
+				<li>
+					{cert.name} <span class="text-slate-400 dark:text-slate-500">({cert.issuer}, {cert.year})</span>
+				</li>
+			))}
+		</ul>
+		<p class="mt-4 text-sm text-slate-500 dark:text-slate-400">
+			Full list available on{' '}
+			<a href="https://linkedin.com/in/ibnumardini" target="_blank" rel="noopener noreferrer" class="hover:underline">
+				LinkedIn
+			</a>.
+		</p>
+	</section>
+</Layout>

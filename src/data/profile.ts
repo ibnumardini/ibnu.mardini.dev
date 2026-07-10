@@ -31,6 +31,12 @@ export interface EducationEntry {
 	dates: string;
 }
 
+export interface CertificationEntry {
+	name: string;
+	issuer: string;
+	year: string;
+}
+
 export const profile = {
 	name: 'Muhammad Fatkurozi',
 	title: 'Software Engineer | Back-end Developer',
@@ -143,6 +149,13 @@ export const profile = {
 			dates: 'July 2019 - July 2022',
 		},
 	] satisfies EducationEntry[],
+	certifications: [
+		{ name: 'Belajar Dasar Pemrograman Web', issuer: 'Dicoding', year: '2022' },
+		{ name: 'Belajar Membuat Aplikasi Backend untuk Pemula dengan Cloudeka', issuer: 'Dicoding', year: '2022' },
+		{ name: 'Belajar Membuat Aplikasi Backend untuk Pemula', issuer: 'Dicoding', year: '2022' },
+		{ name: 'Belajar Dasar Pemrograman JavaScript', issuer: 'Dicoding', year: '2021' },
+		{ name: 'Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)', issuer: 'Dicoding', year: '2021' },
+	] satisfies CertificationEntry[],
 	projects: [
 		{
 			title: 'SIMALU',
