@@ -8,8 +8,10 @@ import { profile } from '../data/profile';
 
 <Layout title={`About - ${profile.name}`} description={profile.summary}>
 	<section class="py-16">
-		<h1 class="font-heading text-2xl font-bold">About</h1>
+		<h1 class="font-heading text-3xl font-bold sm:text-4xl">{profile.name}</h1>
+		<p class="mt-2 text-lg text-slate-600 dark:text-slate-300">{profile.title}</p>
 		<p class="mt-4 text-slate-600 dark:text-slate-300">{profile.summary}</p>
+		<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{profile.location}</p>
 	</section>
 
 	<section class="py-10">
