@@ -1,23 +1,59 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { profile } from '../data/profile';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = profile.summary } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/png" href="/images/light_logo.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script is:inline>
+			const stored = localStorage.theme;
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (stored === 'dark' || (!stored && prefersDark)) {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors">
+		<header class="mx-auto flex max-w-3xl items-center justify-between px-6 py-6">
+			<a href="/" class="flex items-center gap-2">
+				<img src="/images/light_logo.png" alt="ibnumardini logo" class="h-8 w-auto dark:hidden" />
+				<img src="/images/dark_logo.png" alt="ibnumardini logo" class="hidden h-8 w-auto dark:block" />
+				<span class="font-semibold">ibnumardini</span>
+			</a>
+			<nav class="flex items-center gap-6">
+				<a href="/#portfolio" class="text-sm hover:underline">Portfolio</a>
+				<a href="/blog" class="text-sm hover:underline">Blog</a>
+				<ThemeToggle />
+			</nav>
+		</header>
+		<main class="mx-auto max-w-3xl px-6">
+			<slot />
+		</main>
+		<footer class="mx-auto flex max-w-3xl items-center justify-between px-6 py-10 text-sm text-slate-500 dark:text-slate-400">
+			<p>&copy; {new Date().getFullYear()} {profile.name}</p>
+			<SocialLinks size={18} />
+		</footer>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
