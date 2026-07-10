@@ -184,5 +184,11 @@ export const profile = {
 			tags: ['JavaScript', 'Node.js', 'Express.js'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile-api',
 		},
+		{
+			title: 'logn',
+			description: 'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
+			tags: ['Go'],
+			repoUrl: 'https://github.com/ibnumardini/logn',
+		},
 	] satisfies Project[],
 };
