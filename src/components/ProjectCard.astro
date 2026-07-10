@@ -1,0 +1,28 @@
+---
+import { Code } from '@lucide/astro';
+import type { Project } from '../data/profile';
+
+type Props = Project;
+
+const { title, description, tags, repoUrl } = Astro.props;
+---
+
+<a
+	href={repoUrl}
+	target="_blank"
+	rel="noopener noreferrer"
+	class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-600 transition-colors"
+>
+	<div class="flex items-center justify-between">
+		<h3 class="font-semibold">{title}</h3>
+		<Code size={18} class="text-slate-400" />
+	</div>
+	<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{description}</p>
+	<div class="mt-3 flex flex-wrap gap-2">
+		{tags.map((tag) => (
+			<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+				{tag}
+			</span>
+		))}
+	</div>
+</a>
