@@ -19,6 +19,7 @@
 - Logo swap: `public/images/light_logo.png` in light mode, `public/images/dark_logo.png` in dark mode.
 - This project has no existing test runner (bare Astro scaffold, no test deps). Verification for every task is `bun run build` succeeding and manual check via `astro dev` — there is no unit-testable logic here (static markup/content), so TDD steps are replaced with build/dev-server verification gates.
 - **Astro 7 content collections API correction (discovered during Task 4):** Astro 5+ replaced the old `type: 'content'` collection API. The schema file lives at `src/content.config.ts` (not `src/content/config.ts`) and must define a `loader: glob({ pattern: '**/*.md', base: './src/content/blog' })` (imported from `astro/loaders`) instead of `type: 'content'`. Collection entries no longer have `.slug` — use `.id` instead. Entries no longer have a `.render()` method — import `render` from `astro:content` and call `render(entry)` instead of `entry.render()`. Any task below written against the old API (`.slug`, `entry.render()`, `src/content/config.ts`) must use the corrected API instead — this note supersedes those code snippets.
+- **Lucide icon correction (discovered during Task 5):** `@lucide/astro` is a generic icon set — it does NOT export brand/logo icons `Github` or `Linkedin`. Any task below referencing those must use `Code` (for GitHub links) and `Link` (for LinkedIn links) instead — `Mail`, `Sun`, and `Moon` are valid and unaffected. This note supersedes those code snippets.
 
 ---
 
@@ -569,7 +570,7 @@ Create `src/components/ProjectCard.astro`:
 
 ```astro
 ---
-import { Github } from '@lucide/astro';
+import { Code } from '@lucide/astro';
 import type { Project } from '../data/profile';
 
 type Props = Project;
@@ -585,7 +586,7 @@ const { title, description, tags, repoUrl } = Astro.props;
 >
 	<div class="flex items-center justify-between">
 		<h3 class="font-semibold">{title}</h3>
-		<Github size={18} class="text-slate-400" />
+		<Code size={18} class="text-slate-400" />
 	</div>
 	<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{description}</p>
 	<div class="mt-3 flex flex-wrap gap-2">
