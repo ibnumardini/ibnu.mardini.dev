@@ -18,6 +18,7 @@
 - Light mode is the default; dark mode toggles via a button, persisted in `localStorage`, using Tailwind `darkMode: 'class'`.
 - Logo swap: `public/images/light_logo.png` in light mode, `public/images/dark_logo.png` in dark mode.
 - This project has no existing test runner (bare Astro scaffold, no test deps). Verification for every task is `bun run build` succeeding and manual check via `astro dev` — there is no unit-testable logic here (static markup/content), so TDD steps are replaced with build/dev-server verification gates.
+- **Astro 7 content collections API correction (discovered during Task 4):** Astro 5+ replaced the old `type: 'content'` collection API. The schema file lives at `src/content.config.ts` (not `src/content/config.ts`) and must define a `loader: glob({ pattern: '**/*.md', base: './src/content/blog' })` (imported from `astro/loaders`) instead of `type: 'content'`. Collection entries no longer have `.slug` — use `.id` instead. Entries no longer have a `.render()` method — import `render` from `astro:content` and call `render(entry)` instead of `entry.render()`. Any task below written against the old API (`.slug`, `entry.render()`, `src/content/config.ts`) must use the corrected API instead — this note supersedes those code snippets.
 
 ---
 
@@ -617,8 +618,8 @@ git commit -m "feat: add ExperienceItem and ProjectCard components"
 - Create: `src/components/BlogCard.astro`
 
 **Interfaces:**
-- Consumes: a blog collection entry shape `{ slug: string; data: { title: string; date: Date; description: string } }` (from `astro:content` `getCollection('blog')`, defined in Task 4).
-- Produces: `BlogCard.astro` — `Props: { slug: string; title: string; date: Date; description: string }`.
+- Consumes: a blog collection entry shape `{ id: string; data: { title: string; date: Date; description: string } }` (from `astro:content` `getCollection('blog')`, defined in Task 4 — Astro 7 loader-based collections expose `.id`, not `.slug`).
+- Produces: `BlogCard.astro` — `Props: { id: string; title: string; date: Date; description: string }`.
 
 - [ ] **Step 1: Write BlogCard**
 
@@ -627,13 +628,13 @@ Create `src/components/BlogCard.astro`:
 ```astro
 ---
 interface Props {
-	slug: string;
+	id: string;
 	title: string;
 	date: Date;
 	description: string;
 }
 
-const { slug, title, date, description } = Astro.props;
+const { id, title, date, description } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
 	year: 'numeric',
@@ -642,7 +643,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<a href={`/blog/${slug}`} class="block py-4 group">
+<a href={`/blog/${id}`} class="block py-4 group">
 	<p class="text-sm text-slate-500 dark:text-slate-400">{formattedDate}</p>
 	<h3 class="font-semibold group-hover:underline">{title}</h3>
 	<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{description}</p>
@@ -734,7 +735,7 @@ const posts = (await getCollection('blog'))
 		</div>
 		<div class="mt-2 divide-y divide-slate-200 dark:divide-slate-800">
 			{posts.map((post) => (
-				<BlogCard slug={post.slug} title={post.data.title} date={post.data.date} description={post.data.description} />
+				<BlogCard id={post.id} title={post.data.title} date={post.data.date} description={post.data.description} />
 			))}
 		</div>
 	</section>
@@ -790,7 +791,7 @@ const posts = (await getCollection('blog')).sort(
 		<h1 class="text-2xl font-bold">Blog</h1>
 		<div class="mt-6 divide-y divide-slate-200 dark:divide-slate-800">
 			{posts.map((post) => (
-				<BlogCard slug={post.slug} title={post.data.title} date={post.data.date} description={post.data.description} />
+				<BlogCard id={post.id} title={post.data.title} date={post.data.date} description={post.data.description} />
 			))}
 		</div>
 	</section>
@@ -803,14 +804,14 @@ Create `src/pages/blog/[slug].astro`:
 
 ```astro
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { profile } from '../../data/profile';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.slug },
+		params: { slug: post.id },
 		props: { post },
 	}));
 }
@@ -820,7 +821,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 const formattedDate = post.data.date.toLocaleDateString('en-US', {
 	year: 'numeric',
