@@ -15,7 +15,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<a href={`/blog/${id}`} class="block py-4 group">
+<a href={`/blog/${id}`} class="block group">
 	<p class="text-sm text-slate-500 dark:text-slate-400">{formattedDate}</p>
 	<h3 class="font-semibold group-hover:underline">{title}</h3>
 	<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{description}</p>
