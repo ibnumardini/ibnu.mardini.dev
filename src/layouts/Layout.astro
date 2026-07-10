@@ -48,9 +48,9 @@ const navLinks = [
 				<a href="/" class="flex items-center gap-2">
 					<img src="/images/light.png" alt="ibnumardini logo" class="h-6 w-auto dark:hidden" />
 					<img src="/images/dark.png" alt="ibnumardini logo" class="hidden h-6 w-auto dark:block" />
-					<span class="font-semibold">ibnumardini</span>
+					<span class="hidden font-semibold sm:inline">ibnumardini</span>
 				</a>
-				<nav class="flex items-center gap-6">
+				<nav class="flex items-center gap-4 sm:gap-6">
 					{navLinks.map((link) => (
 						<a href={link.href} class:list={['text-sm hover:underline', { underline: link.active }]}>
 							{link.label}
