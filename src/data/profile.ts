@@ -162,19 +162,23 @@ export const profile = {
 	] satisfies CertificationEntry[],
 	projects: [
 		{
+			title: 'logn',
+			description: 'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
+			tags: ['Go'],
+			repoUrl: 'https://github.com/ibnumardini/logn',
+		},
+		{
+			title: 'Hutang Piutang App',
+			description: 'A web app for managing transactions of debts and receivables.',
+			tags: ['PHP'],
+			repoUrl: 'https://github.com/ibnumardini/hutang-piutang-app',
+		},
+		{
 			title: 'SIMALU',
 			description:
 				'SIMALU is specialized software crafted to assist educational institutions and organizations in effectively overseeing alumni relations',
 			tags: ['PHP', 'Laravel 11', 'MySQL 8', 'JavaScript', 'Bootstrap 5', 'Tabler.io'],
 			repoUrl: 'https://github.com/ibnumardini/simalu',
-			pinned: true,
-		},
-		{
-			title: 'Wilayah ID API',
-			description:
-				'A RESTful API that provides structured Indonesian administrative region data from provinces to villages, designed to simplify integration of regional data into various applications.',
-			tags: ['Go', 'MySQL', 'go-chi'],
-			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia-api',
 			pinned: true,
 		},
 		{
@@ -185,10 +189,42 @@ export const profile = {
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile-api',
 		},
 		{
-			title: 'logn',
-			description: 'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
-			tags: ['Go'],
-			repoUrl: 'https://github.com/ibnumardini/logn',
+			title: 'My UMBY Profile',
+			description: 'A web interface for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta.',
+			tags: ['JavaScript'],
+			repoUrl: 'https://github.com/ibnumardini/my-umby-profile',
+		},
+		{
+			title: 'Wilayah Indonesia',
+			description: 'A CLI tool to manage and transform Indonesian administrative region data.',
+			tags: ['JavaScript'],
+			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia',
+		},
+		{
+			title: 'Wilayah ID API',
+			description:
+				'A RESTful API that provides structured Indonesian administrative region data from provinces to villages, designed to simplify integration of regional data into various applications.',
+			tags: ['Go', 'MySQL', 'go-chi'],
+			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia-api',
+			pinned: true,
+		},
+		{
+			title: 'Dengue Expert App',
+			description: 'An expert system for diagnosing dengue fever (DBD) using rule-based reasoning.',
+			tags: ['PHP', 'Laravel', 'Filament'],
+			repoUrl: 'https://github.com/ibnumardini/dengue-expert-app',
+		},
+		{
+			title: 'MeetKeep',
+			description: 'A Chrome extension that automatically injects a meeting timer into Google Meet.',
+			tags: ['JavaScript'],
+			repoUrl: 'https://github.com/ibnumardini/meetkeep',
+		},
+		{
+			title: 'NoteSpace',
+			description: 'Your space to think, write, and stay organized.',
+			tags: ['PHP', 'CodeIgniter 4'],
+			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
 		},
 	] satisfies Project[],
 };
