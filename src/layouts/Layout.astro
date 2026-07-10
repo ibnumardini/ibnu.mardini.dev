@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { profile } from '../data/profile';
@@ -67,10 +68,11 @@ const navLinks = [
 			<p>
 				&copy; {new Date().getFullYear()} &middot; {profile.name} &middot;{' '}
 				<span
-					class="cursor-help underline decoration-dotted underline-offset-2"
+					class="inline-flex cursor-help items-center gap-1 underline decoration-dotted underline-offset-2"
 					title="Daisy: because it's pretty, small, and always shows up in a crowd. Love it."
 				>
-					daisy
+					(daisy)
+					<Icon name="tabler:flower" size={14} />
 				</span>
 			</p>
 			<SocialLinks size={18} />

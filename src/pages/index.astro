@@ -45,7 +45,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			<h2 class="font-heading text-xl font-semibold">Recent Post</h2>
 			<a href="/blog" class="text-sm hover:underline">View all &rarr;</a>
 		</div>
-		<div class="mt-2 divide-y divide-slate-200 dark:divide-slate-800">
+		<div class="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
 			{posts.map((post) => (
 				<BlogCard id={post.id} title={post.data.title} date={post.data.date} description={post.data.description} />
 			))}
