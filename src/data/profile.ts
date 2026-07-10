@@ -1,7 +1,7 @@
 export interface SocialLink {
 	label: string;
 	url: string;
-	icon: 'github' | 'linkedin' | 'mail';
+	icon: 'github' | 'linkedin' | 'mail' | 'facebook' | 'instagram';
 }
 
 export interface SkillGroup {
@@ -44,10 +44,13 @@ export const profile = {
 	summary:
 		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, JavaScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
 	location: 'Yogyakarta, Indonesia',
+	cvUrl: 'http://s.id/fatkur-cv-download',
 	socials: [
-		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'mail' },
-		{ label: 'LinkedIn', url: 'https://linkedin.com/in/ibnumardini', icon: 'linkedin' },
 		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'github' },
+		{ label: 'Facebook', url: 'https://fb.com/ibnumardini/', icon: 'facebook' },
+		{ label: 'Instagram', url: 'https://instagram.com/ibnu.mardini.dev/', icon: 'instagram' },
+		{ label: 'LinkedIn', url: 'https://linkedin.com/in/ibnumardini', icon: 'linkedin' },
+		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'mail' },
 	] satisfies SocialLink[],
 	skills: [
 		{
