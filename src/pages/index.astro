@@ -30,10 +30,14 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 	</section>
 
+	<blockquote class="rounded-r-md border-l-2 border-slate-200 bg-slate-50 py-2 pl-4 font-mono text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
+		if err := beNice(); err != nil {'{'} beKind() {'}'}
+	</blockquote>
+
 	<section id="projects" class="py-10">
 		<div class="flex items-baseline justify-between">
 			<h2 class="font-heading text-xl font-semibold">Featured Projects</h2>
-			<a href="/projects" class="text-sm hover:underline">View all</a>
+			<a href="/projects" class="text-sm hover:underline">View all &rarr;</a>
 		</div>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
 			{pinnedProjects.map((project) => <ProjectCard {...project} />)}
@@ -43,7 +47,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 	<section class="py-10">
 		<div class="flex items-baseline justify-between">
 			<h2 class="font-heading text-xl font-semibold">Recent Post</h2>
-			<a href="/blog" class="text-sm hover:underline">View all</a>
+			<a href="/blog" class="text-sm hover:underline">View all &rarr;</a>
 		</div>
 		<div class="mt-2 divide-y divide-slate-200 dark:divide-slate-800">
 			{posts.map((post) => (
