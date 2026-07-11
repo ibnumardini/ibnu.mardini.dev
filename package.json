@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.2",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
+    "@fontsource/space-grotesk": "^5.2.10",
     "@iconify-json/circle-flags": "^1.2.10",
     "@iconify-json/tabler": "^1.2.35",
     "@tailwindcss/typography": "^0.5.20",

@@ -6,6 +6,8 @@
       "name": "portfolio",
       "dependencies": {
         "@astrojs/cloudflare": "^14.1.2",
+        "@fontsource/plus-jakarta-sans": "^5.2.8",
+        "@fontsource/space-grotesk": "^5.2.10",
         "@iconify-json/circle-flags": "^1.2.10",
         "@iconify-json/tabler": "^1.2.35",
         "@tailwindcss/typography": "^0.5.20",
@@ -165,6 +167,10 @@
     "@esbuild/win32-ia32": ["@esbuild/win32-ia32@0.28.1", "", { "os": "win32", "cpu": "ia32" }, "sha512-zvb/mB2bSCoJOpoCBgYKKpX6YM6mJBlBUVUtVj41DlZJVEB6/0CKlRYxP5wWl1C1ILiCoAU5wZZ4q1P3qeS6Eg=="],
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.28.1", "", { "os": "win32", "cpu": "x64" }, "sha512-bm4Mowrv+GXMlpWX++EcXw/iLyd1o3+bJkC2DkWXYVvgZCqD/bSj9ctZeAMC3cIxgjRVR2Dufaiu4YPxr5gW1A=="],
+
+    "@fontsource/plus-jakarta-sans": ["@fontsource/plus-jakarta-sans@5.2.8", "", {}, "sha512-P5qE49fqdeD+7DXH1KBxmMPlB17LTz1zvBhFH0tFzfnYTKVJVyb0pR6plh0ZGXxcB+Oayb54FZZw3V42/DawTw=="],
+
+    "@fontsource/space-grotesk": ["@fontsource/space-grotesk@5.2.10", "", {}, "sha512-XNXEbT74OIITPqw2H6HXwPDp85fy43uxfBwFR5PU+9sLnjuLj12KlhVM9nZVN6q6dlKjkuN8JisW/OBxwxgUew=="],
 
     "@iconify-json/circle-flags": ["@iconify-json/circle-flags@1.2.10", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-sZRxs689a281RtZvuAiKtV7pQHv8Tk0HkinSM7QvLgdLEK8xgGRCcbDvL09Rq+/KtemmsMzGhS9/qt+r3ca+Ug=="],
 
