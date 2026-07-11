@@ -13,9 +13,13 @@ import { Icon } from 'astro-icon/components';
 </button>
 
 <script>
-	const button = document.getElementById('theme-toggle');
-	button?.addEventListener('click', () => {
-		const isDark = document.documentElement.classList.toggle('dark');
-		localStorage.theme = isDark ? 'dark' : 'light';
-	});
+	function setupThemeToggle() {
+		const button = document.getElementById('theme-toggle');
+		button?.addEventListener('click', () => {
+			const isDark = document.documentElement.classList.toggle('dark');
+			localStorage.theme = isDark ? 'dark' : 'light';
+		});
+	}
+	setupThemeToggle();
+	document.addEventListener('astro:page-load', setupThemeToggle);
 </script>
