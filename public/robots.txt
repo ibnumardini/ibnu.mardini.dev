@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ibnu.mardini.dev/sitemap-index.xml
