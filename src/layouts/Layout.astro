@@ -16,6 +16,7 @@ interface Props {
 const { title, description = profile.summary } = Astro.props;
 
 const ogImage = new URL('/images/daisy.webp', Astro.site).href;
+const canonicalURL = Astro.url.href;
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const navLinks = [
@@ -33,6 +34,7 @@ const navLinks = [
 		<meta name="description" content={description} />
 		<link rel="icon" type="image/png" href="/images/dark.png" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalURL} />
 		<title>{title}</title>
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
