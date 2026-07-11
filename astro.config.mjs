@@ -8,6 +8,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://ibnu.mardini.dev',
+	prefetch: true,
 	integrations: [icon(), sitemap()],
 	adapter: process.env.CLOUDFLARE ? cloudflare({ imageService: 'compile' }) : undefined,
 	vite: {
