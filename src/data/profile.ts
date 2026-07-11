@@ -198,7 +198,7 @@ export const profile = {
 		{
 			title: 'Hutang Piutang App',
 			description: 'A web app for managing transactions of debts and receivables.',
-			tags: ['PHP'],
+			tags: ['PHP', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/hutang-piutang-app',
 		},
 		{
@@ -221,14 +221,14 @@ export const profile = {
 		{
 			title: 'My UMBY Profile',
 			description: 'A web interface for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta.',
-			tags: ['JavaScript', 'React', 'Vite'],
+			tags: ['JavaScript', 'React.js', 'Vite'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile',
 			liveUrl: 'https://umby.mardini.dev/',
 		},
 		{
 			title: 'Wilayah Indonesia',
 			description: 'A CLI tool to manage and transform Indonesian administrative region data.',
-			tags: ['JavaScript'],
+			tags: ['JavaScript', 'Node.js', 'Commander.js'],
 			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia',
 		},
 		{
@@ -243,7 +243,7 @@ export const profile = {
 		{
 			title: 'Dengue Expert App',
 			description: 'An expert system for diagnosing dengue fever (DBD) using rule-based reasoning.',
-			tags: ['PHP', 'Laravel', 'Filament'],
+			tags: ['PHP', 'Laravel', 'Filament', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/dengue-expert-app',
 			liveUrl: 'https://es-dbd-backend.umby.dev/',
 		},
@@ -257,7 +257,7 @@ export const profile = {
 		{
 			title: 'NoteSpace',
 			description: 'Your space to think, write, and stay organized.',
-			tags: ['PHP', 'CodeIgniter 4'],
+			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
 		},
 	] satisfies Project[],
