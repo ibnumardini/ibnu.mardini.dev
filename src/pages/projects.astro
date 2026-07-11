@@ -5,7 +5,7 @@ import { profile } from '../data/profile';
 ---
 
 <Layout title={`Projects - ${profile.name}`} description="All projects by Muhammad Fatkurozi.">
-	<section class="py-16">
+	<section class="py-10">
 		<h1 class="font-heading text-2xl font-bold">Projects</h1>
 		<div class="mt-6 grid gap-4 sm:grid-cols-2">
 			{profile.projects.map((project) => <ProjectCard {...project} />)}
