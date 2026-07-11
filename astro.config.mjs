@@ -8,9 +8,7 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
 	site: 'https://ibnu.mardini.dev',
 	integrations: [icon()],
-	adapter: cloudflare({
-		imageService: 'compile',
-	}),
+	adapter: process.env.CLOUDFLARE ? cloudflare({ imageService: 'compile' }) : undefined,
 	vite: {
 		plugins: [tailwindcss()],
 	},
