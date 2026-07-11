@@ -12,6 +12,8 @@ interface Props {
 
 const { title, description = profile.summary } = Astro.props;
 
+const ogImage = new URL('/images/daisy.jpg', Astro.site).href;
+
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const navLinks = [
 	{ href: '/about', label: 'About', active: path === '/about' },
@@ -29,6 +31,14 @@ const navLinks = [
 		<link rel="icon" type="image/png" href="/images/dark.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
