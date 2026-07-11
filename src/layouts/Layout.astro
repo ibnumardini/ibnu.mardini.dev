@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import BackToTop from '../components/BackToTop.astro';
 import { profile } from '../data/profile';
+import daisy from '../assets/daisy.jpg';
 import '../styles/global.css';
 
 interface Props {
@@ -12,7 +14,7 @@ interface Props {
 
 const { title, description = profile.summary } = Astro.props;
 
-const ogImage = new URL('/images/daisy.jpg', Astro.site).href;
+const ogImage = new URL('/images/daisy.webp', Astro.site).href;
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const navLinks = [
@@ -73,9 +75,11 @@ const navLinks = [
 		</header>
 		<main class="mx-auto max-w-3xl px-6">
 			<slot />
-			<img
-				src="/images/daisy.jpg"
+			<Image
+				src={daisy}
 				alt="A field of daisies"
+				widths={[400, 800, 1200]}
+				sizes="(min-width: 768px) 768px, 100vw"
 				class="mt-10 mb-10 h-25 w-full rounded-lg object-cover opacity-90 saturate-50 transition-all hover:opacity-100 hover:saturate-100 dark:opacity-80 dark:hover:opacity-100"
 			/>
 		</main>
