@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
+import mdx from '@astrojs/mdx';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 
@@ -9,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'https://ibnu.mardini.dev',
 	prefetch: true,
-	integrations: [icon(), sitemap()],
+	integrations: [mdx(), icon(), sitemap()],
 	adapter: process.env.CLOUDFLARE ? cloudflare({ imageService: 'compile' }) : undefined,
 	vite: {
 		plugins: [tailwindcss()],
