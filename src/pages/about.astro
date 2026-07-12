@@ -28,7 +28,9 @@ import avatar from '../assets/avatar.png';
 	</section>
 
 	<section class="py-10">
-		<h2 class="font-heading text-xl font-semibold">Skills</h2>
+		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
+			<Icon name="tabler:bolt" size={20} /> Skills
+		</h2>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
 			{profile.skills.map((group) => (
 				<div>
@@ -40,21 +42,27 @@ import avatar from '../assets/avatar.png';
 	</section>
 
 	<section class="py-10">
-		<h2 class="font-heading text-xl font-semibold">Experience</h2>
+		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
+			<Icon name="tabler:briefcase" size={20} /> Experiences
+		</h2>
 		<div class="mt-4 space-y-6">
 			{profile.experience.map((entry) => <ExperienceItem {...entry} />)}
 		</div>
 	</section>
 
 	<section class="py-10">
-		<h2 class="font-heading text-xl font-semibold">Education</h2>
+		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
+			<Icon name="tabler:school" size={20} /> Educations
+		</h2>
 		<div class="mt-4 space-y-6">
 			{profile.education.map((entry) => <EducationItem {...entry} />)}
 		</div>
 	</section>
 
 	<section class="py-10">
-		<h2 class="font-heading text-xl font-semibold">Certifications</h2>
+		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
+			<Icon name="tabler:certificate" size={20} /> Certifications
+		</h2>
 		<div class="mt-4 space-y-4">
 			{profile.certifications.map((cert) => <CertificationItem {...cert} />)}
 		</div>

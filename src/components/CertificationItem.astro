@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import type { CertificationEntry } from '../data/profile';
 
 type Props = CertificationEntry;
@@ -7,10 +6,10 @@ type Props = CertificationEntry;
 const { name, issuer, year } = Astro.props;
 ---
 
-<div class="flex items-start gap-3 border-l-2 border-slate-200 py-2 pl-4 dark:border-slate-800">
-	<Icon name="tabler:certificate" size={20} class="mt-0.5 shrink-0 text-slate-400 dark:text-slate-500" />
+<div class="flex flex-wrap items-baseline justify-between gap-x-4 border-l-2 border-slate-200 py-2 pl-4 dark:border-slate-800">
 	<div>
 		<h3 class="font-semibold">{name}</h3>
-		<p class="text-sm text-slate-500 dark:text-slate-400">{issuer} &middot; {year}</p>
+		<p class="text-sm text-slate-500 dark:text-slate-400">{issuer}</p>
 	</div>
+	<span class="text-sm text-slate-500 dark:text-slate-400">{year}</span>
 </div>
