@@ -12,16 +12,22 @@ import { Icon } from 'astro-icon/components';
 </button>
 
 <script>
-	const button = document.getElementById('back-to-top');
+	function initBackToTop() {
+		const button = document.getElementById('back-to-top');
+		if (!button) return;
 
-	const toggleVisibility = () => {
-		button?.classList.toggle('hidden', window.scrollY < 400);
-	};
+		const toggle = () => {
+			button.classList.toggle('hidden', window.scrollY < 400);
+		};
 
-	window.addEventListener('scroll', toggleVisibility, { passive: true });
-	toggleVisibility();
+		window.addEventListener('scroll', toggle, { passive: true });
+		toggle();
 
-	button?.addEventListener('click', () => {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	});
+		button.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	}
+
+	initBackToTop();
+	document.addEventListener('astro:after-swap', initBackToTop);
 </script>
