@@ -18,7 +18,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
 const languageLabel = { en: 'EN', id: 'ID' }[language];
 ---
 
-<a href={`/blog/${id}`} class="block group">
+<a href={`/blog/${id}`} class="group block border-l-2 border-slate-200 pl-4 py-2 transition-colors hover:border-accent dark:border-slate-800 dark:hover:border-accent">
 	<div class="flex items-center gap-2">
 		<p class="text-sm text-slate-500 dark:text-slate-400">{formattedDate}</p>
 		<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
