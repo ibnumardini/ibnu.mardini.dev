@@ -7,7 +7,7 @@ type Props = Project;
 const { title, description, tags, repoUrl, liveUrl } = Astro.props;
 ---
 
-<div class="rounded-lg border border-slate-200 p-5 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-600 transition-colors">
+<div class="rounded-lg border border-slate-200 p-5 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800 dark:hover:border-accent">
 	<div class="flex items-center justify-between">
 		<h3 class="font-semibold">{title}</h3>
 		<div class="flex items-center gap-3">

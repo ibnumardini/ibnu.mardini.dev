@@ -6,7 +6,7 @@ type Props = CertificationEntry;
 const { name, issuer, year } = Astro.props;
 ---
 
-<div class="flex flex-wrap items-baseline justify-between gap-x-4 border-l-2 border-slate-200 transition-colors duration-200 hover:border-accent py-2 pl-4 dark:border-slate-800">
+<div class="flex flex-wrap items-baseline justify-between gap-x-4 border-l-2 border-slate-200 transition-colors duration-200 hover:border-slate-400 py-2 pl-4 dark:border-slate-800 dark:hover:border-accent">
 	<div>
 		<h3 class="font-semibold">{name}</h3>
 		<p class="text-sm text-slate-500 dark:text-slate-400">{issuer}</p>
