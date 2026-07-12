@@ -198,8 +198,9 @@ export const profile = {
 		{
 			title: 'Hutang Piutang App',
 			description: 'A web app for managing transactions of debts and receivables.',
-			tags: ['PHP', 'MySQL'],
+			tags: ['PHP', 'MySQL', 'Bootstrap 5'],
 			repoUrl: 'https://github.com/ibnumardini/hutang-piutang-app',
+			liveUrl: 'https://hutang-piutang.mardini.dev/',
 		},
 		{
 			title: 'SIMALU',
