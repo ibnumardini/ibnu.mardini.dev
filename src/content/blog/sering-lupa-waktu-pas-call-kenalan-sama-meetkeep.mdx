@@ -1,0 +1,75 @@
+---
+title: "Sering Lupa Waktu Pas Call? Kenalan Sama MeetKeep, Chrome Extension Timer Buat Google Meet"
+date: 2026-07-13
+description: "Kok bisa ya, Google Meet secara default gak ada meeting timernya?"
+language: "id"
+---
+
+import { Image } from 'astro:assets';
+import meetkeep1 from './images/meetkeep-1.jpg';
+import meetkeep2 from './images/meetkeep-2.jpg';
+
+"Kok bisa ya, Google Meet secara default gak ada meeting timernya?"
+
+Pertanyaan itu sering banget lewat di kepala saya akhir-akhir ini. Atau... entah saya aja yang kuper dan belum nemu fiturnya di pojokan mana, hehe. Tapi beneran deh, buat yang sehari-hari sering call, entah itu buat daily standup, koordinasi kerjaan, atau sekadar brainstorming santai, kehilangan jejak waktu itu udah kayak makanan sehari-hari.
+
+Lagi asyik ngobrol, eh tau-tau pas liat jam dinding udah bablas sejam lebih. Padahal agenda setelahnya udah ngantre.
+
+Sebelum memutuskan bikin sesuatu sendiri, saya udah coba jalan ninja yang biasa dilakukan netizen: berburu extension di Chrome Web Store. Saya cobain tuh sekitar 2–3 extension timer yang ratingnya lumayan. Tapi ya gitu, rasanya masih "kureng" banget. Ada yang fiturnya malah seribet kalkulator saintifik, ada juga yang UI-nya off banget, malah ngerusak pemandangan visual Google Meet yang udah estetik dan minimalis.
+
+Daripada terus-terusan ngerasa gak puas dan ngedumel sendiri, ya sudah: I built my own solution.
+
+**Perkenalkan: MeetKeep**
+
+## Kenapa Harus MeetKeep?
+
+Goal saya pas bikin tool ini simpel banget: bikin timer yang fungsional, tapi tampilannya jauh lebih elegan dan menyatu rapi dengan UI aslinya. Saya gak mau ada widget melayang-layang gak jelas yang nutupin muka orang pas lagi presentasi.
+
+Nih, coba liat penampakannya pas lagi di dalam ruang meet:
+
+<Image src={meetkeep1} alt="MeetKeep timer di pojok kiri bawah Google Meet" class="rounded-lg shadow-sm" />
+
+Rapi banget, kan? Indikator MK (MeetKeep) sengaja saya taruh presisi di pojok kiri bawah, mepet sama informasi kode meeting. Font dan warnanya juga dibuat senada biar berasa kayak fitur bawaan dari Google-nya langsung.
+
+## Gak Cuma Pas Meet, Pas Keluar Juga Ada "Oleh-oleh"
+
+Nah, ini ada update kecil tapi menurut saya berguna banget. Sekarang pas kamu beres meeting dan klik tombol leave, layar "You've left the meeting" kamu gak bakal polosan lagi.
+
+MeetKeep bakal otomatis ngebaca durasi panggilan kamu dan nampilin teks rangkuman di sana, contohnya: (after 2m 1s). Jadi kamu bisa track tipis-tipis, seberapa lama tadi kamu habis ngalor-ngidul di dalam call.
+
+<Image src={meetkeep2} alt="MeetKeep durasi meeting di layar leave" class="rounded-lg shadow-sm" />
+
+## Isi Jeroannya Pake Apa Saja?
+
+Buat sesama developer yang penasaran atau pengen ngintip dapurnya, MeetKeep ini saya bikin seringan mungkin tanpa framework yang aneh-aneh. Cukup pake trio murni:
+
+* Vanilla JS (Buat ngatur logika timer dan obok-obok DOM-nya)
+* CSS (Biar visualnya pixel-perfect pas nempel di UI aslinya)
+* Manifest V3 (Mengikuti aturan terbaru dan paling aman dari Chrome Extension)
+
+Oh ya, status project ini Open-source (Apache-2.0 License). Jadi kalau kamu mau fork, modifikasi, atau ikutan kirim Pull Request (PR) buat nambahin fitur baru, monggo banget! Gass!
+
+## Cara Pasangnya Gampang Banget! (Gak Pake Ribet)
+
+Karena belum saya daftarin resmi ke Chrome Web Store (biar gak ribet urusan birokrasinya dulu, hehe), kamu bisa pakai jalur Developer Mode. Caranya gampang dan cepet banget kok:
+
+1. Meluncur ke website MeetKeep di sini: [ibnumardini.github.io/meetkeep](https://ibnumardini.github.io/meetkeep/).
+2. Download rilisan (release) terbarunya, terus extract file zip-nya di komputer kamu.
+3. Buka Google Chrome, lalu ketik `chrome://extensions/` di URL bar.
+4. Jangan lupa aktifkan "Developer mode" di pojok kanan atas.
+5. Klik "Load unpacked" di pojok kiri atas, lalu arahkan ke folder dist yang udah kamu extract tadi.
+6. Boom! Selesai. Tinggal tes buka Google Meet.
+
+Kalau mau baca dokumentasi lengkap atau sekadar mampir ke halaman demonya, bisa langsung cek di [ibnumardini.github.io/meetkeep](https://ibnumardini.github.io/meetkeep/).
+
+## Disclaimer: Pengumpulan Data
+
+MeetKeep mengirim satu ping anonim (tanpa data pribadi, tanpa konten meeting) sekali sehari ke Google Analytics, biar saya tahu apakah extension-nya benar-benar dipakai atau enggak.
+
+Gak mau? Buka popup extension (klik icon MeetKeep di toolbar) dan matikan **Send anonymous usage data**. Defaultnya nyala, kamu bisa matikan kapan aja.
+
+## Akhir Kata
+
+Bikin extension ini tuh seru banget karena bener-bener berangkat dari masalah pribadi yang ternyata juga dialami banyak orang. Kalau kamu tipe orang yang sering ilang arah soal durasi waktu pas lagi meet, cobain deh pasang MeetKeep ini.
+
+Kalau nemu bug atau punya ide fitur baru yang gokil, langsung colek saya lewat issue di GitHub ya. Happy meeting and stay productive!
