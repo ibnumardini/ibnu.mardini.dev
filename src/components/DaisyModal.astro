@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import daisy from "../assets/daisy.jpg";
+---
+
+<div
+  id="daisy-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center border-b border-slate-200/80 bg-white/70 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/70"
+>
+  <div class="max-w-md px-6">
+    <button
+      id="daisy-close"
+      class="mb-4 flex cursor-pointer items-center gap-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+    >
+      <Icon name="tabler:arrow-left" size={20} />
+      <span class="text-sm">Back</span>
+    </button>
+    <Image
+      src={daisy}
+      alt="A field of daisies"
+      widths={[400, 800]}
+      sizes="(min-width: 768px) 400px, 100vw"
+      class="w-full rounded-lg object-cover"
+    />
+    <p class="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+      I love daisies because they never try to stand out on their own. Instead,
+      they choose to grow small, abundant, and complement each other. And amidst
+      that colorful embrace, <b>they create their own world full of joy</b> like a
+      little endless celebration. 🌼
+    </p>
+  </div>
+</div>
+
+<script>
+  function initDaisyModal() {
+    const modal = document.getElementById("daisy-modal");
+    const trigger = document.querySelector("[data-daisy-trigger]");
+    const closeBtn = document.getElementById("daisy-close");
+    if (!modal || !trigger || !closeBtn) return;
+
+    const toggle = (show: boolean) => {
+      modal.classList.toggle("hidden", !show);
+      modal.classList.toggle("flex", show);
+      document.body.style.overflow = show ? "hidden" : "";
+    };
+
+    trigger.addEventListener("click", () => toggle(true));
+    closeBtn.addEventListener("click", () => toggle(false));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") toggle(false);
+    });
+  }
+
+  initDaisyModal();
+  document.addEventListener("astro:after-swap", initDaisyModal);
+</script>
