@@ -6,7 +6,7 @@ type Props = ExperienceEntry;
 const { company, companyUrl, role, dates, bullets } = Astro.props;
 ---
 
-<div class="border-l-2 border-slate-200 dark:border-slate-800 pl-4 py-2">
+<div class="border-l-2 border-slate-200 transition-colors duration-200 hover:border-accent dark:border-slate-800 pl-4 py-2">
 	<div class="flex flex-wrap items-baseline justify-between gap-x-4">
 		<h3 class="font-semibold">
 			{role} ·{' '}
