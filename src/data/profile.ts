@@ -37,6 +37,7 @@ export interface CertificationEntry {
 	name: string;
 	issuer: string;
 	year: string;
+	credentialUrl?: string;
 }
 
 export interface ExternalLink {
@@ -182,11 +183,16 @@ export const profile = {
 		},
 	] satisfies EducationEntry[],
 	certifications: [
-		{ name: 'Belajar Dasar Pemrograman Web', issuer: 'Dicoding', year: '2022' },
-		{ name: 'Belajar Membuat Aplikasi Backend untuk Pemula dengan Cloudeka', issuer: 'Dicoding', year: '2022' },
-		{ name: 'Belajar Membuat Aplikasi Backend untuk Pemula', issuer: 'Dicoding', year: '2022' },
-		{ name: 'Belajar Dasar Pemrograman JavaScript', issuer: 'Dicoding', year: '2021' },
-		{ name: 'Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)', issuer: 'Dicoding', year: '2021' },
+		{ name: 'Belajar Dasar Pemrograman JavaScript', issuer: 'Dicoding', year: '2021', credentialUrl: 'https://www.dicoding.com/certificates/EYZRNONLMZYY' },
+		{ name: 'Belajar Membuat Aplikasi Back-End untuk Pemula', issuer: 'Dicoding', year: '2021', credentialUrl: 'https://www.dicoding.com/certificates/98XWW4OBXKM3' },
+		{ name: 'Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)', issuer: 'Dicoding', year: '2021', credentialUrl: 'https://www.dicoding.com/certificates/4EXG86L4QZRL' },
+		{ name: 'Belajar Dasar Pemrograman Web', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1OP86MOROZXQ' },
+		{ name: 'Belajar Membuat Aplikasi Front-End untuk Pemula', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/JLX1GEYVN272' },
+		{ name: 'Belajar Membuat Aplikasi Web dengan React', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1UXYM8Y9XXYM' },
+		{ name: 'Belajar Fundamental Front-End Web Development', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/EYX49WGKOPDL' },
+		{ name: 'PRO22-Batch 2-React Developer', issuer: 'Digital Talent Scholarship', year: '2022', credentialUrl: 'https://bucket.cloud.lintasarta.co.id:8082/dts-sertifikat/sertifikat-pdf/074dfaa2-1d49-4c76-8445-8b40f7f1174f.pdf' },
+		{ name: 'Belajar Membuat Aplikasi Back-End untuk Pemula dengan Cloudeka', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1OP85933LPQK' },
+		{ name: 'Menjadi Front-End Web Developer Expert', issuer: 'Dicoding', year: '2023', credentialUrl: 'https://www.dicoding.com/certificates/N9ZO48KKRZG5' },
 	] satisfies CertificationEntry[],
 	projects: [
 		{

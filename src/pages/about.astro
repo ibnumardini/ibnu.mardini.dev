@@ -128,8 +128,8 @@ import avatar from '../assets/avatar.png';
 			<Icon name="tabler:certificate" size={20} /> Certifications
 		</h2>
 		<div id="cert-wrapper" class="relative mt-4">
-			<div id="cert-items" class="space-y-4 overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 500px;">
-				{profile.certifications.map((cert) => <CertificationItem {...cert} />)}
+			<div id="cert-items" class="space-y-4 overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 300px;">
+				{profile.certifications.map((cert) => <CertificationItem {...cert} />).reverse()}
 			</div>
 			<div id="cert-gradient" class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-white to-transparent dark:from-slate-950"></div>
 		<button

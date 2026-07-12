@@ -1,15 +1,32 @@
 ---
-import type { CertificationEntry } from '../data/profile';
+import type { CertificationEntry } from "../data/profile";
+import { Icon } from "astro-icon/components";
 
 type Props = CertificationEntry;
 
-const { name, issuer, year } = Astro.props;
+const { name, issuer, year, credentialUrl } = Astro.props;
 ---
 
-<div class="flex flex-wrap items-baseline justify-between gap-x-4 border-l-2 border-slate-200 transition-colors duration-200 hover:border-slate-400 py-2 pl-4 dark:border-slate-800 dark:hover:border-accent">
-	<div>
-		<h3 class="font-semibold">{name}</h3>
-		<p class="text-sm text-slate-500 dark:text-slate-400">{issuer}</p>
-	</div>
-	<span class="text-sm text-slate-500 dark:text-slate-400">{year}</span>
+<div
+  class="flex flex-wrap items-baseline justify-between gap-x-4 border-l-2 border-slate-200 transition-colors duration-200 hover:border-slate-400 py-2 pl-4 dark:border-slate-800 dark:hover:border-accent"
+>
+  <div>
+    <h3 class="font-semibold">{name}</h3>
+    <p class="text-sm text-slate-500 dark:text-slate-400">{issuer}</p>
+  </div>
+  <div class="flex items-center gap-2">
+    {
+      credentialUrl && (
+        <a
+          href={credentialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-white"
+        >
+          <Icon name="tabler:external-link" size={14} />
+        </a>
+      )
+    }
+    <span class="text-sm text-slate-500 dark:text-slate-400">{year}</span>
+  </div>
 </div>
