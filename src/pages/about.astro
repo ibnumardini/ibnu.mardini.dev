@@ -45,10 +45,74 @@ import avatar from '../assets/avatar.png';
 		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
 			<Icon name="tabler:briefcase" size={20} /> Experiences
 		</h2>
-		<div class="mt-4 space-y-6">
-			{profile.experience.map((entry) => <ExperienceItem {...entry} />)}
+		<div id="experience-wrapper" class="relative mt-4">
+			<div id="experience-items" class="space-y-6 overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 500px;">
+				{profile.experience.map((entry) => <ExperienceItem {...entry} />)}
+			</div>
+			<div id="experience-gradient" class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-white to-transparent dark:from-slate-950"></div>
+		<button
+			id="experience-toggle"
+			class="relative z-10 mx-auto mt-4 flex items-center gap-1 text-sm font-medium text-slate-500 transition-colors hover:text-slate-800 dark:text-slate-400 dark:hover:text-white"
+		>
+			<span id="experience-toggle-text">Show more</span>
+			<Icon id="experience-toggle-icon" name="tabler:chevron-down" size={16} class="transition-transform duration-300" />
+		</button>
 		</div>
 	</section>
+
+	<script>
+		const wrapper = document.getElementById('experience-wrapper');
+		const items = document.getElementById('experience-items');
+		const toggle = document.getElementById('experience-toggle');
+		const toggleText = document.getElementById('experience-toggle-text');
+		const toggleIcon = document.getElementById('experience-toggle-icon') as HTMLElement | null;
+		const gradient = document.getElementById('experience-gradient');
+		if (items && toggle && gradient && wrapper && toggleText && toggleIcon) {
+			const chevronUp = toggleIcon.outerHTML;
+			const chevronDown = toggleIcon.outerHTML;
+			const children = Array.from(items.children) as HTMLElement[];
+			const itemHeights = children.map((el) => el.getBoundingClientRect().height);
+			const gap = 24;
+			const collapsedHeight = itemHeights.slice(0, 3).reduce((a, b) => a + b, 0) + gap * 2;
+			const expandedHeight = itemHeights.reduce((a, b) => a + b, 0) + gap * (children.length - 1);
+			items.style.maxHeight = collapsedHeight + 'px';
+			let expanded = false;
+
+			toggle.addEventListener('click', () => {
+				expanded = !expanded;
+				items.style.maxHeight = expanded ? expandedHeight + 40 + 'px' : collapsedHeight + 'px';
+				gradient.classList.toggle('hidden', expanded);
+				toggleText.textContent = expanded ? 'Show less' : 'Show more';
+				toggleIcon.style.transform = expanded ? 'rotate(180deg)' : '';
+			});
+		}
+	</script>
+
+	<script>
+		const certWrapper = document.getElementById('cert-wrapper');
+		const certItems = document.getElementById('cert-items');
+		const certToggle = document.getElementById('cert-toggle');
+		const certToggleText = document.getElementById('cert-toggle-text');
+		const certToggleIcon = document.getElementById('cert-toggle-icon') as HTMLElement | null;
+		const certGradient = document.getElementById('cert-gradient');
+		if (certItems && certToggle && certGradient && certWrapper && certToggleText && certToggleIcon) {
+			const children = Array.from(certItems.children) as HTMLElement[];
+			const itemHeights = children.map((el) => el.getBoundingClientRect().height);
+			const gap = 16;
+			const collapsedHeight = itemHeights.slice(0, 5).reduce((a, b) => a + b, 0) + gap * 4;
+			const expandedHeight = itemHeights.reduce((a, b) => a + b, 0) + gap * (children.length - 1);
+			certItems.style.maxHeight = collapsedHeight + 'px';
+			let expanded = false;
+
+			certToggle.addEventListener('click', () => {
+				expanded = !expanded;
+				certItems.style.maxHeight = expanded ? expandedHeight + 40 + 'px' : collapsedHeight + 'px';
+				certGradient.classList.toggle('hidden', expanded);
+				certToggleText.textContent = expanded ? 'Show less' : 'Show more';
+				certToggleIcon.style.transform = expanded ? 'rotate(180deg)' : '';
+			});
+		}
+	</script>
 
 	<section class="py-10">
 		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
@@ -63,15 +127,19 @@ import avatar from '../assets/avatar.png';
 		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
 			<Icon name="tabler:certificate" size={20} /> Certifications
 		</h2>
-		<div class="mt-4 space-y-4">
-			{profile.certifications.map((cert) => <CertificationItem {...cert} />)}
+		<div id="cert-wrapper" class="relative mt-4">
+			<div id="cert-items" class="space-y-4 overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 500px;">
+				{profile.certifications.map((cert) => <CertificationItem {...cert} />)}
+			</div>
+			<div id="cert-gradient" class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-white to-transparent dark:from-slate-950"></div>
+		<button
+			id="cert-toggle"
+			class="relative z-10 mx-auto mt-4 flex items-center gap-1 text-sm font-medium text-slate-500 transition-colors hover:text-slate-800 dark:text-slate-400 dark:hover:text-white"
+		>
+			<span id="cert-toggle-text">Show more</span>
+			<Icon id="cert-toggle-icon" name="tabler:chevron-down" size={16} class="transition-transform duration-300" />
+		</button>
 		</div>
-		<p class="mt-4 text-sm text-slate-500 dark:text-slate-400">
-			Full list available on{' '}
-			<a href="https://linkedin.com/in/ibnumardini" target="_blank" rel="noopener noreferrer" class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">
-				LinkedIn
-			</a>.
-		</p>
 	</section>
 
 	<section class="py-10 text-center">
