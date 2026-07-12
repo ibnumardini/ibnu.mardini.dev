@@ -259,6 +259,7 @@ export const profile = {
 			description: 'Your space to think, write, and stay organized.',
 			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
+			liveUrl: "https://notespace.mardini.dev/",
 		},
 	] satisfies Project[],
 };
