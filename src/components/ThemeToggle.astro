@@ -20,6 +20,5 @@ import { Icon } from 'astro-icon/components';
 			localStorage.theme = isDark ? 'dark' : 'light';
 		});
 	}
-	setupThemeToggle();
 	document.addEventListener('astro:page-load', setupThemeToggle);
 </script>
