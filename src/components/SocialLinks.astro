@@ -14,6 +14,7 @@ const iconMap = {
 	github: 'tabler:brand-github',
 	facebook: 'tabler:brand-facebook',
 	instagram: 'tabler:brand-instagram',
+	x: 'tabler:brand-x',
 };
 ---
 
@@ -22,8 +23,8 @@ const iconMap = {
 		<a
 			href={social.url}
 			aria-label={social.label}
-			target={social.icon === 'mail' ? undefined : '_blank'}
-			rel={social.icon === 'mail' ? undefined : 'noopener noreferrer'}
+			target="_blank"
+			rel="noopener noreferrer"
 			class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
 		>
 			<Icon name={iconMap[social.icon]} size={size} />

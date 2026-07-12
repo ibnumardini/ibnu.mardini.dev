@@ -1,7 +1,7 @@
 export interface SocialLink {
 	label: string;
 	url: string;
-	icon: 'github' | 'linkedin' | 'mail' | 'facebook' | 'instagram';
+	icon: 'github' | 'linkedin' | 'mail' | 'facebook' | 'instagram' | 'x';
 }
 
 export interface SkillGroup {
@@ -55,10 +55,10 @@ export const profile = {
 	cvUrl: 'http://s.id/fatkur-cv-download',
 	socials: [
 		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'github' },
+		{ label: 'X', url: 'https://x.com/ibnumardini', icon: 'x' },
 		{ label: 'Facebook', url: 'https://fb.com/ibnumardini/', icon: 'facebook' },
 		{ label: 'Instagram', url: 'https://instagram.com/ibnu.mardini.dev/', icon: 'instagram' },
 		{ label: 'LinkedIn', url: 'https://linkedin.com/in/ibnumardini', icon: 'linkedin' },
-		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'mail' },
 	] satisfies SocialLink[],
 	elsewhere: [
 		{
