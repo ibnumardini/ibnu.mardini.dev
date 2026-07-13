@@ -15,7 +15,10 @@ const formattedDate = formatBlogDate(date);
 const languageLabel = blogLanguageLabel(language);
 ---
 
-<a href={`/blog/${id}`} class="group block border-l-2 border-slate-200 pl-4 py-2 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800 dark:hover:border-accent">
+<a
+	href={`/blog/${id}`}
+	class="group dark:hover:border-accent block border-l-2 border-slate-200 py-2 pl-4 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800"
+>
 	<div class="flex items-center gap-2">
 		<p class="text-sm text-slate-500 dark:text-slate-400">{formattedDate}</p>
 		<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">

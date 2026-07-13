@@ -94,8 +94,19 @@ export const profile = {
 		{
 			category: 'Backend',
 			items: [
-				'PHP', 'JavaScript', 'TypeScript', 'Go', 'Laravel', 'CodeIgniter', 'Node.js',
-				'Express.js', 'NestJs', 'AdonisJs', 'Echo Framework', 'GORM', 'Prisma',
+				'PHP',
+				'JavaScript',
+				'TypeScript',
+				'Go',
+				'Laravel',
+				'CodeIgniter',
+				'Node.js',
+				'Express.js',
+				'NestJs',
+				'AdonisJs',
+				'Echo Framework',
+				'GORM',
+				'Prisma',
 			],
 		},
 		{
@@ -109,8 +120,19 @@ export const profile = {
 		{
 			category: 'DevOps & Infrastructure',
 			items: [
-				'GNU/Linux', 'Docker', 'Kubernetes', 'Nginx', 'Haproxy', 'Traefik',
-				'Object Storage S3', 'OpenTelemetry', 'Grafana', 'Loki', 'Prometheus', 'GitLab CI/CD', 'Dokploy',
+				'GNU/Linux',
+				'Docker',
+				'Kubernetes',
+				'Nginx',
+				'Haproxy',
+				'Traefik',
+				'Object Storage S3',
+				'OpenTelemetry',
+				'Grafana',
+				'Loki',
+				'Prometheus',
+				'GitLab CI/CD',
+				'Dokploy',
 			],
 		},
 		{
@@ -182,7 +204,7 @@ export const profile = {
 	education: [
 		{
 			institution: 'Universitas Mercu Buana Yogyakarta (UMBY)',
-			institutionUrl: 'https://umby.ac.id',	
+			institutionUrl: 'https://umby.ac.id',
 			program: 'S.Kom, Computer Science (GPA: 3.86/4)',
 			dates: 'Sept 2023 - Present',
 		},
@@ -194,21 +216,73 @@ export const profile = {
 		},
 	] satisfies EducationEntry[],
 	certifications: [
-		{ name: 'Belajar Dasar Pemrograman JavaScript', issuer: 'Dicoding', year: '2021', credentialUrl: 'https://www.dicoding.com/certificates/EYZRNONLMZYY' },
-		{ name: 'Belajar Membuat Aplikasi Back-End untuk Pemula', issuer: 'Dicoding', year: '2021', credentialUrl: 'https://www.dicoding.com/certificates/98XWW4OBXKM3' },
-		{ name: 'Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)', issuer: 'Dicoding', year: '2021', credentialUrl: 'https://www.dicoding.com/certificates/4EXG86L4QZRL' },
-		{ name: 'Belajar Dasar Pemrograman Web', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1OP86MOROZXQ' },
-		{ name: 'Belajar Membuat Aplikasi Front-End untuk Pemula', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/JLX1GEYVN272' },
-		{ name: 'Belajar Membuat Aplikasi Web dengan React', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1UXYM8Y9XXYM' },
-		{ name: 'Belajar Fundamental Front-End Web Development', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/EYX49WGKOPDL' },
-		{ name: 'PRO22-Batch 2-React Developer', issuer: 'Digital Talent Scholarship', year: '2022', credentialUrl: 'https://www.linkedin.com/posts/ibnumardini_pro22-batch-2-react-developer-activity-6972190327638028288-Zegc' },
-		{ name: 'Belajar Membuat Aplikasi Back-End untuk Pemula dengan Cloudeka', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1OP85933LPQK' },
-		{ name: 'Menjadi Front-End Web Developer Expert', issuer: 'Dicoding', year: '2023', credentialUrl: 'https://www.dicoding.com/certificates/N9ZO48KKRZG5' },
+		{
+			name: 'Belajar Dasar Pemrograman JavaScript',
+			issuer: 'Dicoding',
+			year: '2021',
+			credentialUrl: 'https://www.dicoding.com/certificates/EYZRNONLMZYY',
+		},
+		{
+			name: 'Belajar Membuat Aplikasi Back-End untuk Pemula',
+			issuer: 'Dicoding',
+			year: '2021',
+			credentialUrl: 'https://www.dicoding.com/certificates/98XWW4OBXKM3',
+		},
+		{
+			name: 'Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)',
+			issuer: 'Dicoding',
+			year: '2021',
+			credentialUrl: 'https://www.dicoding.com/certificates/4EXG86L4QZRL',
+		},
+		{
+			name: 'Belajar Dasar Pemrograman Web',
+			issuer: 'Dicoding',
+			year: '2022',
+			credentialUrl: 'https://www.dicoding.com/certificates/1OP86MOROZXQ',
+		},
+		{
+			name: 'Belajar Membuat Aplikasi Front-End untuk Pemula',
+			issuer: 'Dicoding',
+			year: '2022',
+			credentialUrl: 'https://www.dicoding.com/certificates/JLX1GEYVN272',
+		},
+		{
+			name: 'Belajar Membuat Aplikasi Web dengan React',
+			issuer: 'Dicoding',
+			year: '2022',
+			credentialUrl: 'https://www.dicoding.com/certificates/1UXYM8Y9XXYM',
+		},
+		{
+			name: 'Belajar Fundamental Front-End Web Development',
+			issuer: 'Dicoding',
+			year: '2022',
+			credentialUrl: 'https://www.dicoding.com/certificates/EYX49WGKOPDL',
+		},
+		{
+			name: 'PRO22-Batch 2-React Developer',
+			issuer: 'Digital Talent Scholarship',
+			year: '2022',
+			credentialUrl:
+				'https://www.linkedin.com/posts/ibnumardini_pro22-batch-2-react-developer-activity-6972190327638028288-Zegc',
+		},
+		{
+			name: 'Belajar Membuat Aplikasi Back-End untuk Pemula dengan Cloudeka',
+			issuer: 'Dicoding',
+			year: '2022',
+			credentialUrl: 'https://www.dicoding.com/certificates/1OP85933LPQK',
+		},
+		{
+			name: 'Menjadi Front-End Web Developer Expert',
+			issuer: 'Dicoding',
+			year: '2023',
+			credentialUrl: 'https://www.dicoding.com/certificates/N9ZO48KKRZG5',
+		},
 	] satisfies CertificationEntry[],
 	projects: [
 		{
 			title: 'logn',
-			description: 'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
+			description:
+				'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
 			tags: ['Go'],
 			repoUrl: 'https://github.com/ibnumardini/logn',
 		},
@@ -238,7 +312,8 @@ export const profile = {
 		},
 		{
 			title: 'My UMBY Profile',
-			description: 'A web interface for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta.',
+			description:
+				'A web interface for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta.',
 			tags: ['JavaScript', 'React.js', 'Vite'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile',
 			liveUrl: 'https://umby.mardini.dev/',
@@ -277,7 +352,7 @@ export const profile = {
 			description: 'A personal note-taking and organization app for writing, thinking, and staying organized.',
 			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
-			liveUrl: "https://notespace.mardini.dev/",
+			liveUrl: 'https://notespace.mardini.dev/',
 		},
 	] satisfies Project[],
 };

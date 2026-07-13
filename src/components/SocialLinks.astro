@@ -11,15 +11,17 @@ const { size = 20, socials = profile.socials } = Astro.props;
 ---
 
 <div class="flex items-center gap-4">
-	{socials.map((social) => (
-		<a
-			href={social.url}
-			aria-label={social.label}
-			target="_blank"
-			rel="noopener noreferrer"
-			class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-		>
-			<Icon name={social.icon} size={size} />
-		</a>
-	))}
+	{
+		socials.map((social) => (
+			<a
+				href={social.url}
+				aria-label={social.label}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+			>
+				<Icon name={social.icon} size={size} />
+			</a>
+		))
+	}
 </div>

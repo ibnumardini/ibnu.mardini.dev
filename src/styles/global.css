@@ -1,17 +1,17 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
-@import "@fontsource/space-grotesk/500.css";
-@import "@fontsource/space-grotesk/600.css";
-@import "@fontsource/space-grotesk/700.css";
-@import "@fontsource/plus-jakarta-sans/400.css";
-@import "@fontsource/plus-jakarta-sans/500.css";
-@import "@fontsource/plus-jakarta-sans/600.css";
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
 	--font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 	--font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-	--color-accent: #CEF0F2;
+	--color-accent: #cef0f2;
 }

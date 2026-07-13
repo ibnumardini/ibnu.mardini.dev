@@ -7,26 +7,40 @@ type Props = Project;
 const { title, description, tags, repoUrl, liveUrl } = Astro.props;
 ---
 
-<div class="rounded-lg border border-slate-200 p-5 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800 dark:hover:border-accent">
+<div
+	class="dark:hover:border-accent rounded-lg border border-slate-200 p-5 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800"
+>
 	<div class="flex items-center justify-between">
 		<h3 class="font-semibold">{title}</h3>
 		<div class="flex items-center gap-3">
-			{liveUrl && (
-				<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`}>
-					<Icon name="tabler:external-link" size={18} class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" />
-				</a>
-			)}
+			{
+				liveUrl && (
+					<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`}>
+						<Icon
+							name="tabler:external-link"
+							size={18}
+							class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+						/>
+					</a>
+				)
+			}
 			<a href={repoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} source on GitHub`}>
-				<Icon name="tabler:brand-github" size={18} class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" />
+				<Icon
+					name="tabler:brand-github"
+					size={18}
+					class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+				/>
 			</a>
 		</div>
 	</div>
 	<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{description}</p>
 	<div class="mt-3 flex flex-wrap gap-2">
-		{tags.map((tag) => (
-			<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-				{tag}
-			</span>
-		))}
+		{
+			tags.map((tag) => (
+				<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+					{tag}
+				</span>
+			))
+		}
 	</div>
 </div>

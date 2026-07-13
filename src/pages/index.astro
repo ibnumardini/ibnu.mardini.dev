@@ -7,9 +7,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { profile } from '../data/profile';
 
-const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-	.slice(0, 3);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
 
 const pinnedProjects = profile.projects.filter((project) => project.pinned);
 ---
@@ -18,12 +16,13 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 	<section class="py-16">
 		<h1 class="font-heading text-4xl font-bold sm:text-5xl">Wassup? 👋🏼</h1>
 		<p class="mt-4 text-slate-600 dark:text-slate-300">
-			Just a place where I share my thoughts and ideas about backend engineering, distributed
-			systems, and whatever I'm working on. Feel free to browse around.
+			Just a place where I share my thoughts and ideas about backend engineering, distributed systems, and whatever I'm
+			working on. Feel free to browse around.
 		</p>
 		<p class="mt-4 text-slate-600 dark:text-slate-300">
 			More details about me? Check out the{' '}
-			<a href="/about" class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">about page</a>, or grab my{' '}
+			<a href="/about" class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">about page</a>,
+			or grab my{' '}
 			<a href={profile.cvUrl} class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">CV</a>.
 		</p>
 		<div class="mt-6">
@@ -40,7 +39,9 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 	</section>
 
-	<blockquote class="mb-6 rounded-r-md border-l-2 border-accent bg-slate-50 py-2 pl-4 font-mono text-sm text-slate-500 dark:bg-slate-900 dark:text-slate-400">
+	<blockquote
+		class="border-accent mb-6 rounded-r-md border-l-2 bg-slate-50 py-2 pl-4 font-mono text-sm text-slate-500 dark:bg-slate-900 dark:text-slate-400"
+	>
 		if err := beNice(); err != nil {'{'} beKind() {'}'}
 	</blockquote>
 
@@ -60,31 +61,42 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			<a href="/blog" class="text-sm hover:underline">View all &rarr;</a>
 		</div>
 		<div class="mt-4 space-y-4">
-			{posts.map((post) => (
-				<BlogCard id={post.id} title={post.data.title} date={post.data.date} description={post.data.description} language={post.data.language} />
-			))}
+			{
+				posts.map((post) => (
+					<BlogCard
+						id={post.id}
+						title={post.data.title}
+						date={post.data.date}
+						description={post.data.description}
+						language={post.data.language}
+					/>
+				))
+			}
 		</div>
 	</section>
 
 	<section class="py-10">
 		<h2 class="font-heading text-xl font-semibold">Elsewhere</h2>
 		<ul class="mt-4 space-y-4">
-			{profile.elsewhere.map((link) => (
-				<li>
-					<a
-						href={link.url}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="group flex items-center gap-3"
-					>
-						<Icon name={link.icon} size={20} class="shrink-0 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
-						<span>
-							<span class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">{link.title}</span>
-							<span class="text-sm text-slate-500 dark:text-slate-400"> &middot; {link.description}</span>
-						</span>
-					</a>
-				</li>
-			))}
+			{
+				profile.elsewhere.map((link) => (
+					<li>
+						<a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3">
+							<Icon
+								name={link.icon}
+								size={20}
+								class="shrink-0 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							/>
+							<span>
+								<span class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">
+									{link.title}
+								</span>
+								<span class="text-sm text-slate-500 dark:text-slate-400"> &middot; {link.description}</span>
+							</span>
+						</a>
+					</li>
+				))
+			}
 		</ul>
 	</section>
 </Layout>
