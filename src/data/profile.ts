@@ -1,7 +1,7 @@
 export interface SocialLink {
 	label: string;
 	url: string;
-	icon: 'github' | 'linkedin' | 'mail' | 'facebook' | 'instagram' | 'x';
+	icon: string;
 }
 
 export interface ContactCta {
@@ -62,12 +62,12 @@ export const profile = {
 	cvUrl: 'https://docs.google.com/document/d/10jEKHz9dVOidL-HIlIyVba3p2lmTQHJpcHN6k5EHW34/export?format=pdf',
 	contact: { label: "Let's Talk", url: 'mailto:hi@mardini.dev', icon: 'tabler:mail' } satisfies ContactCta,
 	socials: [
-		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'mail' },
-		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'github' },
-		{ label: 'X', url: 'https://x.com/ibnumardini', icon: 'x' },
-		{ label: 'Facebook', url: 'https://fb.com/ibnumardini/', icon: 'facebook' },
-		{ label: 'Instagram', url: 'https://instagram.com/ibnu.mardini.dev/', icon: 'instagram' },
-		{ label: 'LinkedIn', url: 'https://linkedin.com/in/ibnumardini', icon: 'linkedin' },
+		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'tabler:mail' },
+		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'tabler:brand-github' },
+		{ label: 'X', url: 'https://x.com/ibnumardini', icon: 'tabler:brand-x' },
+		{ label: 'Facebook', url: 'https://fb.com/ibnumardini/', icon: 'tabler:brand-facebook' },
+		{ label: 'Instagram', url: 'https://instagram.com/ibnu.mardini.dev/', icon: 'tabler:brand-instagram' },
+		{ label: 'LinkedIn', url: 'https://linkedin.com/in/ibnumardini', icon: 'tabler:brand-linkedin' },
 	] satisfies SocialLink[],
 	elsewhere: [
 		{
