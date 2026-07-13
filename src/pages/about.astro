@@ -61,19 +61,18 @@ import avatar from '../assets/avatar.png';
 	</section>
 
 	<script>
-		function setupExperienceToggle() {
-			const wrapper = document.getElementById('experience-wrapper');
-			const items = document.getElementById('experience-items');
-			const toggle = document.getElementById('experience-toggle');
-			const toggleText = document.getElementById('experience-toggle-text');
-			const toggleIcon = document.getElementById('experience-toggle-icon') as HTMLElement | null;
-			const gradient = document.getElementById('experience-gradient');
+		function setupToggle(prefix: string, visibleCount: number, gap: number) {
+			const wrapper = document.getElementById(`${prefix}-wrapper`);
+			const items = document.getElementById(`${prefix}-items`);
+			const toggle = document.getElementById(`${prefix}-toggle`);
+			const toggleText = document.getElementById(`${prefix}-toggle-text`);
+			const toggleIcon = document.getElementById(`${prefix}-toggle-icon`) as HTMLElement | null;
+			const gradient = document.getElementById(`${prefix}-gradient`);
 			if (!items || !toggle || !gradient || !wrapper || !toggleText || !toggleIcon) return;
 
 			const children = Array.from(items.children) as HTMLElement[];
 			const itemHeights = children.map((el) => el.getBoundingClientRect().height);
-			const gap = 24;
-			const collapsedHeight = itemHeights.slice(0, 3).reduce((a, b) => a + b, 0) + gap * 2;
+			const collapsedHeight = itemHeights.slice(0, visibleCount).reduce((a, b) => a + b, 0) + gap * (visibleCount - 1);
 			const expandedHeight = itemHeights.reduce((a, b) => a + b, 0) + gap * (children.length - 1);
 			items.style.maxHeight = collapsedHeight + 'px';
 			let expanded = false;
@@ -87,35 +86,9 @@ import avatar from '../assets/avatar.png';
 			};
 		}
 
-		function setupCertToggle() {
-			const certWrapper = document.getElementById('cert-wrapper');
-			const certItems = document.getElementById('cert-items');
-			const certToggle = document.getElementById('cert-toggle');
-			const certToggleText = document.getElementById('cert-toggle-text');
-			const certToggleIcon = document.getElementById('cert-toggle-icon') as HTMLElement | null;
-			const certGradient = document.getElementById('cert-gradient');
-			if (!certItems || !certToggle || !certGradient || !certWrapper || !certToggleText || !certToggleIcon) return;
-
-			const children = Array.from(certItems.children) as HTMLElement[];
-			const itemHeights = children.map((el) => el.getBoundingClientRect().height);
-			const gap = 16;
-			const collapsedHeight = itemHeights.slice(0, 5).reduce((a, b) => a + b, 0) + gap * 4;
-			const expandedHeight = itemHeights.reduce((a, b) => a + b, 0) + gap * (children.length - 1);
-			certItems.style.maxHeight = collapsedHeight + 'px';
-			let expanded = false;
-
-			certToggle.onclick = () => {
-				expanded = !expanded;
-				certItems.style.maxHeight = expanded ? expandedHeight + 40 + 'px' : collapsedHeight + 'px';
-				certGradient.classList.toggle('hidden', expanded);
-				certToggleText.textContent = expanded ? 'Show less' : 'Show more';
-				certToggleIcon.style.transform = expanded ? 'rotate(180deg)' : '';
-			};
-		}
-
 		document.addEventListener('astro:page-load', () => {
-			setupExperienceToggle();
-			setupCertToggle();
+			setupToggle('experience', 3, 24);
+			setupToggle('cert', 5, 16);
 		});
 	</script>
 
