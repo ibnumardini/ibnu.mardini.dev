@@ -1,5 +1,7 @@
 # ibnu.mardini.dev
 
+> "Project Roro Jonggrang" -- 🌼
+
 Personal site. Built with Astro + Tailwind.
 
 ## Dev
