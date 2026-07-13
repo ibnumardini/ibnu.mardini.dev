@@ -55,6 +55,7 @@ export interface ExternalLink {
 
 export const profile = {
 	name: 'Muhammad Fatkurozi',
+	username: 'ibnumardini',
 	title: 'Software Engineer | Back-end Developer',
 	summary:
 		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, JavaScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
