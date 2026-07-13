@@ -172,6 +172,7 @@ export const profile = {
 	education: [
 		{
 			institution: 'Universitas Mercu Buana Yogyakarta (UMBY)',
+			institutionUrl: 'https://umby.ac.id',	
 			program: 'S.Kom, Computer Science (GPA: 3.86/4)',
 			dates: 'Sept 2023 - Present',
 		},
