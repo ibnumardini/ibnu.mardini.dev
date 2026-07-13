@@ -137,6 +137,7 @@ export const profile = {
 		},
 		{
 			company: 'Woowa CRM',
+			companyUrl: 'https://woowacrm.com',
 			role: 'Backend Lead',
 			dates: 'March 2024 - Jan 2025',
 			bullets: [
