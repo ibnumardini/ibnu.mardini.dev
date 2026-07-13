@@ -53,7 +53,7 @@ export const profile = {
 	summary:
 		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, JavaScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
 	location: 'Yogyakarta, Indonesia',
-	cvUrl: 'http://s.id/fatkur-cv-download',
+	cvUrl: 'https://docs.google.com/document/d/10jEKHz9dVOidL-HIlIyVba3p2lmTQHJpcHN6k5EHW34/export?format=pdf',
 	socials: [
 		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'github' },
 		{ label: 'X', url: 'https://x.com/ibnumardini', icon: 'x' },
