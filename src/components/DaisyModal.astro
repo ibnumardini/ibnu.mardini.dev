@@ -9,13 +9,15 @@ import daisy from "../assets/daisy.jpg";
   class="fixed inset-0 z-50 hidden items-center justify-center border-b border-slate-200/80 bg-white/70 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/70"
 >
   <div class="max-w-md px-6">
-    <button
-      id="daisy-close"
-      class="mb-4 flex cursor-pointer items-center gap-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-    >
-      <Icon name="tabler:arrow-left" size={20} />
-      <span class="text-sm">Back</span>
-    </button>
+    <div class="mb-6 flex w-full justify-center">
+      <button
+        id="daisy-close"
+        aria-label="Close"
+        class="flex cursor-pointer items-center justify-center rounded-full bg-slate-900 p-2 text-white shadow-lg transition-colors hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+      >
+        <Icon name="tabler:x" size={16} />
+      </button>
+    </div>
     <Image
       src={daisy}
       alt="A field of daisies"
