@@ -190,7 +190,7 @@ export const profile = {
 		{ name: 'Belajar Membuat Aplikasi Front-End untuk Pemula', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/JLX1GEYVN272' },
 		{ name: 'Belajar Membuat Aplikasi Web dengan React', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1UXYM8Y9XXYM' },
 		{ name: 'Belajar Fundamental Front-End Web Development', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/EYX49WGKOPDL' },
-		{ name: 'PRO22-Batch 2-React Developer', issuer: 'Digital Talent Scholarship', year: '2022', credentialUrl: 'https://bucket.cloud.lintasarta.co.id:8082/dts-sertifikat/sertifikat-pdf/074dfaa2-1d49-4c76-8445-8b40f7f1174f.pdf' },
+		{ name: 'PRO22-Batch 2-React Developer', issuer: 'Digital Talent Scholarship', year: '2022', credentialUrl: 'https://www.linkedin.com/posts/ibnumardini_pro22-batch-2-react-developer-activity-6972190327638028288-Zegc' },
 		{ name: 'Belajar Membuat Aplikasi Back-End untuk Pemula dengan Cloudeka', issuer: 'Dicoding', year: '2022', credentialUrl: 'https://www.dicoding.com/certificates/1OP85933LPQK' },
 		{ name: 'Menjadi Front-End Web Developer Expert', issuer: 'Dicoding', year: '2023', credentialUrl: 'https://www.dicoding.com/certificates/N9ZO48KKRZG5' },
 	] satisfies CertificationEntry[],
