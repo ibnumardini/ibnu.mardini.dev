@@ -2,6 +2,8 @@
 
 > "Project Roro Jonggrang" -- 🌼
 
+<img src="./public/images/daisy-readme.webp" alt="daisy" width="100%" />
+
 Personal site. Built with Astro + Tailwind.
 
 ## Dev
