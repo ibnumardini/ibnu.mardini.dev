@@ -7,26 +7,36 @@ type Props = CertificationEntry;
 const { name, issuer, year, credentialUrl } = Astro.props;
 ---
 
-<div
-  class="flex flex-wrap items-baseline justify-between gap-x-4 border-l-2 border-slate-200 transition-colors duration-200 hover:border-slate-400 py-2 pl-4 dark:border-slate-800 dark:hover:border-accent"
->
-  <div>
-    <h3 class="font-semibold">{name}</h3>
-    <p class="text-sm text-slate-500 dark:text-slate-400">{issuer}</p>
-  </div>
-  <div class="flex items-center gap-2">
-    {
-      credentialUrl && (
+<div class="border-l-2 border-slate-200 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800 dark:hover:border-accent pl-4 py-2">
+  <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+    <div>
+      <h3 class="font-semibold">
+        {credentialUrl ? (
+          <a href={credentialUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+            {name}
+          </a>
+        ) : (
+          name
+        )}
+      </h3>
+      <p class="text-sm text-slate-600 dark:text-slate-300">{issuer}</p>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      {credentialUrl && (
         <a
           href={credentialUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-white"
+          aria-label={`${name} credential`}
         >
-          <Icon name="tabler:external-link" size={14} />
+          <Icon
+            name="tabler:external-link"
+            size={14}
+            class="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
+          />
         </a>
-      )
-    }
-    <span class="text-sm text-slate-500 dark:text-slate-400">{year}</span>
+      )}
+      <span class="text-sm text-slate-500 dark:text-slate-400">{year}</span>
+    </div>
   </div>
 </div>
