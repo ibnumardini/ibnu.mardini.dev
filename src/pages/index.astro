@@ -27,15 +27,15 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			<a href={profile.cvUrl} class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">CV</a>.
 		</p>
 		<div class="mt-6">
-			<SocialLinks size={22} />
+			<SocialLinks size={22} socials={profile.socials.filter((social) => social.icon !== 'mail')} />
 		</div>
 		<div class="mt-6">
 			<a
-				href="mailto:hi@mardini.dev"
+				href={profile.contact.url}
 				class="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
 			>
-				<Icon name="tabler:mail" size={18} />
-				Let's Talk
+				<Icon name={profile.contact.icon} size={18} />
+				{profile.contact.label}
 			</a>
 		</div>
 	</section>

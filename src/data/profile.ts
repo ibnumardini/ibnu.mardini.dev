@@ -4,6 +4,12 @@ export interface SocialLink {
 	icon: 'github' | 'linkedin' | 'mail' | 'facebook' | 'instagram' | 'x';
 }
 
+export interface ContactCta {
+	label: string;
+	url: string;
+	icon: string;
+}
+
 export interface SkillGroup {
 	category: string;
 	items: string[];
@@ -54,7 +60,9 @@ export const profile = {
 		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, JavaScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
 	location: 'Yogyakarta, Indonesia',
 	cvUrl: 'https://docs.google.com/document/d/10jEKHz9dVOidL-HIlIyVba3p2lmTQHJpcHN6k5EHW34/export?format=pdf',
+	contact: { label: "Let's Talk", url: 'mailto:hi@mardini.dev', icon: 'tabler:mail' } satisfies ContactCta,
 	socials: [
+		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'mail' },
 		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'github' },
 		{ label: 'X', url: 'https://x.com/ibnumardini', icon: 'x' },
 		{ label: 'Facebook', url: 'https://fb.com/ibnumardini/', icon: 'facebook' },

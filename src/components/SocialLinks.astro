@@ -1,12 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { profile } from '../data/profile';
+import { profile, type SocialLink } from '../data/profile';
 
 interface Props {
 	size?: number;
+	socials?: SocialLink[];
 }
 
-const { size = 20 } = Astro.props;
+const { size = 20, socials = profile.socials } = Astro.props;
 
 const iconMap = {
 	mail: 'tabler:mail',
@@ -19,7 +20,7 @@ const iconMap = {
 ---
 
 <div class="flex items-center gap-4">
-	{profile.socials.map((social) => (
+	{socials.map((social) => (
 		<a
 			href={social.url}
 			aria-label={social.label}
