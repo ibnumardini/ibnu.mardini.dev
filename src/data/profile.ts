@@ -263,7 +263,7 @@ export const profile = {
 		},
 		{
 			title: 'NoteSpace',
-			description: 'Your space to think, write, and stay organized.',
+			description: 'A personal note-taking and organization app for writing, thinking, and staying organized.',
 			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
 			liveUrl: "https://notespace.mardini.dev/",
