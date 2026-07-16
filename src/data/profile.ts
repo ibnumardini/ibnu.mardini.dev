@@ -323,6 +323,7 @@ export const profile = {
 			description: 'A CLI tool to manage and transform Indonesian administrative region data.',
 			tags: ['JavaScript', 'Node.js', 'Commander.js'],
 			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia',
+			liveUrl: 'https://ibnumardini.github.io/wilayah-indonesia/',
 		},
 		{
 			title: 'Wilayah ID API',
