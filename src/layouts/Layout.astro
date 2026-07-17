@@ -79,7 +79,6 @@ const navLinks = [
 							</a>
 						))
 					}
-					<ThemeToggle />
 				</nav>
 			</div>
 		</header>
@@ -105,7 +104,11 @@ const navLinks = [
 					Daisy
 				</button>
 			</p>
-			<SocialLinks size={18} />
+			<div class="flex items-center gap-4">
+				<SocialLinks size={18} />
+				<span>&middot;</span>
+				<ThemeToggle />
+			</div>
 		</footer>
 		<BackToTop />
 		<DaisyModal />
