@@ -5,18 +5,20 @@ import { profile } from '../../data/profile';
 import { formatBlogDate, blogLanguageLabel } from '../../lib/blog';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
+	const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+	return posts.map((post, index) => ({
 		params: { slug: post.id },
-		props: { post },
+		props: { post, newerPost: posts[index - 1], olderPost: posts[index + 1] },
 	}));
 }
 
 interface Props {
 	post: CollectionEntry<'blog'>;
+	newerPost?: CollectionEntry<'blog'>;
+	olderPost?: CollectionEntry<'blog'>;
 }
 
-const { post } = Astro.props;
+const { post, newerPost, olderPost } = Astro.props;
 const { Content } = await render(post);
 
 const formattedDate = formatBlogDate(post.data.date);
@@ -36,5 +38,23 @@ const languageLabel = blogLanguageLabel(post.data.language);
 		<div class="prose prose-slate dark:prose-invert mt-6 max-w-none">
 			<Content />
 		</div>
+		{
+			(olderPost || newerPost) && (
+				<nav class="mt-10 flex items-center justify-between gap-4 border-t border-slate-200 pt-6 dark:border-slate-800">
+					{olderPost ? (
+						<a href={`/blog/${olderPost.id}`} class="max-w-[45%] text-sm hover:underline">
+							&larr; {olderPost.data.title}
+						</a>
+					) : (
+						<span />
+					)}
+					{newerPost && (
+						<a href={`/blog/${newerPost.id}`} class="max-w-[45%] text-right text-sm hover:underline">
+							{newerPost.data.title} &rarr;
+						</a>
+					)}
+				</nav>
+			)
+		}
 	</article>
 </Layout>
