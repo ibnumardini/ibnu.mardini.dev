@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import ClientRouter from 'astro/components/ClientRouter.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import SocialLinks from '../components/SocialLinks.astro';
@@ -69,9 +70,9 @@ const navLinks = [
 				<a href="/" class="flex items-center gap-2">
 					<img src="/images/light.png" alt="ibnumardini logo" class="h-6 w-auto dark:hidden" />
 					<img src="/images/dark.png" alt="ibnumardini logo" class="hidden h-6 w-auto dark:block" />
-					<span class="hidden font-semibold sm:inline">ibnumardini</span>
+					<span class="font-semibold">ibnumardini</span>
 				</a>
-				<nav class="flex items-center gap-4 sm:gap-6">
+				<nav class="hidden items-center gap-6 sm:flex">
 					{
 						navLinks.map((link) => (
 							<a href={link.href} class:list={['text-sm hover:underline', { underline: link.active }]}>
@@ -80,8 +81,53 @@ const navLinks = [
 						))
 					}
 				</nav>
+				<button
+					id="nav-toggle"
+					type="button"
+					aria-label="Toggle menu"
+					aria-expanded="false"
+					class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition-colors hover:bg-slate-100 sm:hidden dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+				>
+					<Icon name="tabler:menu-2" size={20} id="nav-icon-open" />
+					<Icon name="tabler:x" size={20} id="nav-icon-close" class="hidden" />
+				</button>
 			</div>
+			<nav
+				id="mobile-nav"
+				class="hidden flex-col gap-1 border-t border-slate-200/80 px-6 py-4 sm:hidden dark:border-slate-800/80"
+			>
+				{
+					navLinks.map((link) => (
+						<a
+							href={link.href}
+							class:list={[
+								'rounded-lg px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800',
+								{ underline: link.active },
+							]}
+						>
+							{link.label}
+						</a>
+					))
+				}
+			</nav>
 		</header>
+
+		<script>
+			function setupNavToggle() {
+				const toggle = document.getElementById('nav-toggle');
+				const menu = document.getElementById('mobile-nav');
+				const iconOpen = document.getElementById('nav-icon-open');
+				const iconClose = document.getElementById('nav-icon-close');
+				toggle?.addEventListener('click', () => {
+					const isOpen = menu?.classList.toggle('hidden') === false;
+					menu?.classList.toggle('flex', isOpen);
+					toggle.setAttribute('aria-expanded', String(isOpen));
+					iconOpen?.classList.toggle('hidden', isOpen);
+					iconClose?.classList.toggle('hidden', !isOpen);
+				});
+			}
+			document.addEventListener('astro:page-load', setupNavToggle);
+		</script>
 		<main class="mx-auto max-w-3xl px-6">
 			<slot />
 			<Image
