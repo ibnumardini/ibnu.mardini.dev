@@ -390,7 +390,160 @@ git commit -m "feat: add gallery trigger button to project card"
 
 ---
 
-### Task 4: Manual verification
+### Task 4: Add optional per-image captions
+
+> Added after Tasks 1-3 shipped: user asked for (1) an optional caption/description per screenshot, and (2) a wider modal image. This changes `Project.images` from `string[]` to an object array, so it touches the type (Task 1's file), the modal (Task 2's file), and the card (Task 3's file) together — not splittable across separate task reviews since the type change binds all three. The width bump only touches Task 2's file, bundled in here since both changes land in `GalleryModal.astro` together.
+
+**Files:**
+- Modify: `src/data/profile.ts:26-34` (Project interface), `src/data/profile.ts:351` (meetkeep entry)
+- Modify: `src/components/GalleryModal.astro` (image rendering + caption display)
+- Modify: `src/components/ProjectCard.astro` (gallery slug derivation)
+
+**Interfaces:**
+- Produces: `Project.images?: { src: string; caption?: string }[]` — `src` is the path relative to `src/assets/project-preview/` (e.g. `'meetkeep/1.png'`), same meaning as the old string entries. Gallery slug = `images[0].src.split('/')[0]`.
+
+- [ ] **Step 1: Change the `Project` interface**
+
+In `src/data/profile.ts`, change:
+
+```ts
+	images?: string[];
+```
+
+to:
+
+```ts
+	images?: { src: string; caption?: string }[];
+```
+
+- [ ] **Step 2: Update the MeetKeep entry to the new shape**
+
+Change:
+
+```ts
+			images: ['meetkeep/1.png', 'meetkeep/2.png'],
+```
+
+to:
+
+```ts
+			images: [{ src: 'meetkeep/1.png' }, { src: 'meetkeep/2.png' }],
+```
+
+(No captions written yet for MeetKeep — `caption` stays optional and unset here. Add real captions later by filling in `caption: '...'` on any entry.)
+
+- [ ] **Step 3: Verify types compile**
+
+Run: `bun run astro check`
+Expected: type errors surface in `GalleryModal.astro` and `ProjectCard.astro` (Steps 4-6 fix them) but not in `profile.ts` itself.
+
+- [ ] **Step 4: Update `GalleryModal.astro`'s slug derivation and image rendering, and widen the modal**
+
+Change:
+
+```astro
+				galleryProjects.map((project) => {
+					const slug = project.images![0].split('/')[0];
+					return (
+						<div data-slug={slug} class="gallery-group hidden">
+							{project.images!.map((path, i) => {
+								const image = screenshots[`/src/assets/project-preview/${path}`];
+								if (!image) return null;
+								return (
+									<Image
+										src={image as ImageMetadata}
+										alt={`${project.title} screenshot ${i + 1}`}
+										widths={[400, 800]}
+										sizes="(min-width: 768px) 600px, 100vw"
+										class:list={['gallery-image w-full rounded-lg object-cover', i === 0 ? '' : 'hidden']}
+									/>
+								);
+							})}
+						</div>
+					);
+				})
+```
+
+to:
+
+```astro
+				galleryProjects.map((project) => {
+					const slug = project.images![0].src.split('/')[0];
+					return (
+						<div data-slug={slug} class="gallery-group hidden">
+							{project.images!.map((entry, i) => {
+								const image = screenshots[`/src/assets/project-preview/${entry.src}`];
+								if (!image) return null;
+								return (
+									<figure class:list={['gallery-image', i === 0 ? '' : 'hidden']}>
+										<Image
+											src={image as ImageMetadata}
+											alt={entry.caption ?? `${project.title} screenshot ${i + 1}`}
+											widths={[400, 800, 1200]}
+											sizes="(min-width: 768px) 850px, 100vw"
+											class="w-full rounded-lg object-cover"
+										/>
+										{entry.caption && (
+											<figcaption class="mt-2 text-center text-sm text-slate-500 dark:text-slate-400">
+												{entry.caption}
+											</figcaption>
+										)}
+									</figure>
+								);
+							})}
+						</div>
+					);
+				})
+```
+
+`.gallery-image` moves from the `<Image>` tag to the wrapping `<figure>`, since the show/hide toggle in the script operates on whole image+caption units, not just the `<img>`. No script changes needed — `querySelectorAll<HTMLElement>('.gallery-image')` still selects the same number of elements per group, just now `<figure>` instead of `<img>`.
+
+Also widen the modal container. Change:
+
+```astro
+	<div class="w-full max-w-2xl px-6">
+```
+
+to:
+
+```astro
+	<div class="w-full max-w-4xl px-6">
+```
+
+(`max-w-4xl` ≈ 896px, up from `max-w-2xl` ≈ 672px; `widths`/`sizes` on the `<Image>` above are bumped to match so the optimized image doesn't upscale past its generated resolution.)
+
+- [ ] **Step 5: Update `ProjectCard.astro`'s slug derivation**
+
+Change:
+
+```astro
+const gallerySlug = images?.[0]?.split('/')[0];
+```
+
+to:
+
+```astro
+const gallerySlug = images?.[0]?.src.split('/')[0];
+```
+
+- [ ] **Step 6: Verify types compile and build succeeds**
+
+Run: `bun run astro check`
+Expected: 0 errors.
+
+Run: `bun run build`
+Expected: build succeeds, MeetKeep screenshots still optimize correctly.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add src/data/profile.ts src/components/GalleryModal.astro src/components/ProjectCard.astro
+git commit -m "feat: support optional captions on gallery images"
+```
+
+---
+
+### Task 5: Manual verification
 
 **Files:** none (verification only)
 
@@ -411,6 +564,7 @@ Open `/projects` in a browser. Confirm:
 - Next/prev buttons and Left/Right arrow keys cycle between `1.png` and `2.png`, wrapping at both ends.
 - Escape, the X button, and clicking the backdrop all close the modal.
 - Page scroll is locked while modal is open and restored after close.
+- No caption is shown for MeetKeep's images (none set) and no empty `<figcaption>` renders. Add a `caption: 'test caption'` to one MeetKeep image entry locally, reload, and confirm the caption text appears centered below that image, then revert the local test edit.
 
 - [ ] **Step 4: Stop the dev server**
 
