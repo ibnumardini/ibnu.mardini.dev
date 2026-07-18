@@ -543,7 +543,80 @@ git commit -m "feat: support optional captions on gallery images"
 
 ---
 
-### Task 5: Manual verification
+### Task 5: Add image counter ("1 / 2") to the gallery modal
+
+> Added after Task 4 was dispatched: user asked to show current/total position while browsing a project's screenshots.
+
+**Files:**
+- Modify: `src/components/GalleryModal.astro`
+
+**Interfaces:**
+- Consumes: `activeImages`, `activeIndex`, `showIndex()` from the existing script in `GalleryModal.astro` (Task 2/4's code).
+
+- [ ] **Step 1: Add the counter element to the markup**
+
+Find:
+
+```astro
+		<div class="mb-4 flex justify-end">
+			<button
+				id="gallery-close"
+```
+
+Change to:
+
+```astro
+		<div class="mb-4 flex items-center justify-between">
+			<span id="gallery-counter" class="text-sm text-slate-500 dark:text-slate-400"></span>
+			<button
+				id="gallery-close"
+```
+
+- [ ] **Step 2: Update the script to populate it**
+
+Find:
+
+```ts
+		let activeImages: HTMLElement[] = [];
+		let activeIndex = 0;
+
+		const showIndex = (index: number) => {
+			activeImages.forEach((img, i) => img.classList.toggle('hidden', i !== index));
+			activeIndex = index;
+		};
+```
+
+Change to:
+
+```ts
+		const counter = document.getElementById('gallery-counter');
+		let activeImages: HTMLElement[] = [];
+		let activeIndex = 0;
+
+		const showIndex = (index: number) => {
+			activeImages.forEach((img, i) => img.classList.toggle('hidden', i !== index));
+			activeIndex = index;
+			if (counter) counter.textContent = `${index + 1} / ${activeImages.length}`;
+		};
+```
+
+`counter` is looked up once per `initGalleryModal()` call (same lifecycle as `modal`/`closeBtn`/etc.), so it's correctly re-queried after `astro:after-swap`. No guard added on `!counter` blocking the rest of init — the counter is cosmetic, so its absence shouldn't disable prev/next/close.
+
+- [ ] **Step 3: Verify types compile**
+
+Run: `bun run astro check`
+Expected: 0 errors.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add src/components/GalleryModal.astro
+git commit -m "feat: show image position counter in gallery modal"
+```
+
+---
+
+### Task 6: Manual verification
 
 **Files:** none (verification only)
 
@@ -565,6 +638,7 @@ Open `/projects` in a browser. Confirm:
 - Escape, the X button, and clicking the backdrop all close the modal.
 - Page scroll is locked while modal is open and restored after close.
 - No caption is shown for MeetKeep's images (none set) and no empty `<figcaption>` renders. Add a `caption: 'test caption'` to one MeetKeep image entry locally, reload, and confirm the caption text appears centered below that image, then revert the local test edit.
+- Modal shows "1 / 2" when the first image is active and "2 / 2" after clicking next, updating correctly on prev/next and arrow keys too.
 
 - [ ] **Step 4: Stop the dev server**
 
