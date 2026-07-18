@@ -30,7 +30,7 @@ export interface Project {
 	repoUrl: string;
 	liveUrl?: string;
 	pinned?: boolean;
-	images?: string[];
+	images?: { src: string; caption?: string }[];
 }
 
 export interface EducationEntry {
@@ -348,7 +348,10 @@ export const profile = {
 			tags: ['JavaScript', 'Chrome Extension'],
 			repoUrl: 'https://github.com/ibnumardini/meetkeep',
 			liveUrl: 'https://ibnumardini.github.io/meetkeep/',
-			images: ['meetkeep/1.png', 'meetkeep/2.png'],
+			images: [
+				{ src: 'meetkeep/1.png', caption: 'Real-time Timer' },
+				{ src: 'meetkeep/2.png', caption: 'Meeting Time Recap' },
+			] satisfies Project['images'],
 		},
 		{
 			title: 'NoteSpace',

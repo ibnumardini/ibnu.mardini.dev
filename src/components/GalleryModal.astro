@@ -15,7 +15,7 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 	id="gallery-modal"
 	class="fixed inset-0 z-50 hidden items-center justify-center border-b border-slate-200/80 bg-white/70 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/70"
 >
-	<div class="w-full max-w-2xl px-6">
+	<div class="w-full max-w-4xl px-6">
 		<div class="mb-4 flex justify-end">
 			<button
 				id="gallery-close"
@@ -42,20 +42,27 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 			</button>
 			{
 				galleryProjects.map((project) => {
-					const slug = project.images![0].split('/')[0];
+					const slug = project.images![0].src.split('/')[0];
 					return (
 						<div data-slug={slug} class="gallery-group hidden">
-							{project.images!.map((path, i) => {
-								const image = screenshots[`/src/assets/project-preview/${path}`];
+							{project.images!.map((entry, i) => {
+								const image = screenshots[`/src/assets/project-preview/${entry.src}`];
 								if (!image) return null;
 								return (
-									<Image
-										src={image as ImageMetadata}
-										alt={`${project.title} screenshot ${i + 1}`}
-										widths={[400, 800]}
-										sizes="(min-width: 768px) 600px, 100vw"
-										class:list={['gallery-image w-full rounded-lg object-cover', i === 0 ? '' : 'hidden']}
-									/>
+									<figure class:list={['gallery-image', i === 0 ? '' : 'hidden']}>
+										<Image
+											src={image as ImageMetadata}
+											alt={entry.caption ?? `${project.title} screenshot ${i + 1}`}
+											widths={[400, 800, 1200]}
+											sizes="(min-width: 768px) 850px, 100vw"
+											class="w-full rounded-lg object-cover"
+										/>
+										{entry.caption && (
+											<figcaption class="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
+												{entry.caption}
+											</figcaption>
+										)}
+									</figure>
 								);
 							})}
 						</div>

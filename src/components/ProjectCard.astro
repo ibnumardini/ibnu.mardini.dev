@@ -5,7 +5,7 @@ import type { Project } from '../data/profile';
 type Props = Project;
 
 const { title, description, tags, repoUrl, liveUrl, images } = Astro.props;
-const gallerySlug = images?.[0]?.split('/')[0];
+const gallerySlug = images?.[0]?.src.split('/')[0];
 ---
 
 <div
