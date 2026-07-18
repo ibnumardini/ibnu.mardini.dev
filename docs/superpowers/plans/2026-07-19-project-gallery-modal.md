@@ -637,7 +637,7 @@ Open `/projects` in a browser. Confirm:
 - Next/prev buttons and Left/Right arrow keys cycle between `1.png` and `2.png`, wrapping at both ends.
 - Escape, the X button, and clicking the backdrop all close the modal.
 - Page scroll is locked while modal is open and restored after close.
-- No caption is shown for MeetKeep's images (none set) and no empty `<figcaption>` renders. Add a `caption: 'test caption'` to one MeetKeep image entry locally, reload, and confirm the caption text appears centered below that image, then revert the local test edit.
+- MeetKeep's captions ("Real-time Timer", "Meeting Time Recap") appear centered below their respective images, and switching between images swaps the caption text correctly.
 - Modal shows "1 / 2" when the first image is active and "2 / 2" after clicking next, updating correctly on prev/next and arrow keys too.
 
 - [ ] **Step 4: Stop the dev server**
