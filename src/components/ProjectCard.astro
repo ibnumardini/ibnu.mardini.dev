@@ -4,7 +4,8 @@ import type { Project } from '../data/profile';
 
 type Props = Project;
 
-const { title, description, tags, repoUrl, liveUrl } = Astro.props;
+const { title, description, tags, repoUrl, liveUrl, images } = Astro.props;
+const gallerySlug = images?.[0]?.split('/')[0];
 ---
 
 <div
@@ -13,6 +14,22 @@ const { title, description, tags, repoUrl, liveUrl } = Astro.props;
 	<div class="flex items-center justify-between">
 		<h3 class="font-semibold">{title}</h3>
 		<div class="flex items-center gap-3">
+			{
+				gallerySlug && (
+					<button
+						type="button"
+						data-gallery-trigger
+						data-gallery-slug={gallerySlug}
+						aria-label={`${title} screenshots`}
+					>
+						<Icon
+							name="tabler:photo"
+							size={18}
+							class="cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+						/>
+					</button>
+				)
+			}
 			{
 				liveUrl && (
 					<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`}>
