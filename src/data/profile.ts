@@ -359,6 +359,13 @@ export const profile = {
 			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
 			liveUrl: 'https://notespace.mardini.dev/',
+			images: [
+				{ src: 'notespace/1.png', caption: 'Sign-in Page' },
+				{ src: 'notespace/2.png', caption: 'Sign-up Page' },
+				{ src: 'notespace/3.png', caption: 'Dashboard Page' },
+				{ src: 'notespace/4.png', caption: 'Create Note Page' },
+				{ src: 'notespace/5.png', caption: 'Detail Note Page' },
+			] satisfies Project['images'],
 		},
 	] satisfies Project[],
 };
