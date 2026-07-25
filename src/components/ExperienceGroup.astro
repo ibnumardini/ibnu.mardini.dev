@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import type { ExperienceEntry } from '../data/profile';
 
 interface Props {
@@ -25,58 +24,21 @@ const { company, companyUrl, positions } = Astro.props;
 			)
 		}
 	</h3>
-	<div class="mt-2 space-y-1">
+	<div class="mt-2 space-y-3">
 		{
-			positions.map((position, i) => (
-				<div class="experience-position">
-					<button
-						type="button"
-						class="experience-position-toggle flex w-full cursor-pointer items-baseline justify-between gap-x-4 py-1 text-left"
-						aria-expanded={i === 0 ? 'true' : 'false'}
-					>
-						<span class="flex items-center gap-1.5 text-sm font-medium">
-							<Icon
-								name="tabler:chevron-right"
-								size={14}
-								class:list={['experience-position-icon shrink-0 transition-transform duration-200', { 'rotate-90': i === 0 }]}
-							/>
-							{position.role}
-						</span>
-						<span class="shrink-0 text-sm text-slate-500 dark:text-slate-400">{position.dates}</span>
-					</button>
-					<div
-						class="experience-position-body grid transition-all duration-200 ease-in-out"
-						style={{ gridTemplateRows: i === 0 ? '1fr' : '0fr' }}
-					>
-						<ul class="list-disc space-y-1 overflow-hidden pl-9 text-sm text-slate-600 dark:text-slate-300">
-							{position.bullets.map((bullet) => (
-								<li>{bullet}</li>
-							))}
-						</ul>
+			positions.map((position) => (
+				<div>
+					<div class="flex flex-wrap items-baseline justify-between gap-x-4">
+						<span class="text-sm font-medium">{position.role}</span>
+						<span class="text-sm text-slate-500 dark:text-slate-400">{position.dates}</span>
 					</div>
+					<ul class="mt-1 list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-300">
+						{position.bullets.map((bullet) => (
+							<li>{bullet}</li>
+						))}
+					</ul>
 				</div>
 			))
 		}
 	</div>
 </div>
-
-<script>
-	function initExperienceGroups() {
-		document.querySelectorAll<HTMLButtonElement>('.experience-position-toggle').forEach((btn) => {
-			if (btn.dataset.bound) return;
-			btn.dataset.bound = 'true';
-			btn.addEventListener('click', () => {
-				const body = btn.nextElementSibling as HTMLElement | null;
-				const icon = btn.querySelector('.experience-position-icon') as HTMLElement | null;
-				if (!body) return;
-				const expanded = btn.getAttribute('aria-expanded') === 'true';
-				btn.setAttribute('aria-expanded', String(!expanded));
-				body.style.gridTemplateRows = expanded ? '0fr' : '1fr';
-				icon?.classList.toggle('rotate-90', !expanded);
-			});
-		});
-	}
-
-	initExperienceGroups();
-	document.addEventListener('astro:after-swap', initExperienceGroups);
-</script>
