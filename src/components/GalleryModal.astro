@@ -177,12 +177,8 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 		closeBtn.addEventListener('click', () => toggle(false));
 		prevBtn.addEventListener('click', () => step(-1));
 		nextBtn.addEventListener('click', () => step(1));
-		modal.addEventListener('click', (e) => {
-			if (e.target === modal) toggle(false);
-		});
 		document.addEventListener('keydown', (e) => {
 			if (modal.classList.contains('hidden')) return;
-			if (e.key === 'Escape') toggle(false);
 			if (e.key === 'ArrowLeft') step(-1);
 			if (e.key === 'ArrowRight') step(1);
 		});
