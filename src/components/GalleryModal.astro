@@ -15,7 +15,7 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 	id="gallery-modal"
 	class="fixed inset-0 z-50 hidden items-center justify-center border-b border-slate-200/80 bg-white/70 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/70"
 >
-	<div class="w-full max-w-4xl px-6">
+	<div class="max-h-[90vh] w-full max-w-4xl overflow-y-auto px-4 sm:px-6">
 		<div class="mb-4 flex items-center justify-between">
 			<span id="gallery-counter" class="text-sm text-slate-500 dark:text-slate-400"></span>
 			<button
@@ -26,20 +26,22 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 				<Icon name="tabler:x" size={16} />
 			</button>
 		</div>
-		<div class="relative overflow-hidden rounded-lg">
+		<div id="gallery-viewport" class="relative touch-pan-y overflow-hidden rounded-lg">
 			<button
 				id="gallery-prev"
 				aria-label="Previous screenshot"
-				class="absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-2 text-white hover:bg-slate-900"
+				class="absolute top-1/2 left-1 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-1.5 text-white hover:bg-slate-900 sm:left-2 sm:p-2"
 			>
-				<Icon name="tabler:chevron-left" size={20} />
+				<Icon name="tabler:chevron-left" size={18} class="sm:hidden" />
+				<Icon name="tabler:chevron-left" size={20} class="hidden sm:block" />
 			</button>
 			<button
 				id="gallery-next"
 				aria-label="Next screenshot"
-				class="absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-2 text-white hover:bg-slate-900"
+				class="absolute top-1/2 right-1 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-1.5 text-white hover:bg-slate-900 sm:right-2 sm:p-2"
 			>
-				<Icon name="tabler:chevron-right" size={20} />
+				<Icon name="tabler:chevron-right" size={18} class="sm:hidden" />
+				<Icon name="tabler:chevron-right" size={20} class="hidden sm:block" />
 			</button>
 			{
 				galleryProjects.map((project) => {
@@ -51,7 +53,7 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 									const image = screenshots[`/src/assets/project-preview/${entry.src}`];
 									if (!image) return null;
 									return (
-										<figure class="gallery-image w-full shrink-0">
+										<div class="gallery-image w-full shrink-0" data-caption={entry.caption ?? ''}>
 											<Image
 												src={image as ImageMetadata}
 												alt={entry.caption ?? `${project.title} screenshot ${i + 1}`}
@@ -59,12 +61,7 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 												sizes="(min-width: 768px) 850px, 100vw"
 												class="w-full rounded-lg border border-slate-200 object-cover dark:border-slate-800"
 											/>
-											{entry.caption && (
-												<figcaption class="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
-													{entry.caption}
-												</figcaption>
-											)}
-										</figure>
+										</div>
 									);
 								})}
 							</div>
@@ -73,6 +70,7 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 				})
 			}
 		</div>
+		<p id="gallery-caption" class="mt-4 text-center text-sm text-slate-500 dark:text-slate-400"></p>
 	</div>
 </div>
 
@@ -82,10 +80,13 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 		const closeBtn = document.getElementById('gallery-close');
 		const prevBtn = document.getElementById('gallery-prev');
 		const nextBtn = document.getElementById('gallery-next');
-		if (!modal || !closeBtn || !prevBtn || !nextBtn) return;
+		const viewport = document.getElementById('gallery-viewport');
+		if (!modal || !closeBtn || !prevBtn || !nextBtn || !viewport) return;
 
 		const counter = document.getElementById('gallery-counter');
+		const caption = document.getElementById('gallery-caption');
 		let activeTrack: HTMLElement | null = null;
+		let activeImages: HTMLElement[] = [];
 		let activeCount = 0;
 		let activeIndex = 0;
 
@@ -94,6 +95,7 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 			activeTrack.style.transform = `translateX(-${index * 100}%)`;
 			activeIndex = index;
 			if (counter) counter.textContent = `${index + 1} / ${activeCount}`;
+			if (caption) caption.textContent = activeImages[index]?.dataset.caption ?? '';
 		};
 
 		const toggle = (show: boolean) => {
@@ -112,7 +114,8 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 			});
 			if (!matched) return;
 			activeTrack = (matched as HTMLElement).querySelector<HTMLElement>('.gallery-track');
-			activeCount = (matched as HTMLElement).querySelectorAll<HTMLElement>('.gallery-image').length;
+			activeImages = Array.from((matched as HTMLElement).querySelectorAll<HTMLElement>('.gallery-image'));
+			activeCount = activeImages.length;
 			showIndex(0);
 			toggle(true);
 		};
@@ -129,6 +132,28 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 			const next = (activeIndex + delta + activeCount) % activeCount;
 			showIndex(next);
 		};
+
+		let touchStartX = 0;
+		let touchDeltaX = 0;
+
+		viewport.addEventListener(
+			'touchstart',
+			(e) => {
+				touchStartX = e.touches[0].clientX;
+				touchDeltaX = 0;
+			},
+			{ passive: true }
+		);
+		viewport.addEventListener(
+			'touchmove',
+			(e) => {
+				touchDeltaX = e.touches[0].clientX - touchStartX;
+			},
+			{ passive: true }
+		);
+		viewport.addEventListener('touchend', () => {
+			if (Math.abs(touchDeltaX) > 40) step(touchDeltaX < 0 ? 1 : -1);
+		});
 
 		closeBtn.addEventListener('click', () => toggle(false));
 		prevBtn.addEventListener('click', () => step(-1));
