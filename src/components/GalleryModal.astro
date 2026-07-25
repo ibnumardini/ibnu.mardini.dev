@@ -161,14 +161,14 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 				touchStartX = e.touches[0].clientX;
 				touchDeltaX = 0;
 			},
-			{ passive: true }
+			{ passive: true },
 		);
 		viewport.addEventListener(
 			'touchmove',
 			(e) => {
 				touchDeltaX = e.touches[0].clientX - touchStartX;
 			},
-			{ passive: true }
+			{ passive: true },
 		);
 		viewport.addEventListener('touchend', () => {
 			if (Math.abs(touchDeltaX) > 40) step(touchDeltaX < 0 ? 1 : -1);
