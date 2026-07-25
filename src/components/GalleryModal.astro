@@ -26,18 +26,18 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 				<Icon name="tabler:x" size={16} />
 			</button>
 		</div>
-		<div class="relative">
+		<div class="relative overflow-hidden rounded-lg">
 			<button
 				id="gallery-prev"
 				aria-label="Previous screenshot"
-				class="absolute top-1/2 left-2 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-2 text-white hover:bg-slate-900"
+				class="absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-2 text-white hover:bg-slate-900"
 			>
 				<Icon name="tabler:chevron-left" size={20} />
 			</button>
 			<button
 				id="gallery-next"
 				aria-label="Next screenshot"
-				class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-2 text-white hover:bg-slate-900"
+				class="absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-slate-900/70 p-2 text-white hover:bg-slate-900"
 			>
 				<Icon name="tabler:chevron-right" size={20} />
 			</button>
@@ -46,26 +46,28 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 					const slug = project.images![0].src.split('/')[0];
 					return (
 						<div data-slug={slug} class="gallery-group hidden">
-							{project.images!.map((entry, i) => {
-								const image = screenshots[`/src/assets/project-preview/${entry.src}`];
-								if (!image) return null;
-								return (
-									<figure class:list={['gallery-image', i === 0 ? '' : 'hidden']}>
-										<Image
-											src={image as ImageMetadata}
-											alt={entry.caption ?? `${project.title} screenshot ${i + 1}`}
-											widths={[400, 800, 1200]}
-											sizes="(min-width: 768px) 850px, 100vw"
-											class="w-full rounded-lg object-cover"
-										/>
-										{entry.caption && (
-											<figcaption class="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
-												{entry.caption}
-											</figcaption>
-										)}
-									</figure>
-								);
-							})}
+							<div class="gallery-track flex transition-transform duration-300 ease-in-out">
+								{project.images!.map((entry, i) => {
+									const image = screenshots[`/src/assets/project-preview/${entry.src}`];
+									if (!image) return null;
+									return (
+										<figure class="gallery-image w-full shrink-0">
+											<Image
+												src={image as ImageMetadata}
+												alt={entry.caption ?? `${project.title} screenshot ${i + 1}`}
+												widths={[400, 800, 1200]}
+												sizes="(min-width: 768px) 850px, 100vw"
+												class="w-full rounded-lg border border-slate-200 object-cover dark:border-slate-800"
+											/>
+											{entry.caption && (
+												<figcaption class="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
+													{entry.caption}
+												</figcaption>
+											)}
+										</figure>
+									);
+								})}
+							</div>
 						</div>
 					);
 				})
@@ -83,13 +85,15 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 		if (!modal || !closeBtn || !prevBtn || !nextBtn) return;
 
 		const counter = document.getElementById('gallery-counter');
-		let activeImages: HTMLElement[] = [];
+		let activeTrack: HTMLElement | null = null;
+		let activeCount = 0;
 		let activeIndex = 0;
 
 		const showIndex = (index: number) => {
-			activeImages.forEach((img, i) => img.classList.toggle('hidden', i !== index));
+			if (!activeTrack) return;
+			activeTrack.style.transform = `translateX(-${index * 100}%)`;
 			activeIndex = index;
-			if (counter) counter.textContent = `${index + 1} / ${activeImages.length}`;
+			if (counter) counter.textContent = `${index + 1} / ${activeCount}`;
 		};
 
 		const toggle = (show: boolean) => {
@@ -107,7 +111,8 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 				if (isMatch) matched = group;
 			});
 			if (!matched) return;
-			activeImages = Array.from((matched as HTMLElement).querySelectorAll<HTMLElement>('.gallery-image'));
+			activeTrack = (matched as HTMLElement).querySelector<HTMLElement>('.gallery-track');
+			activeCount = (matched as HTMLElement).querySelectorAll<HTMLElement>('.gallery-image').length;
 			showIndex(0);
 			toggle(true);
 		};
@@ -120,8 +125,8 @@ const galleryProjects = profile.projects.filter((project) => project.images?.len
 		});
 
 		const step = (delta: number) => {
-			if (activeImages.length === 0) return;
-			const next = (activeIndex + delta + activeImages.length) % activeImages.length;
+			if (activeCount === 0) return;
+			const next = (activeIndex + delta + activeCount) % activeCount;
 			showIndex(next);
 		};
 
