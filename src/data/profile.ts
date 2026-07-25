@@ -341,6 +341,18 @@ export const profile = {
 			tags: ['PHP', 'Laravel', 'Filament', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/dengue-expert-app',
 			liveUrl: 'https://es-dbd-backend.umby.dev/',
+			images: [
+				{ src: 'dengue-expert-app/1.png', caption: 'Login Page' },
+				{ src: 'dengue-expert-app/2.png', caption: 'Dashboard Page' },
+				{ src: 'dengue-expert-app/3.png', caption: 'Medical Record Page' },
+				{ src: 'dengue-expert-app/4.png', caption: 'Create Medical Record Page' },
+				{ src: 'dengue-expert-app/5.png', caption: 'Edit Medical Record & Result Page' },
+				{ src: 'dengue-expert-app/6.png', caption: 'Disease Management Page' },
+				{ src: 'dengue-expert-app/7.png', caption: 'Symptom Management Page' },
+				{ src: 'dengue-expert-app/8.png', caption: 'Rule Management Page' },
+				{ src: 'dengue-expert-app/9.png', caption: 'User Management Page' },
+				{ src: 'dengue-expert-app/10.png', caption: 'Role Management Page' },
+			] satisfies Project['images'],
 		},
 		{
 			title: 'MeetKeep',
