@@ -3,10 +3,23 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
+import ExperienceGroup from '../components/ExperienceGroup.astro';
 import EducationItem from '../components/EducationItem.astro';
 import CertificationItem from '../components/CertificationItem.astro';
-import { profile } from '../data/profile';
+import { profile, type ExperienceEntry } from '../data/profile';
 import avatar from '../assets/avatar.png';
+
+const experienceGroups = profile.experience.reduce<
+	{ company: string; companyUrl?: string; positions: ExperienceEntry[] }[]
+>((groups, entry) => {
+	const last = groups[groups.length - 1];
+	if (last && last.company === entry.company) {
+		last.positions.push(entry);
+	} else {
+		groups.push({ company: entry.company, companyUrl: entry.companyUrl, positions: [entry] });
+	}
+	return groups;
+}, []);
 ---
 
 <Layout title={`About - ${profile.name}`} description={profile.summary}>
@@ -54,7 +67,15 @@ import avatar from '../assets/avatar.png';
 				class="space-y-6 overflow-hidden transition-all duration-500 ease-in-out"
 				style="max-height: 500px;"
 			>
-				{profile.experience.map((entry) => <ExperienceItem {...entry} />)}
+				{
+					experienceGroups.map((group) =>
+						group.positions.length > 1 ? (
+							<ExperienceGroup company={group.company} companyUrl={group.companyUrl} positions={group.positions} />
+						) : (
+							<ExperienceItem {...group.positions[0]} />
+						)
+					)
+				}
 			</div>
 			<div
 				id="experience-gradient"
