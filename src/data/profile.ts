@@ -59,7 +59,7 @@ export const profile = {
 	username: 'ibnumardini',
 	title: 'Software Engineer | Back-end Developer',
 	summary:
-		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, JavaScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
+		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, TypeScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
 	location: 'Yogyakarta, Indonesia',
 	cvUrl: 'https://docs.google.com/document/d/10jEKHz9dVOidL-HIlIyVba3p2lmTQHJpcHN6k5EHW34/export?format=pdf',
 	contact: { label: "Let's Talk", url: 'mailto:hi@mardini.dev', icon: 'tabler:mail' } satisfies ContactCta,
