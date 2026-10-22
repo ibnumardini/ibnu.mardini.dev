@@ -292,6 +292,11 @@ export const profile = {
 			description: 'A web app for managing transactions of debts and receivables.',
 			tags: ['PHP', 'MySQL', 'Bootstrap 5'],
 			repoUrl: 'https://github.com/ibnumardini/hutang-piutang-app',
+			images: [
+				{ src: 'hutang-piutang-app/1.webp', caption: 'Login Page' },
+				{ src: 'hutang-piutang-app/2.webp', caption: 'Register Page' },
+				{ src: 'hutang-piutang-app/3.webp', caption: 'Dashboard Page' },
+			] satisfies Project['images'],
 		},
 		{
 			title: 'SIMALU',
