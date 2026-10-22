@@ -57,14 +57,14 @@ export interface ExternalLink {
 export const profile = {
 	name: 'Muhammad Fatkurozi',
 	username: 'ibnumardini',
-	title: 'Software Engineer | Back-end Developer',
+	title: 'Software Engineer | Full-stack Developer | Back-end Specialist',
 	summary:
-		'Backend Engineer with 5+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, TypeScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
+		'Software Engineer with 6+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, TypeScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.',
 	location: 'Yogyakarta, Indonesia',
 	cvUrl: 'https://docs.google.com/document/d/10jEKHz9dVOidL-HIlIyVba3p2lmTQHJpcHN6k5EHW34/export?format=pdf',
-	contact: { label: "Let's Talk", url: 'mailto:hi@mardini.dev', icon: 'tabler:mail' } satisfies ContactCta,
+	contact: { label: "Let's Talk", url: 'mailto:work.ibnumardini@gmail.com', icon: 'tabler:mail' } satisfies ContactCta,
 	socials: [
-		{ label: 'Email', url: 'mailto:hi@mardini.dev', icon: 'tabler:mail' },
+		{ label: 'Email', url: 'mailto:work.ibnumardini@gmail.com', icon: 'tabler:mail' },
 		{ label: 'GitHub', url: 'https://github.com/ibnumardini', icon: 'tabler:brand-github' },
 		{ label: 'X', url: 'https://x.com/ibnumardini', icon: 'tabler:brand-x' },
 		{ label: 'Facebook', url: 'https://fb.com/ibnumardini/', icon: 'tabler:brand-facebook' },
