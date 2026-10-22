@@ -328,6 +328,9 @@ export const profile = {
 			tags: ['JavaScript', 'React.js', 'Vite'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile',
 			liveUrl: 'https://umby.mardini.dev/',
+			images: [
+				{ src: 'my-umby-profile/1.webp', caption: 'Landing Page' },
+			] satisfies Project['images'],
 		},
 		{
 			title: 'Wilayah Indonesia',
