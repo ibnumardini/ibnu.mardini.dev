@@ -292,7 +292,6 @@ export const profile = {
 			description: 'A web app for managing transactions of debts and receivables.',
 			tags: ['PHP', 'MySQL', 'Bootstrap 5'],
 			repoUrl: 'https://github.com/ibnumardini/hutang-piutang-app',
-			liveUrl: 'https://hutang-piutang.mardini.dev/',
 		},
 		{
 			title: 'SIMALU',
@@ -340,7 +339,6 @@ export const profile = {
 			description: 'An expert system for diagnosing dengue fever (DBD) using rule-based reasoning.',
 			tags: ['PHP', 'Laravel', 'Filament', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/dengue-expert-app',
-			liveUrl: 'https://es-dbd-backend.umby.dev/',
 			images: [
 				{ src: 'dengue-expert-app/1.png', caption: 'Login Page' },
 				{ src: 'dengue-expert-app/2.png', caption: 'Dashboard Page' },
@@ -370,7 +368,6 @@ export const profile = {
 			description: 'A personal note-taking and organization app for writing, thinking, and staying organized.',
 			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
-			liveUrl: 'https://notespace.mardini.dev/',
 			images: [
 				{ src: 'notespace/1.png', caption: 'Sign-in Page' },
 				{ src: 'notespace/2.png', caption: 'Sign-up Page' },
