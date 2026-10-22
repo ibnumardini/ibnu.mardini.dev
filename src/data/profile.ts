@@ -301,6 +301,17 @@ export const profile = {
 			repoUrl: 'https://github.com/ibnumardini/simalu',
 			liveUrl: 'https://simalu.mardini.dev/',
 			pinned: true,
+			images: [
+				{ src: 'simalu/1.png', caption: 'Landing Page' },
+				{ src: 'simalu/2.png', caption: 'Alumni List' },
+				{ src: 'simalu/3.png', caption: 'Login Page' },
+				{ src: 'simalu/4.png', caption: 'Dashboard' },
+				{ src: 'simalu/5.png', caption: 'Alumni Management' },
+				{ src: 'simalu/6.png', caption: 'Create Alumni' },
+				{ src: 'simalu/7.png', caption: 'Alumni Work Histories' },
+				{ src: 'simalu/8.png', caption: 'Settings → Profile' },
+				{ src: 'simalu/9.png', caption: 'Settings → Roles' },
+			] satisfies Project['images'],
 		},
 		{
 			title: 'My UMBY Profile API',
