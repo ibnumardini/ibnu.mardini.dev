@@ -1,14 +1,65 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { Icon } from 'astro-icon/components';
 import { profile } from '../data/profile';
+
+const types = [...new Set(profile.projects.map((project) => project.type))];
 ---
 
 <Layout title={`Projects - ${profile.name}`} description="All projects by Muhammad Fatkurozi.">
 	<section class="py-10">
 		<h1 class="font-heading text-2xl font-bold">Projects</h1>
-		<div class="mt-6 grid gap-4 sm:grid-cols-2">
-			{[...profile.projects].reverse().map((project) => <ProjectCard {...project} />)}
+		<div class="mt-6">
+			<label
+				for="project-type-filter"
+				class="mb-2 block text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400"
+			>
+				Filter by type
+			</label>
+			<div class="relative w-fit">
+				<select
+					id="project-type-filter"
+					class="hover:border-accent/60 focus-visible:border-accent focus-visible:outline-accent dark:hover:border-accent/60 appearance-none rounded-lg border border-slate-200 bg-white px-3 py-2 pr-9 text-xs font-medium text-slate-700 shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+				>
+					<option value="">All types</option>
+					{types.map((type) => <option value={type}>{type}</option>)}
+				</select>
+				<Icon
+					name="tabler:chevron-down"
+					size={16}
+					aria-hidden="true"
+					class="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-slate-400 dark:text-slate-500"
+				/>
+			</div>
+		</div>
+		<div data-project-grid class="mt-4 grid gap-4 sm:grid-cols-2">
+			{[...profile.projects].reverse().map((project) => <ProjectCard {...project} filterable />)}
 		</div>
 	</section>
 </Layout>
+
+<script>
+	const filter = document.querySelector<HTMLSelectElement>('#project-type-filter');
+	const grid = document.querySelector<HTMLElement>('[data-project-grid]');
+
+	if (filter && grid) {
+		const cards = [...grid.querySelectorAll<HTMLElement>('[data-project-card]')];
+		const cardTypeFilters = [...grid.querySelectorAll<HTMLButtonElement>('[data-project-filter-type]')];
+
+		const filterProjects = (type: string) => {
+			filter.value = type;
+			cards.forEach((card) => {
+				card.hidden = Boolean(type && card.dataset.projectType !== type);
+			});
+			cardTypeFilters.forEach((button) => {
+				button.setAttribute('aria-pressed', String(button.dataset.projectFilterType === type));
+			});
+		};
+
+		filter.addEventListener('change', () => filterProjects(filter.value));
+		cardTypeFilters.forEach((button) =>
+			button.addEventListener('click', () => filterProjects(button.dataset.projectFilterType ?? '')),
+		);
+	}
+</script>

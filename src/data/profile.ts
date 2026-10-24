@@ -31,6 +31,7 @@ export interface Project {
 	liveUrl?: string;
 	pinned?: boolean;
 	images?: { src: string; caption?: string }[];
+	type: string;
 }
 
 export interface EducationEntry {
@@ -286,6 +287,7 @@ export const profile = {
 				'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
 			tags: ['Go'],
 			repoUrl: 'https://github.com/ibnumardini/logn',
+			type: 'Library',
 		},
 		{
 			title: 'Hutang Piutang App',
@@ -297,6 +299,7 @@ export const profile = {
 				{ src: 'hutang-piutang-app/2.webp', caption: 'Register Page' },
 				{ src: 'hutang-piutang-app/3.webp', caption: 'Dashboard Page' },
 			] satisfies Project['images'],
+			type: 'Web App',
 		},
 		{
 			title: 'SIMALU',
@@ -317,6 +320,7 @@ export const profile = {
 				{ src: 'simalu/8.webp', caption: 'Settings → Profile' },
 				{ src: 'simalu/9.webp', caption: 'Settings → Roles' },
 			] satisfies Project['images'],
+			type: 'Web App',
 		},
 		{
 			title: 'My UMBY Profile API',
@@ -325,6 +329,7 @@ export const profile = {
 			tags: ['JavaScript', 'Node.js', 'Express.js'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile-api',
 			liveUrl: 'https://my-umby-profile-api.vercel.app/',
+			type: 'API',
 		},
 		{
 			title: 'My UMBY Profile',
@@ -336,6 +341,7 @@ export const profile = {
 			images: [
 				{ src: 'my-umby-profile/1.webp', caption: 'Landing Page' },
 			] satisfies Project['images'],
+			type: 'Web App',
 		},
 		{
 			title: 'Wilayah Indonesia',
@@ -343,6 +349,7 @@ export const profile = {
 			tags: ['JavaScript', 'Node.js', 'Commander.js'],
 			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia',
 			liveUrl: 'https://ibnumardini.github.io/wilayah-indonesia/',
+			type: 'CLI App',
 		},
 		{
 			title: 'Wilayah ID API',
@@ -352,6 +359,7 @@ export const profile = {
 			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia-api',
 			liveUrl: 'https://wilayah-indonesia-api.mardini.dev/swagger/index.html',
 			pinned: true,
+			type: 'API',
 		},
 		{
 			title: 'Dengue Expert App',
@@ -370,6 +378,7 @@ export const profile = {
 				{ src: 'dengue-expert-app/9.png', caption: 'User Management Page' },
 				{ src: 'dengue-expert-app/10.png', caption: 'Role Management Page' },
 			] satisfies Project['images'],
+			type: 'Web App',
 		},
 		{
 			title: 'MeetKeep',
@@ -381,6 +390,7 @@ export const profile = {
 				{ src: 'meetkeep/1.png', caption: 'Real-time Timer' },
 				{ src: 'meetkeep/2.png', caption: 'Meeting Time Recap' },
 			] satisfies Project['images'],
+			type: 'Chrome Extension',
 		},
 		{
 			title: 'NoteSpace',
@@ -394,6 +404,7 @@ export const profile = {
 				{ src: 'notespace/4.png', caption: 'Create Note Page' },
 				{ src: 'notespace/5.png', caption: 'Detail Note Page' },
 			] satisfies Project['images'],
+			type: 'Web App',
 		},
 	] satisfies Project[],
 };
