@@ -287,6 +287,7 @@ export const profile = {
 				'A simple Go library for log management, designed to keep logging setup minimal and consistent across Go projects.',
 			tags: ['Go'],
 			repoUrl: 'https://github.com/ibnumardini/logn',
+			liveUrl: 'https://ibnumardini.github.io/logn/',
 			type: 'Library',
 		},
 		{
