@@ -151,7 +151,7 @@ export const profile = {
 			company: 'PT Kedata Indonesia Digital',
 			companyUrl: 'https://kedata.online',
 			role: 'Backend Developer',
-			dates: 'Dec 2025 - Present',
+			dates: 'Dec 2025 - Aug 2026',
 			bullets: [
 				'Enhance and support legacy APIs and apps on Go and PostgreSQL.',
 				'Architected advanced synchronization workflows to guarantee high-precision data alignment across multiple heterogeneous databases.',
