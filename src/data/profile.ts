@@ -384,7 +384,7 @@ export const profile = {
 		{
 			title: 'MeetKeep',
 			description: 'A Chrome extension that automatically injects a meeting timer into Google Meet.',
-			tags: ['JavaScript', 'Chrome Extension'],
+			tags: ['JavaScript', 'WXT'],
 			repoUrl: 'https://github.com/ibnumardini/meetkeep',
 			liveUrl: 'https://ibnumardini.github.io/meetkeep/',
 			images: [
