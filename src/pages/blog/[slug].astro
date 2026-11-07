@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { profile } from '../../data/profile';
@@ -20,12 +21,13 @@ interface Props {
 
 const { post, newerPost, olderPost } = Astro.props;
 const { Content } = await render(post);
+const coverImage = post.data.cover && (await getImage({ src: post.data.cover, format: 'jpeg' })).src;
 
 const formattedDate = formatBlogDate(post.data.date);
 const languageLabel = blogLanguageLabel(post.data.language);
 ---
 
-<Layout title={`${post.data.title} - ${profile.name}`} description={post.data.description}>
+<Layout title={`${post.data.title} - ${profile.name}`} description={post.data.description} image={coverImage} type="article">
 	<article class="py-10">
 		<a href="/blog" class="text-sm hover:underline">&larr; Back to blog</a>
 		<h1 class="mt-4 text-2xl font-bold">{post.data.title}</h1>

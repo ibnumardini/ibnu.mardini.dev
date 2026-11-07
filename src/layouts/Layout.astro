@@ -14,11 +14,13 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
+	type?: 'website' | 'article';
 }
 
-const { title, description = profile.summary } = Astro.props;
+const { title, description = profile.summary, image = '/images/daisy.webp', type = 'website' } = Astro.props;
 
-const ogImage = new URL('/images/daisy.webp', Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
 const canonicalURL = Astro.url.href;
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -42,7 +44,8 @@ const navLinks = [
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalURL} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
