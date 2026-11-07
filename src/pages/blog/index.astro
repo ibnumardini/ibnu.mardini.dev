@@ -1,16 +1,42 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import { profile } from '../../data/profile';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const languages = [...new Set(posts.map((post) => post.data.language))];
+const languageNames = { en: 'English', id: 'Indonesia' };
 ---
 
 <Layout title={`Blog - ${profile.name}`} description="Writing on backend engineering and distributed systems.">
 	<section class="py-10">
-		<h1 class="text-2xl font-bold">Blog</h1>
-		<div class="mt-6 space-y-4">
+		<h1 class="font-heading text-2xl font-bold">Blog</h1>
+		<div class="mt-6">
+			<label
+				for="blog-language-filter"
+				class="mb-2 block text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400"
+			>
+				Filter by language
+			</label>
+			<div class="relative w-fit">
+				<select
+					id="blog-language-filter"
+					class="hover:border-accent/60 focus-visible:border-accent focus-visible:outline-accent dark:hover:border-accent/60 appearance-none rounded-lg border border-slate-200 bg-white px-3 py-2 pr-9 text-sm font-medium text-slate-700 shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+				>
+					<option value="">All languages</option>
+					{languages.map((language) => <option value={language}>{languageNames[language]}</option>)}
+				</select>
+				<Icon
+					name="tabler:chevron-down"
+					size={16}
+					aria-hidden="true"
+					class="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-slate-400 dark:text-slate-500"
+				/>
+			</div>
+		</div>
+		<div data-blog-list class="mt-4 space-y-4">
 			{
 				posts.map((post) => (
 					<BlogCard
@@ -25,3 +51,14 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf()
 		</div>
 	</section>
 </Layout>
+
+<script>
+	const filter = document.querySelector<HTMLSelectElement>('#blog-language-filter');
+	const posts = document.querySelectorAll<HTMLElement>('[data-blog-list] [data-blog-language]');
+
+	filter?.addEventListener('change', () => {
+		posts.forEach((post) => {
+			post.hidden = Boolean(filter.value && post.dataset.blogLanguage !== filter.value);
+		});
+	});
+</script>
