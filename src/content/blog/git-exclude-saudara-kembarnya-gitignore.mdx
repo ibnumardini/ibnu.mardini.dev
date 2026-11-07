@@ -1,0 +1,46 @@
+---
+title: 'Git Exclude, Saudara Kembarnya .gitignore'
+date: 2026-11-05
+description: 'Pernah nambahin rule baru di .gitignore, tapi pas bikin branch baru dari main, file yang seharusnya di-ignore malah muncul lagi sebagai untracked file?'
+language: 'id'
+---
+
+import { Image } from 'astro:assets';
+import cover from './images/git-exclude-cover.jpg';
+
+<Image src={cover} alt="Kertas bertuliskan Saudara Kembarnya .gitignore dengan stiker .gitignore, .gitkeep, dan .git/info/exclude" class="rounded-lg shadow-sm" />
+
+Pernah nambahin rule baru di `.gitignore`, tapi pas bikin branch baru dari main, file yang seharusnya di-ignore malah muncul lagi sebagai untracked file?
+
+Hal itu wajar. Rule di `.gitignore` baru akan berlaku di branch lain setelah di-merge ke main. Selama belum di-merge, branch baru akan mewarisi `.gitignore` versi lama, sehingga working tree kembali kotor.
+
+Sebagai solusi sementara, Anda bisa menggunakan Git Exclude (Saudara Kembarnya `.gitignore` 😅). Format isinya sama persis dengan `.gitignore`, tetapi file ini tidak akan ikut ter-commit dan hanya berlaku di mesin lokal Anda.
+
+## Ada Dua Opsi Penggunaan
+
+### 1. Per Repository (`.git/info/exclude`)
+
+```bash
+echo "Taskfile.yml" >> .git/info/exclude
+```
+
+### 2. Global untuk Semua Repo (`~/.gitignore_global`)
+
+```bash
+git config --global core.excludesFile ~/.gitignore_global
+echo ".DS_Store" >> ~/.gitignore_global
+```
+
+Dengan cara ini, working tree tetap bersih di branch mana pun tanpa harus menunggu `.gitignore` di-merge.
+
+## Tips Tambahan
+
+Jika file tersebut memang hanya milik pribadi (seperti konfig lokal, catatan pribadi, atau file bawaan editor), sebaiknya jangan dimasukkan ke `.gitignore` utama. Masukkan saja ke exclude agar `.gitignore` tim tetap bersih dan hanya berisi aturan yang relevan untuk semua orang.
+
+Catatan: karena exclude tidak ikut ter-clone, Anda perlu mengaturnya kembali jika berpindah mesin atau laptop baru. Jika sering berganti device, memasukkannya ke `.gitignore` tetap menjadi pilihan yang lebih praktis.
+
+## Ringkasnya
+
+- `.gitignore`: untuk aturan bersama yang berlaku bagi seluruh tim.
+- `.git/info/exclude`: untuk file pribadi khusus di satu repo lokal.
+- `~/.gitignore_global`: untuk file pribadi yang berlaku di semua repo di mesin Anda.
