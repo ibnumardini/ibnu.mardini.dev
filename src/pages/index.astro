@@ -26,26 +26,31 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 		<h1 class="font-heading text-4xl font-bold sm:text-5xl">Wassup? 👋🏼</h1>
 		<p class="mt-4 text-slate-600 dark:text-slate-300">
-			Just a place where I share my thoughts and ideas about backend engineering, distributed systems, and whatever I'm
-			working on. Feel free to browse around.
+			I'm {profile.name} (aka. {profile.username}), a software engineer from Indonesia
+			<Icon
+				name="flag-id"
+				class="ml-1 inline-block h-[0.8em] w-[1.2em] rounded-[2px] align-[-0.05em] ring-1 ring-slate-300 dark:ring-slate-600"
+			/><br />
+			I spend my days on APIs and my nights wondering why they broke.
 		</p>
-		<p class="mt-4 text-slate-600 dark:text-slate-300">
-			More details about me? Check out the{' '}
-			<a href="/about" class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">about page</a>,
-			or grab my{' '}
-			<a href={profile.cvUrl} class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">CV</a>.
-		</p>
-		<div class="mt-6">
-			<SocialLinks size={22} socials={profile.socials.filter((social) => social.icon !== 'tabler:mail')} />
-		</div>
-		<div class="mt-6">
+		<div class="mt-6 flex flex-wrap gap-3">
 			<a
-				href={profile.contact.url}
+				href="/about"
 				class="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
 			>
-				<Icon name={profile.contact.icon} size={18} />
-				{profile.contact.label}
+				Get to know me
+				<Icon name="tabler:arrow-right" size={18} />
 			</a>
+			<a
+				href={profile.cvUrl}
+				class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 dark:border-slate-600 dark:text-white dark:hover:bg-slate-800"
+			>
+				<Icon name="tabler:download" size={18} />
+				Download CV
+			</a>
+		</div>
+		<div class="mt-6">
+			<SocialLinks size={22} />
 		</div>
 	</section>
 
