@@ -141,6 +141,16 @@ export const profile = {
 	] satisfies SkillGroup[],
 	experience: [
 		{
+			company: 'PT Digital Solusindo International',
+			companyUrl: 'http://digitalsolusindo.id',
+			role: 'Backend Developer',
+			dates: 'Nov 2026 - Present',
+			bullets: [
+				'Enhance and support legacy Internet Booking Engine (IBE) APIs in Go and PostgreSQL.',
+				'Integrated Internet Booking Engine (IBE) with Channel Manager to synchronize real-time availability and rates across external OTAs.',
+			],
+		},
+		{
 			company: 'PT Kedata Indonesia Digital',
 			companyUrl: 'https://kedata.online',
 			role: 'Backend Developer',
