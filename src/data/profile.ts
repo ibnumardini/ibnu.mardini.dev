@@ -219,6 +219,12 @@ export const profile = {
 			program: 'Senior Web Developer, Bootcamp',
 			dates: 'July 2019 - July 2022',
 		},
+		{
+			institution: 'SMK Negeri 1 Liwa',
+			institutionUrl: 'https://smknegeri1liwa.web.id/',
+			program: 'Computer and Network Engineering (TKJ)',
+			dates: '2016-2019',
+		},
 	] satisfies EducationEntry[],
 	certifications: [
 		{
