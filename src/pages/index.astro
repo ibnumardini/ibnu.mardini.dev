@@ -32,7 +32,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 				<span data-ping class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden"></span>
 				<span data-dot class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
 			</span>
-			<span data-text>Yogyakarta, UTC+7</span>
+			<span data-text>probably coding 💻</span>
 		</p>
 		<h1 class="font-heading text-4xl font-bold sm:text-5xl">
 			Wassup? <span class="motion-safe:animate-wave inline-block origin-[70%_70%]">👋🏼</span>
@@ -41,7 +41,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			I'm <strong class="font-heading font-semibold text-slate-900 dark:text-slate-100">{profile.name}</strong> (aka. <span
 				class="font-hand mr-0.5 text-[1.35em] leading-none font-semibold text-slate-900 dark:text-slate-100"
 				>{profile.username}</span
-			>), a software engineer from Indonesia
+			>), a software engineer from Yogyakarta, Indonesia
 			<Icon
 				name="flag-id"
 				class="ml-1 inline-block h-[0.8em] w-[1.2em] rounded-[2px] align-[-0.05em] ring-1 ring-slate-300 dark:ring-slate-600"
@@ -155,7 +155,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		const time = fmt.format(new Date());
 		const hour = Number(time.slice(0, 2));
 		const [, label, awake] = moods.findLast(([from]) => from <= hour)!;
-		el.querySelector('[data-text]')!.textContent = `${time} in Yogyakarta · ${label}`;
+		el.querySelector('[data-text]')!.textContent = label;
 		el.querySelector('[data-dot]')!.className = `relative inline-flex h-2 w-2 rounded-full ${awake ? 'bg-emerald-500' : 'bg-slate-400'}`;
 		el.querySelector('[data-ping]')!.classList.toggle('hidden', !awake);
 	}
