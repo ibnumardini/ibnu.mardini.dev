@@ -61,13 +61,13 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 
 	<p
 		id="local-status"
-		class="mb-5 flex w-fit items-center gap-1.5 rounded-md border border-slate-200 bg-white/60 px-2.5 py-0.5 text-[11px] text-slate-600 backdrop-blur dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300"
+		class="mb-5 flex w-fit items-center gap-2 rounded-md border border-slate-200 bg-white/60 px-3 py-1 text-xs text-slate-600 backdrop-blur dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300"
 	>
 		<span class="relative flex h-1.5 w-1.5">
 			<span data-ping class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden"></span>
 			<span data-dot class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 		</span>
-		<span data-text>Right now I'm probably coding 💻</span>
+		<span data-text>Right Now I'm Probably Coding 💻</span>
 	</p>
 
 	<blockquote
@@ -138,16 +138,16 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 	const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 	// [fromHour, label, awake] — first entry whose fromHour <= current hour wins (checked from the end)
 	const moods: [number, string, boolean][] = [
-		[0, 'dreaming in TypeScript 😴', false],
-		[4, 'sleeping, do not deploy 💤', false],
-		[7, 'booting up, need coffee ☕', true],
-		[9, 'pretending to be productive 💻', true],
-		[12, 'hunting for nasi gudeg 🍛', true],
-		[13, 'fighting post-lunch coma 😵‍💫', true],
-		[16, 'fixing bugs I made this morning 🐛', true],
-		[19, 'eating at angkringan 🍢', true],
-		[21, 'pushing one more commit, I swear 🌙', true],
-		[23, 'supposed to be asleep 🦉', true],
+		[0, 'Dreaming in TypeScript 😴', false],
+		[4, 'Sleeping, Do Not Deploy 💤', false],
+		[7, 'Booting Up, Need Coffee ☕', true],
+		[9, 'Pretending to Be Productive 💻', true],
+		[12, 'Hunting for Nasi Gudeg 🍛', true],
+		[13, 'Fighting Post-Lunch Coma 😵‍💫', true],
+		[16, 'Fixing Bugs I Made This Morning 🐛', true],
+		[19, 'Eating at Angkringan 🍢', true],
+		[21, 'Pushing One More Commit, I Swear 🌙', true],
+		[23, 'Supposed to Be Asleep 🦉', true],
 	];
 
 	function render() {
@@ -156,7 +156,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		const time = fmt.format(new Date());
 		const hour = Number(time.slice(0, 2));
 		const [, label, awake] = moods.findLast(([from]) => from <= hour)!;
-		el.querySelector('[data-text]')!.textContent = `Right now I'm ${label}`;
+		el.querySelector('[data-text]')!.textContent = `Right Now I'm ${label}`;
 		el.querySelector('[data-dot]')!.className = `relative inline-flex h-1.5 w-1.5 rounded-full ${awake ? 'bg-emerald-500' : 'bg-slate-400'}`;
 		el.querySelector('[data-ping]')!.classList.toggle('hidden', !awake);
 	}
