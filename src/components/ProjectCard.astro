@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import type { Project } from '../data/profile';
 
@@ -6,76 +7,95 @@ type Props = Project & { filterable?: boolean };
 
 const { title, description, tags, repoUrl, liveUrl, images, type, filterable = false } = Astro.props;
 const gallerySlug = images?.[0]?.src.split('/')[0];
+
+const screenshots = import.meta.glob<ImageMetadata>('/src/assets/project-preview/**/*.{png,jpg,jpeg,webp}', {
+	eager: true,
+	import: 'default',
+});
+const cover = images?.[0] && screenshots[`/src/assets/project-preview/${images[0].src}`];
+
+// on a photo the translucent accent turns muddy, so go solid
+const typeClass = cover
+	? 'bg-accent text-slate-800'
+	: 'bg-accent/60 dark:bg-accent/15 dark:text-accent text-slate-700';
+
+const iconClass = cover
+	? 'pointer-events-auto text-white/70 hover:text-white'
+	: 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300';
 ---
 
 <div
 	data-project-card
 	data-project-type={type}
-	class="dark:hover:border-accent rounded-lg border border-slate-200 bg-white p-5 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800 dark:bg-slate-950"
+	class="dark:hover:border-accent flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition-colors duration-200 hover:border-slate-400 dark:border-slate-800 dark:bg-slate-950"
 >
-	<div class="flex items-center justify-between">
-		<h3 class="font-semibold">{title}</h3>
-		<div class="flex items-center gap-3">
-			{
-				gallerySlug && (
+	<div
+		class:list={[
+			'group relative isolate p-5',
+			cover && 'flex min-h-36 flex-col overflow-hidden justify-between gap-4 border-b border-slate-200 text-white dark:border-slate-800',
+		]}
+	>
+		{
+			cover && (
+				<>
+					<Image
+						src={cover}
+						alt=""
+						widths={[400, 800]}
+						sizes="(min-width: 640px) 400px, 100vw"
+						class="absolute inset-0 -z-10 h-full w-full object-cover"
+					/>
+					<div class="absolute inset-0 -z-10 bg-linear-to-t from-slate-950/90 to-slate-950/65 backdrop-blur-xs transition-opacity duration-300 group-hover:opacity-85" />
 					<button
 						type="button"
 						data-gallery-trigger
 						data-gallery-slug={gallerySlug}
 						aria-label={`${title} screenshots`}
+						class="absolute inset-0 cursor-pointer"
+					/>
+				</>
+			)
+		}
+		<div class:list={['flex items-center justify-between', cover && 'pointer-events-none relative']}>
+			<h3 class="font-semibold">{title}</h3>
+			<div class="flex items-center gap-3">
+				{
+					liveUrl && (
+						<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`} class={iconClass}>
+							<Icon name="tabler:external-link" size={18} />
+						</a>
+					)
+				}
+				<a href={repoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} source on GitHub`} class={iconClass}>
+					<Icon name="tabler:brand-github" size={18} />
+				</a>
+			</div>
+		</div>
+		<div class:list={['flex flex-wrap gap-2', cover ? 'pointer-events-none relative' : 'mt-3']}>
+			{
+				filterable ? (
+					<button
+						type="button"
+						data-project-filter-type={type}
+						aria-pressed="false"
+						class:list={[typeClass, 'focus-visible:outline-accent pointer-events-auto rounded-full px-2 py-0.5 text-xs transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2']}
 					>
-						<Icon
-							name="tabler:photo"
-							size={18}
-							class="cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-						/>
+						{type}
 					</button>
+				) : (
+					<span class:list={[typeClass, 'rounded-full px-2 py-0.5 text-xs']}>
+						{type}
+					</span>
 				)
 			}
 			{
-				liveUrl && (
-					<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`}>
-						<Icon
-							name="tabler:external-link"
-							size={18}
-							class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-						/>
-					</a>
-				)
+				tags.map((tag) => (
+					<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+						{tag}
+					</span>
+				))
 			}
-			<a href={repoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${title} source on GitHub`}>
-				<Icon
-					name="tabler:brand-github"
-					size={18}
-					class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-				/>
-			</a>
 		</div>
 	</div>
-	<p class="mt-2 text-sm text-pretty text-slate-600 dark:text-slate-300">{description}</p>
-	<div class="mt-3 flex flex-wrap gap-2">
-		{
-			filterable ? (
-				<button
-					type="button"
-					data-project-filter-type={type}
-					aria-pressed="false"
-					class="bg-accent/60 hover:bg-accent focus-visible:outline-accent dark:bg-accent/15 dark:text-accent dark:hover:bg-accent/25 rounded-full px-2 py-0.5 text-xs text-slate-700 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-				>
-					{type}
-				</button>
-			) : (
-				<span class="bg-accent/60 dark:bg-accent/15 dark:text-accent rounded-full px-2 py-0.5 text-xs text-slate-700">
-					{type}
-				</span>
-			)
-		}
-		{
-			tags.map((tag) => (
-				<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-					{tag}
-				</span>
-			))
-		}
-	</div>
+	<p class:list={['px-5 pb-5 text-sm text-pretty text-slate-600 dark:text-slate-300', cover && 'pt-4']}>{description}</p>
 </div>
