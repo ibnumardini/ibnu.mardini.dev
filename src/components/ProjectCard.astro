@@ -60,12 +60,12 @@ const gallerySlug = images?.[0]?.src.split('/')[0];
 					type="button"
 					data-project-filter-type={type}
 					aria-pressed="false"
-					class="border-accent/40 bg-accent/20 hover:bg-accent/30 focus-visible:outline-accent dark:border-accent/40 dark:bg-accent/10 dark:text-accent dark:hover:bg-accent/20 rounded-full border px-2 py-0.5 text-xs text-slate-700 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+					class="bg-accent/60 hover:bg-accent focus-visible:outline-accent dark:bg-accent/15 dark:text-accent dark:hover:bg-accent/25 rounded-full px-2 py-0.5 text-xs text-slate-700 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
 				>
 					{type}
 				</button>
 			) : (
-				<span class="border-accent/40 bg-accent/20 dark:border-accent/40 dark:bg-accent/10 dark:text-accent rounded-full border px-2 py-0.5 text-xs text-slate-700">
+				<span class="bg-accent/60 dark:bg-accent/15 dark:text-accent rounded-full px-2 py-0.5 text-xs text-slate-700">
 					{type}
 				</span>
 			)
