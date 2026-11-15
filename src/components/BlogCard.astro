@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { formatBlogDate, blogLanguageLabel } from '../lib/blog';
 
 interface Props {
@@ -7,9 +8,10 @@ interface Props {
 	date: Date;
 	description: string;
 	language: 'en' | 'id';
+	cover?: ImageMetadata;
 }
 
-const { id, title, date, description, language } = Astro.props;
+const { id, title, date, description, language, cover } = Astro.props;
 
 const formattedDate = formatBlogDate(date);
 const languageLabel = blogLanguageLabel(language);
@@ -18,14 +20,27 @@ const languageLabel = blogLanguageLabel(language);
 <a
 	href={`/blog/${id}`}
 	data-blog-language={language}
-	class="group dark:hover:border-accent block border-l-2 border-slate-200 py-2 pl-4 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800"
+	class="group dark:hover:border-accent flex items-start gap-4 border-l-2 border-slate-200 py-2 pl-4 transition-colors duration-200 hover:border-slate-400 dark:border-slate-800"
 >
-	<div class="flex items-center gap-2">
-		<p class="text-sm text-slate-500 dark:text-slate-400">{formattedDate}</p>
-		<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-			{languageLabel}
-		</span>
+	{
+		cover && (
+			<Image
+				src={cover}
+				alt=""
+				widths={[240, 480]}
+				sizes="240px"
+				class="mt-1 aspect-square w-20 shrink-0 rounded-md object-cover"
+			/>
+		)
+	}
+	<div>
+		<div class="flex items-center gap-2">
+			<p class="text-sm text-slate-500 dark:text-slate-400">{formattedDate}</p>
+			<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+				{languageLabel}
+			</span>
+		</div>
+		<h3 class="font-semibold group-hover:underline">{title}</h3>
+		<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{description}</p>
 	</div>
-	<h3 class="font-semibold group-hover:underline">{title}</h3>
-	<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{description}</p>
 </a>
