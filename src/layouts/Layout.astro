@@ -69,6 +69,34 @@ const navLinks = [
 	<body
 		class="overflow-x-clip bg-white font-sans text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100"
 	>
+		<div
+			id="nav-progress"
+			transition:persist
+			aria-hidden="true"
+			class="dark:bg-accent pointer-events-none fixed top-0 left-0 z-50 h-[3px] bg-[color-mix(in_oklab,var(--color-accent)_40%,#0e7490)] w-full origin-left opacity-0"
+			style="transform: scaleX(0)"
+		>
+		</div>
+		<script>
+			// ponytail: fake progress (no real byte progress from ClientRouter); creeps to 80%, completes on page-load
+			const bar = () => document.getElementById('nav-progress')!;
+			document.addEventListener('astro:before-preparation', () => {
+				const el = bar();
+				el.style.transition = 'none';
+				el.style.transform = 'scaleX(0)';
+				el.style.opacity = '1';
+				el.getBoundingClientRect();
+				el.style.transition = 'transform 8s cubic-bezier(0.1, 0.8, 0.2, 1)';
+				el.style.transform = 'scaleX(0.8)';
+			});
+			document.addEventListener('astro:page-load', () => {
+				const el = bar();
+				if (el.style.opacity !== '1') return;
+				el.style.transition = 'transform 200ms ease-out, opacity 300ms ease 200ms';
+				el.style.transform = 'scaleX(1)';
+				el.style.opacity = '0';
+			});
+		</script>
 		<header
 			class="sticky top-0 z-10 border-b border-slate-200/80 bg-white/70 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/70"
 		>
