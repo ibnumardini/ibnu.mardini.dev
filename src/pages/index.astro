@@ -5,7 +5,14 @@ import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
-import { profile } from '../data/profile';
+import { profile, type NoteCategory } from '../data/profile';
+
+// full class strings so Tailwind can see them
+const noteColors: Record<NoteCategory, string> = {
+	quote: 'bg-accent',
+	snippet: 'bg-amber-100',
+	config: 'bg-rose-100',
+};
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
 
@@ -130,6 +137,46 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			}
 		</ul>
 	</section>
+
+	<section
+		id="board"
+		aria-labelledby="board-title"
+		class="relative mx-[calc(50%-50vw)] mt-10 mb-10 max-h-75 min-h-25 cursor-grab [&:fullscreen]:max-h-none touch-none overflow-hidden border-y active:cursor-grabbing border-slate-200 bg-slate-50 bg-[radial-gradient(var(--color-slate-300)_1px,transparent_1px)] bg-size-[16px_16px] dark:border-slate-800 dark:bg-slate-900 dark:bg-[radial-gradient(var(--color-slate-700)_1px,transparent_1px)]"
+	>
+		<h2 id="board-title" class="font-heading pt-8 text-center text-xl font-semibold select-none">Notes to Self</h2>
+		<div id="board-content" class="mx-auto flex max-w-3xl flex-wrap items-start justify-center gap-4 px-6 pt-6 pb-8">
+			{
+				profile.notes.map((note, i) => (
+					<p
+						data-note
+						class:list={[noteColors[note.category], 'relative max-w-56 cursor-grab touch-none rounded-xs px-3 py-2 font-mono text-xs whitespace-pre-wrap text-slate-700 shadow-md select-none active:cursor-grabbing']}
+						style={`rotate: ${[-2, 1.5, -1, 2][i % 4]}deg`}
+					>
+						{/* one line: whitespace-pre-wrap would render source indentation */}
+						<span class="mb-1 flex justify-between gap-3 text-[10px] text-slate-400"><span>#{String(i + 1).padStart(2, '0')}</span><span class="flex items-center gap-1.5">{note.category}<button type="button" data-copy={note.text} aria-label="Copy note" title="Copy" class="cursor-pointer hover:text-slate-700"><Icon name="tabler:copy" size={12} /><Icon name="tabler:check" size={12} class="hidden" /></button></span></span>{note.text}
+					</p>
+				))
+			}
+		</div>
+		<div class="absolute right-5 bottom-3 z-9999 flex gap-2">
+			{
+				[
+					{ id: 'board-reset', label: 'Reset note positions', icon: 'tabler:restore' },
+					{ id: 'board-fullscreen', label: 'Toggle fullscreen', icon: 'tabler:maximize' },
+				].map((btn) => (
+					<button
+						type="button"
+						id={btn.id}
+						aria-label={btn.label}
+						title={btn.label}
+						class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:bg-slate-800"
+					>
+						<Icon name={btn.icon} size={16} />
+					</button>
+				))
+			}
+		</div>
+	</section>
 </Layout>
 
 <script>
@@ -166,5 +213,70 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		if (!document.getElementById('local-status')) return;
 		render();
 		timer = setInterval(render, 30_000);
+	});
+
+	document.addEventListener('astro:page-load', () => {
+		const board = document.getElementById('board');
+		if (!board) return;
+		let z = 1;
+		const resets: (() => void)[] = [];
+		board.querySelectorAll<HTMLElement>('[data-note]').forEach((note) => {
+			let x = 0;
+			let y = 0;
+			resets.push(() => {
+				x = y = 0;
+				note.style.translate = note.style.zIndex = '';
+			});
+			note.onpointerdown = (e) => {
+				// capture would swallow the copy button's click
+				if ((e.target as HTMLElement).closest('button')) return;
+				note.setPointerCapture(e.pointerId);
+				note.style.zIndex = String(++z);
+				const [sx, sy] = [e.clientX - x, e.clientY - y];
+				note.onpointermove = (e) => {
+					x = e.clientX - sx;
+					y = e.clientY - sy;
+					note.style.translate = `${x}px ${y}px`;
+				};
+				note.onpointerup = () => (note.onpointermove = null);
+			};
+		});
+
+		const content = document.getElementById('board-content')!;
+		let px = 0;
+		let py = 0;
+		const pan = () => {
+			content.style.translate = board.style.backgroundPosition = px || py ? `${px}px ${py}px` : '';
+		};
+		board.onpointerdown = (e) => {
+			if ((e.target as HTMLElement).closest('[data-note], button')) return;
+			board.setPointerCapture(e.pointerId);
+			const [sx, sy] = [e.clientX - px, e.clientY - py];
+			board.onpointermove = (e) => {
+				px = e.clientX - sx;
+				py = e.clientY - sy;
+				pan();
+			};
+			board.onpointerup = () => (board.onpointermove = null);
+		};
+		resets.push(() => {
+			px = py = 0;
+			pan();
+		});
+
+		document.getElementById('board-reset')!.onclick = () => resets.forEach((reset) => reset());
+
+		board.onclick = async (e) => {
+			const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-copy]');
+			if (!btn) return;
+			await navigator.clipboard.writeText(btn.dataset.copy!);
+			const [copy, check] = btn.querySelectorAll('svg');
+			copy.classList.add('hidden');
+			check.classList.remove('hidden');
+			setTimeout(() => (copy.classList.remove('hidden'), check.classList.add('hidden')), 1500);
+		};
+		const fullscreen = document.getElementById('board-fullscreen')!;
+		fullscreen.hidden = !document.fullscreenEnabled;
+		fullscreen.onclick = () => (document.fullscreenElement ? document.exitFullscreen() : board.requestFullscreen());
 	});
 </script>

@@ -49,6 +49,13 @@ export interface ExternalLink {
 	icon: string;
 }
 
+export type NoteCategory = 'quote' | 'snippet' | 'config';
+
+export interface Note {
+	category: NoteCategory;
+	text: string;
+}
+
 export const profile = {
 	name: 'Muhammad Fatkurozi',
 	username: 'ibnumardini',
@@ -85,6 +92,12 @@ export const profile = {
 			icon: 'tabler:brand-medium',
 		},
 	] satisfies ExternalLink[],
+	notes: [
+		{ category: 'quote', text: '"Talk is cheap. Show me the code." — Linus Torvalds' },
+		{ category: 'quote', text: '"With great power comes great responsibility."' },
+		{ category: 'snippet', text: 'echo "Taskfile.yml" >> .git/info/exclude' },
+		{ category: 'config', text: 'nix profile upgrade --all' },
+	] satisfies Note[],
 	skills: [
 		{
 			category: 'Back-end',
