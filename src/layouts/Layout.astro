@@ -25,6 +25,7 @@ const canonicalURL = Astro.url.href;
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const navLinks = [
+	{ href: '/', label: 'Home', active: path === '/' },
 	{ href: '/about', label: 'About', active: path === '/about' },
 	{ href: '/projects', label: 'Projects', active: path === '/projects' },
 	{ href: '/blog', label: 'Blog', active: path === '/blog' || path.startsWith('/blog/') },
