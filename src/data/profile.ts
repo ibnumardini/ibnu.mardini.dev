@@ -54,7 +54,7 @@ export const profile = {
 	username: 'ibnumardini',
 	title: 'Software Engineer | Full-stack Developer | Back-end Specialist',
 	summary:
-		`Software Engineer with ${(new Date().getFullYear() - 2019) - 1}+ years of experience specializing in high-scale REST APIs, distributed systems, and modern backend stacks (Go, TypeScript, Laravel). Experienced in leading backend teams, optimizing infrastructure, and delivering reliable production systems.`,
+		`Software Engineer with ${(new Date().getFullYear() - 2019) - 1}+ years of experience specializing in high-scale REST APIs, distributed systems, and modern back-end stacks (Go, TypeScript, Laravel). Experienced in leading back-end teams, optimizing infrastructure, and delivering reliable production systems.`,
 	location: 'Yogyakarta, Indonesia',
 	cvUrl: 'https://docs.google.com/document/d/10jEKHz9dVOidL-HIlIyVba3p2lmTQHJpcHN6k5EHW34/export?format=pdf',
 	socials: [
@@ -87,7 +87,7 @@ export const profile = {
 	] satisfies ExternalLink[],
 	skills: [
 		{
-			category: 'Backend',
+			category: 'Back-end',
 			items: [
 				'PHP',
 				'JavaScript',
@@ -141,19 +141,19 @@ export const profile = {
 	] satisfies SkillGroup[],
 	experience: [
 		{
-			company: 'PT Digital Solusindo International',
+			company: 'PT Digital Solusindo International (PT DSI)',
 			companyUrl: 'http://digitalsolusindo.id',
-			role: 'Backend Developer',
+			role: 'Back-end Developer',
 			dates: 'Nov 2026 - Present',
 			bullets: [
-				'Enhance and support legacy Internet Booking Engine (IBE) APIs in Go and PostgreSQL.',
+				'Enhance and support legacy apps and APIs in Go and PostgreSQL.',
 				'Integrated Internet Booking Engine (IBE) with Channel Manager to synchronize real-time availability and rates across external OTAs.',
 			],
 		},
 		{
 			company: 'PT Kedata Indonesia Digital',
 			companyUrl: 'https://kedata.online',
-			role: 'Backend Developer',
+			role: 'Back-end Developer',
 			dates: 'Dec 2025 - Aug 2026',
 			bullets: [
 				'Enhance and support legacy APIs and apps on Go and PostgreSQL.',
@@ -174,7 +174,7 @@ export const profile = {
 		{
 			company: 'Woowa CRM',
 			companyUrl: 'https://woowacrm.com',
-			role: 'Backend Lead',
+			role: 'Back-end Lead',
 			dates: 'March 2024 - Jan 2025',
 			bullets: [
 				'Effectively led a team of 3-4 members to achieve project goals.',
@@ -186,7 +186,7 @@ export const profile = {
 		{
 			company: 'Woowa CRM',
 			companyUrl: 'https://woowacrm.com',
-			role: 'Backend Web Developer',
+			role: 'Back-end Web Developer',
 			dates: 'April 2022 - Feb 2024',
 			bullets: [
 				'Entrusted with the design, development, and maintenance of RESTful API services and Web App products, using Node.js, Express.js, TypeScript, NestJs, ReactJs, Laravel, MySQL, PostgreSQL, MongoDB, Redis, Firebase, Docker, Kubernetes.',
