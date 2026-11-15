@@ -430,5 +430,19 @@ export const profile = {
 			] satisfies Project['images'],
 			type: 'Web App',
 		},
+		{
+			title: 'My Portfolio',
+			description: 'A personal portfolio website showcasing my skills, experience, and projects.',
+			tags: ['TypeScript', 'Astro', 'Tailwind CSS'],
+			repoUrl: 'https://github.com/ibnumardini/ibnu.mardini.dev',
+			liveUrl: 'https://ibnu.mardini.dev/',
+			images: [
+				{ src: 'my-portfolio/1.webp', caption: 'Landing Page' },
+				{ src: 'my-portfolio/2.webp', caption: 'About Me Page' },
+				{ src: 'my-portfolio/3.webp', caption: 'Projects Page' },
+				{ src: 'my-portfolio/4.webp', caption: 'Blog Page' },
+			] satisfies Project['images'],
+			type: 'Web App',
+		}
 	] satisfies Project[],
 };
