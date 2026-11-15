@@ -97,6 +97,7 @@ export const profile = {
 		{ category: 'quote', text: '"With great power comes great responsibility."' },
 		{ category: 'snippet', text: 'echo "Taskfile.yml" >> .git/info/exclude' },
 		{ category: 'config', text: 'nix profile upgrade --all' },
+		{ category: 'snippet', text: 'btop > htop > top' },
 	] satisfies Note[],
 	skills: [
 		{
