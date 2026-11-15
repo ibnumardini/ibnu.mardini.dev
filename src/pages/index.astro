@@ -26,7 +26,10 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 		<h1 class="font-heading text-4xl font-bold sm:text-5xl">Wassup? 👋🏼</h1>
 		<p class="mt-4 text-slate-600 dark:text-slate-300">
-			I'm {profile.name} (aka. {profile.username}), a software engineer from Indonesia
+			I'm <strong class="font-heading font-semibold text-slate-900 dark:text-slate-100">{profile.name}</strong> (aka. <span
+				class="font-hand mr-0.5 text-[1.35em] leading-none font-semibold text-slate-900 dark:text-slate-100"
+				>{profile.username}</span
+			>), a software engineer from Indonesia
 			<Icon
 				name="flag-id"
 				class="ml-1 inline-block h-[0.8em] w-[1.2em] rounded-[2px] align-[-0.05em] ring-1 ring-slate-300 dark:ring-slate-600"
