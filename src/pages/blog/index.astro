@@ -53,12 +53,15 @@ const languageNames = { en: 'English', id: 'Indonesia' };
 </Layout>
 
 <script>
-	const filter = document.querySelector<HTMLSelectElement>('#blog-language-filter');
-	const posts = document.querySelectorAll<HTMLElement>('[data-blog-list] [data-blog-language]');
+	// Re-bind on every navigation: ClientRouter swaps the DOM but runs module scripts only once.
+	document.addEventListener('astro:page-load', () => {
+		const filter = document.querySelector<HTMLSelectElement>('#blog-language-filter');
+		const posts = document.querySelectorAll<HTMLElement>('[data-blog-list] [data-blog-language]');
 
-	filter?.addEventListener('change', () => {
-		posts.forEach((post) => {
-			post.hidden = Boolean(filter.value && post.dataset.blogLanguage !== filter.value);
+		filter?.addEventListener('change', () => {
+			posts.forEach((post) => {
+				post.hidden = Boolean(filter.value && post.dataset.blogLanguage !== filter.value);
+			});
 		});
 	});
 </script>
