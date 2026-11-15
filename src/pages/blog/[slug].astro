@@ -3,7 +3,7 @@ import { getImage } from 'astro:assets';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { profile } from '../../data/profile';
-import { formatBlogDate, blogLanguageLabel } from '../../lib/blog';
+import { formatBlogDate, blogLanguageLabel, clampTitle } from '../../lib/blog';
 
 export async function getStaticPaths() {
 	const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -44,15 +44,15 @@ const languageLabel = blogLanguageLabel(post.data.language);
 			(olderPost || newerPost) && (
 				<nav class="mt-10 flex items-center justify-between gap-4 border-t border-slate-200 pt-6 dark:border-slate-800">
 					{olderPost ? (
-						<a href={`/blog/${olderPost.id}`} class="max-w-[45%] text-sm hover:underline">
-							&larr; {olderPost.data.title}
+						<a href={`/blog/${olderPost.id}`} title={olderPost.data.title} class="max-w-[45%] text-sm hover:underline">
+							&larr; {clampTitle(olderPost.data.title)}
 						</a>
 					) : (
 						<span />
 					)}
 					{newerPost && (
-						<a href={`/blog/${newerPost.id}`} class="max-w-[45%] text-right text-sm hover:underline">
-							{newerPost.data.title} &rarr;
+						<a href={`/blog/${newerPost.id}`} title={newerPost.data.title} class="max-w-[45%] text-right text-sm hover:underline">
+							{clampTitle(newerPost.data.title)} &rarr;
 						</a>
 					)}
 				</nav>
