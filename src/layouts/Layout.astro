@@ -22,6 +22,10 @@ const { title, description = profile.summary, image = '/images/daisy.webp', type
 
 const ogImage = new URL(image, Astro.site).href;
 const canonicalURL = Astro.url.href;
+const wave = `url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 8"><path d="M0 4 Q5 0 10 4 T20 4" fill="none" stroke="black" stroke-width="2"/></svg>')}") repeat-x center / 20px 8px`;
+const contactEmail =profile.socials.find((social) => social.label === 'Email')!.url;
+const inputClass =
+	'hover:border-accent/60 focus-visible:border-accent focus-visible:outline-accent w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm transition-colors placeholder:text-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const navLinks = [
@@ -168,6 +172,47 @@ const navLinks = [
 		</script>
 		<main class="mx-auto max-w-3xl px-6">
 			<slot />
+			<section class="pt-10">
+				<div
+					aria-hidden="true"
+					class="dark:bg-accent mx-auto mb-10 h-2 w-24 bg-[color-mix(in_oklab,var(--color-accent)_40%,#0e7490)]"
+					style={`mask: ${wave}`}
+				>
+				</div>
+				<h2 class="font-heading text-xl font-semibold">Ping Me</h2>
+				<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Questions, collabs, or just saying hi. I'll pong back soon.</p>
+				<form id="contact-form" data-mailto={contactEmail} class="mt-4 space-y-3">
+					<label class="block">
+						<span class="sr-only">Name</span>
+						<input name="name" required autocomplete="name" placeholder="Your name" class={inputClass} />
+					</label>
+					<label class="block">
+						<span class="sr-only">Message</span>
+						<textarea name="message" required rows="4" placeholder="Your message" class:list={[inputClass, 'resize-y']}
+						></textarea>
+					</label>
+					<button
+						type="submit"
+						class="inline-flex cursor-pointer items-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+					>
+						Send
+						<Icon name="tabler:send" size={18} />
+					</button>
+				</form>
+			</section>
+			<script>
+				document.addEventListener('astro:page-load', () => {
+					const form = document.getElementById('contact-form') as HTMLFormElement | null;
+					if (!form) return;
+					form.onsubmit = (e) => {
+						e.preventDefault();
+						const data = new FormData(form);
+						const subject = encodeURIComponent(`Hi from ${data.get('name')}`);
+						const body = encodeURIComponent(String(data.get('message')));
+						location.href = `${form.dataset.mailto}?subject=${subject}&body=${body}`;
+					};
+				});
+			</script>
 			<button
 				type="button"
 				data-daisy-trigger
