@@ -59,7 +59,7 @@ const experienceGroups = profile.experience.reduce<
 
 	<section class="py-10">
 		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
-			<Icon name="tabler:briefcase" size={20} /> Experiences
+			<Icon name="tabler:briefcase" size={20} /> Experiences <span class="font-medium text-slate-400 dark:text-slate-500">({profile.experience.length})</span>
 		</h2>
 		<div id="experience-wrapper" class="relative mt-4">
 			<div
@@ -140,7 +140,7 @@ const experienceGroups = profile.experience.reduce<
 
 	<section class="py-10">
 		<h2 class="font-heading flex items-center gap-2 text-xl font-semibold">
-			<Icon name="tabler:certificate" size={20} /> Certifications
+			<Icon name="tabler:certificate" size={20} /> Certifications <span class="font-medium text-slate-400 dark:text-slate-500">({profile.certifications.length})</span>
 		</h2>
 		<div id="cert-wrapper" class="relative mt-4">
 			<div
