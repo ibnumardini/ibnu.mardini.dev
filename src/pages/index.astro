@@ -24,6 +24,16 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			class="bg-accent pointer-events-none absolute top-24 -left-10 -z-10 h-64 w-64 rounded-full opacity-30 blur-3xl dark:opacity-5"
 		>
 		</div>
+		<p
+			id="local-status"
+			class="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs text-slate-600 backdrop-blur dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300"
+		>
+			<span class="relative flex h-2 w-2">
+				<span data-ping class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden"></span>
+				<span data-dot class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+			</span>
+			<span data-text>Yogyakarta, UTC+7</span>
+		</p>
 		<h1 class="font-heading text-4xl font-bold sm:text-5xl">
 			Wassup? <span class="motion-safe:animate-wave inline-block origin-[70%_70%]">👋🏼</span>
 		</h1>
@@ -120,3 +130,40 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</ul>
 	</section>
 </Layout>
+
+<script>
+	// ponytail: moods hardcoded by WIB hour; move to profile.ts if it ever changes
+	let timer: ReturnType<typeof setInterval> | undefined;
+	const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+	// [fromHour, label, awake] — first entry whose fromHour <= current hour wins (checked from the end)
+	const moods: [number, string, boolean][] = [
+		[0, 'dreaming in TypeScript 😴', false],
+		[4, 'deep sleep, do not deploy 💤', false],
+		[7, 'booting up, need coffee ☕', true],
+		[9, 'pretending to be productive 💻', true],
+		[12, 'hunting for nasi gudeg 🍛', true],
+		[13, 'fighting post-lunch coma 😵‍💫', true],
+		[16, 'fixing bugs I made this morning 🐛', true],
+		[19, 'probably eating angkringan 🍢', true],
+		[21, 'one more commit, I swear 🌙', true],
+		[23, 'should be asleep, still coding 🦉', true],
+	];
+
+	function render() {
+		const el = document.getElementById('local-status');
+		if (!el) return;
+		const time = fmt.format(new Date());
+		const hour = Number(time.slice(0, 2));
+		const [, label, awake] = moods.findLast(([from]) => from <= hour)!;
+		el.querySelector('[data-text]')!.textContent = `${time} in Yogyakarta · ${label}`;
+		el.querySelector('[data-dot]')!.className = `relative inline-flex h-2 w-2 rounded-full ${awake ? 'bg-emerald-500' : 'bg-slate-400'}`;
+		el.querySelector('[data-ping]')!.classList.toggle('hidden', !awake);
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		clearInterval(timer);
+		if (!document.getElementById('local-status')) return;
+		render();
+		timer = setInterval(render, 30_000);
+	});
+</script>
