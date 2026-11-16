@@ -32,8 +32,14 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		>
 		</div>
 		<h1 class="font-heading text-4xl font-bold sm:text-5xl">
-			Wassup? <span class="motion-safe:animate-wave inline-block origin-[70%_70%]">👋🏼</span>
+			<span id="greeting">Wassup?</span> <span class="motion-safe:animate-wave inline-block origin-[70%_70%]">👋🏼</span>
 		</h1>
+		<script is:inline>
+			(() => {
+				const g = ['Wassup?', 'Hey there!', 'Yo!', 'Howdy!', 'Hello, world!', 'Halo!', 'Sup?', "What's good?"];
+				document.getElementById('greeting').textContent = g[Math.floor(Math.random() * g.length)];
+			})();
+		</script>
 		<p class="mt-4 text-slate-600 dark:text-slate-300">
 			I'm <strong class="font-heading font-semibold text-slate-900 dark:text-slate-100">{profile.name}</strong> (aka. <span
 				class="font-hand mr-0.5 text-[1.35em] leading-none font-semibold text-slate-900 dark:text-slate-100"
