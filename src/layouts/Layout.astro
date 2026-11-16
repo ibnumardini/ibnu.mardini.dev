@@ -57,6 +57,13 @@ const navLinks = [
 		<meta name="twitter:image" content={ogImage} />
 		<ClientRouter />
 
+		<script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-KFSJ8C5X"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+		</script>
+
 		<script is:inline>
 			function applyTheme() {
 				const stored = localStorage.theme;
