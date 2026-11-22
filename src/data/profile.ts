@@ -443,6 +443,19 @@ export const profile = {
 				{ src: 'my-portfolio/4.webp', caption: 'Blog Page' },
 			] satisfies Project['images'],
 			type: 'Web App',
-		}
+		},
+		{
+			title: 'Lightspeed - Video Speed Controller Pro',
+			description: 'Video speed controller for your browser. Quick presets, fine-tune steps, and custom speeds up to 16x.',
+			tags: ['JavaScript', 'WXT'],
+			repoUrl: 'https://github.com/ibnumardini/lightspeed',
+			liveUrl: 'https://ibnumardini.github.io/lightspeed/',
+			images: [
+				{ src: 'lightspeed/1.webp', caption: 'Popup Interface' },
+				{ src: 'lightspeed/2.webp', caption: 'Light & Dark Themes with Accents' },
+				{ src: 'lightspeed/3.webp', caption: 'Customize everything with live preview' },
+			] satisfies Project['images'],
+			type: 'Chrome Extension',
+		},
 	] satisfies Project[],
 };
