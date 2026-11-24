@@ -40,26 +40,28 @@ const types = [...new Set(profile.projects.map((project) => project.type))];
 </Layout>
 
 <script>
-	const filter = document.querySelector<HTMLSelectElement>('#project-type-filter');
-	const grid = document.querySelector<HTMLElement>('[data-project-grid]');
+	document.addEventListener('astro:page-load', () => {
+		const filter = document.querySelector<HTMLSelectElement>('#project-type-filter');
+		const grid = document.querySelector<HTMLElement>('[data-project-grid]');
 
-	if (filter && grid) {
-		const cards = [...grid.querySelectorAll<HTMLElement>('[data-project-card]')];
-		const cardTypeFilters = [...grid.querySelectorAll<HTMLButtonElement>('[data-project-filter-type]')];
+		if (filter && grid) {
+			const cards = [...grid.querySelectorAll<HTMLElement>('[data-project-card]')];
+			const cardTypeFilters = [...grid.querySelectorAll<HTMLButtonElement>('[data-project-filter-type]')];
 
-		const filterProjects = (type: string) => {
-			filter.value = type;
-			cards.forEach((card) => {
-				card.hidden = Boolean(type && card.dataset.projectType !== type);
-			});
-			cardTypeFilters.forEach((button) => {
-				button.setAttribute('aria-pressed', String(button.dataset.projectFilterType === type));
-			});
-		};
+			const filterProjects = (type: string) => {
+				filter.value = type;
+				cards.forEach((card) => {
+					card.hidden = Boolean(type && card.dataset.projectType !== type);
+				});
+				cardTypeFilters.forEach((button) => {
+					button.setAttribute('aria-pressed', String(button.dataset.projectFilterType === type));
+				});
+			};
 
-		filter.addEventListener('change', () => filterProjects(filter.value));
-		cardTypeFilters.forEach((button) =>
-			button.addEventListener('click', () => filterProjects(button.dataset.projectFilterType ?? '')),
-		);
-	}
+			filter.addEventListener('change', () => filterProjects(filter.value));
+			cardTypeFilters.forEach((button) =>
+				button.addEventListener('click', () => filterProjects(button.dataset.projectFilterType ?? '')),
+			);
+		}
+	});
 </script>
