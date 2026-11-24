@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
@@ -6,6 +7,8 @@ import SocialLinks from '../components/SocialLinks.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { profile, type NoteCategory } from '../data/profile';
+import heroCalm from '../assets/hero-calm.jpg';
+import heroCalmDark from '../assets/hero-calm-dark.jpg';
 
 // full class strings so Tailwind can see them
 const noteColors: Record<NoteCategory, string> = {
@@ -20,76 +23,99 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 ---
 
 <Layout title={`${profile.name} - ${profile.title}`}>
-	<section class="relative py-16">
+	<section class="relative pt-18.5 pb-7 sm:pt-30 sm:pb-18.5">
 		<div
 			aria-hidden="true"
-			class="bg-accent pointer-events-none absolute top-0 -left-24 -z-10 h-96 w-96 rounded-full opacity-60 blur-3xl dark:opacity-7"
+			class="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden"
 		>
+			<Image
+				src={heroCalm}
+				alt=""
+				loading="eager"
+				fetchpriority="high"
+				widths={[800, 1280, 1920]}
+				sizes="100vw"
+				class="h-full w-full -scale-x-100 object-cover object-[80%_80%] sm:object-[right_75%] dark:hidden"
+			/>
+			<Image
+				src={heroCalmDark}
+				alt=""
+				loading="eager"
+				fetchpriority="high"
+				widths={[800, 1280, 1920]}
+				sizes="100vw"
+				class="hidden h-full w-full -scale-x-100 object-cover object-[80%_80%] opacity-80 sm:object-[right_75%] dark:block"
+			/>
+			<div
+				class="absolute inset-0 bg-linear-to-l from-white/55 via-white/35 to-white/30 sm:from-white/70 sm:via-white/25 sm:to-white/20 dark:from-slate-950/55 dark:via-slate-950/50 dark:to-slate-950/65 sm:dark:from-slate-950/25 sm:dark:via-slate-950/45 sm:dark:to-slate-950/60"
+			>
+			</div>
+			<div
+				class="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-white dark:from-slate-950/25 via-transparent dark:to-slate-950"
+			>
+			</div>
 		</div>
-		<div
-			aria-hidden="true"
-			class="bg-accent pointer-events-none absolute top-24 -left-10 -z-10 h-64 w-64 rounded-full opacity-60 blur-3xl dark:opacity-7"
+		<p
+			id="local-status"
+			class="mb-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-slate-600 sm:mb-3 dark:text-slate-400"
 		>
-		</div>
-		<h1 class="font-heading text-4xl font-bold sm:text-5xl">
-			<span id="greeting">Wassup?</span> <span class="motion-safe:animate-wave inline-block origin-[70%_70%]">👋🏼</span>
+			<span data-dot aria-hidden="true" class="inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-500"></span>
+			<span data-time>WIB</span>
+			<span aria-hidden="true">&middot;</span>
+			<span data-text>Right now I'm probably coding</span>
+		</p>
+		<h1 class="font-heading text-3xl font-bold sm:text-5xl">
+			<span id="greeting">Wassup?</span>
+			<span class="motion-safe:animate-wave inline-block origin-[70%_70%]">👋🏼</span>
 		</h1>
 		<script is:inline>
 			(() => {
-				const g = ['Wassup?', 'Hey there!', 'Yo!', 'Howdy!', 'Hello, world!', 'Halo!', 'Sup?', "What's good?"];
+				const g = [
+					'Wassup?',
+					'Hey there!',
+					'Yo, yo!',
+					'Howdy!',
+					'Hello, world!',
+					'Halo!',
+					'Sup?',
+					"What's good?",
+				];
 				document.getElementById('greeting').textContent = g[Math.floor(Math.random() * g.length)];
 			})();
 		</script>
-		<p class="mt-4 text-slate-600 dark:text-slate-300">
-			I'm <strong class="font-heading font-semibold text-slate-900 dark:text-slate-100">{profile.name}</strong> (aka. <span
-				class="font-hand mr-0.5 text-[1.35em] leading-none font-semibold text-slate-900 dark:text-slate-100"
+		<p class="mt-3 text-sm leading-relaxed text-pretty text-slate-700 sm:mt-4 sm:text-base dark:text-slate-300">
+			I'm <strong class="font-heading font-semibold text-slate-900 dark:text-slate-100">{profile.name}</strong> (aka.
+			<span class="font-hand mr-0.5 text-[1.35em] leading-none font-semibold text-slate-900 dark:text-slate-100"
 				>{profile.username}</span
 			>), a software engineer from Yogyakarta, Indonesia
 			<Icon
 				name="flag-id"
 				class="ml-1 inline-block h-[0.8em] w-[1.2em] rounded-xs align-[-0.05em] ring-1 ring-slate-300 dark:ring-slate-600"
-			/>.<br />
+			/>.<br class="hidden sm:inline" />
 			I spend my days on APIs and my nights wondering why they broke.
 		</p>
-		<div class="mt-6 flex flex-wrap gap-3">
-			<a
-				href="/about"
-				class="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-			>
-				About & experience
-				<Icon name="tabler:arrow-right" size={18} />
-			</a>
-			<a
-				href={profile.cvUrl}
-				class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 dark:border-slate-600 dark:text-white dark:hover:bg-slate-800"
-			>
-				<Icon name="tabler:download" size={18} />
-				Download CV
-			</a>
-		</div>
-		<div class="mt-6">
+		<div class="mt-5 flex flex-col items-start gap-4 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-3">
+			<div class="flex flex-wrap gap-2.5 sm:gap-3">
+				<a
+					href="/about"
+					class="inline-flex min-h-11 items-center gap-2 rounded-md bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-700 sm:min-h-0 sm:py-2 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+				>
+					About & experience
+					<Icon name="tabler:arrow-right" size={18} />
+				</a>
+				<a
+					href={profile.cvUrl}
+					class="inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-300 bg-white/70 px-4 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 sm:min-h-0 sm:py-2 dark:border-slate-600 dark:bg-slate-950/60 dark:text-white dark:hover:bg-slate-800"
+				>
+					<Icon name="tabler:download" size={18} />
+					Download CV
+				</a>
+			</div>
 			<SocialLinks size={22} />
 		</div>
 	</section>
 
-	<p
-		id="local-status"
-		class="mb-5 flex w-fit items-center gap-2 rounded-md border border-slate-200 bg-white/60 px-3 py-1 text-xs text-slate-600 backdrop-blur dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300"
-	>
-		<span class="relative flex h-1.5 w-1.5">
-			<span data-ping class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden"></span>
-			<span data-dot class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-		</span>
-		<span data-text>Right now I'm probably coding 💻</span>
-	</p>
-
-	<blockquote
-		class="border-accent mb-6 rounded-r-md border-l-2 bg-slate-50 py-2 pl-4 font-mono text-sm text-slate-500 dark:bg-slate-900 dark:text-slate-400"
-	>
-		if err := beNice(); err != nil {'{'} beKind() {'}'}
-	</blockquote>
-
-	<section id="projects" class="py-10">
+	<section id="projects" class="py-11.5">
 		<div class="flex items-baseline justify-between">
 			<h2 class="font-heading text-xl font-semibold">Featured Projects</h2>
 			<a href="/projects" class="text-sm hover:underline">All projects &rarr;</a>
@@ -99,7 +125,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 	</section>
 
-	<section class="py-10">
+	<section class="py-11.5">
 		<div class="flex items-baseline justify-between">
 			<h2 class="font-heading text-xl font-semibold">Recent Posts</h2>
 			<a href="/blog" class="text-sm hover:underline">All posts &rarr;</a>
@@ -120,13 +146,18 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		</div>
 	</section>
 
-	<section class="py-10">
+	<section class="py-11.5">
 		<h2 class="font-heading text-xl font-semibold">Elsewhere</h2>
 		<ul class="mt-4 space-y-4">
 			{
 				profile.elsewhere.map((link) => (
 					<li>
-						<a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3">
+						<a
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group flex items-center gap-3"
+						>
 							<Icon
 								name={link.icon}
 								size={20}
@@ -136,7 +167,10 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 								<span class="font-semibold text-slate-900 underline underline-offset-2 dark:text-white">
 									{link.title}
 								</span>
-								<span class="text-sm text-slate-500 dark:text-slate-400"> &middot; {link.description}</span>
+								<span class="text-sm text-slate-500 dark:text-slate-400">
+									{' '}
+									&middot; {link.description}
+								</span>
 							</span>
 						</a>
 					</li>
@@ -148,19 +182,47 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 	<section
 		id="board"
 		aria-labelledby="board-title"
-		class="relative mx-[calc(50%-50vw)] mt-10 mb-10 max-h-75 min-h-25 cursor-grab [&:fullscreen]:max-h-none touch-none overflow-hidden border-y active:cursor-grabbing border-slate-200 bg-slate-50 bg-[radial-gradient(var(--color-slate-300)_1px,transparent_1px)] bg-size-[16px_16px] dark:border-slate-800 dark:bg-slate-900 dark:bg-[radial-gradient(var(--color-slate-700)_1px,transparent_1px)]"
+		class="relative mx-[calc(50%-50vw)] mt-11.5 mb-11.5 max-h-75 min-h-25 cursor-grab touch-none overflow-hidden border-y border-slate-200 bg-slate-50 bg-[radial-gradient(var(--color-slate-300)_1px,transparent_1px)] bg-size-[16px_16px] py-8 active:cursor-grabbing dark:border-slate-800 dark:bg-slate-900 dark:bg-[radial-gradient(var(--color-slate-700)_1px,transparent_1px)] [&:fullscreen]:flex [&:fullscreen]:max-h-none [&:fullscreen]:flex-col [&:fullscreen]:justify-center"
 	>
-		<h2 id="board-title" class="font-heading pt-8 text-center text-xl font-semibold select-none">Notes to Self</h2>
-		<div id="board-content" class="mx-auto flex max-w-3xl flex-wrap items-start justify-center gap-4 px-6 pt-6 pb-8">
+		<h2 id="board-title" class="font-heading text-center text-xl leading-none font-semibold select-none">
+			Notes to Self
+		</h2>
+		<div
+			id="board-content"
+			class="mx-auto mt-5 flex max-w-3xl flex-wrap items-start justify-center gap-4 px-6 pb-1.5"
+		>
 			{
 				profile.notes.map((note, i) => (
 					<p
 						data-note
-						class:list={[noteColors[note.category], 'relative max-w-56 cursor-grab touch-none rounded-xs px-3 py-2 font-mono text-xs whitespace-pre-wrap text-slate-700 shadow-md select-none active:cursor-grabbing']}
+						class:list={[
+							noteColors[note.category],
+							'relative max-w-56 cursor-grab touch-none rounded-xs px-3 py-2 font-mono text-xs whitespace-pre-wrap text-slate-700 shadow-md select-none active:cursor-grabbing',
+						]}
 						style={`rotate: ${[-2, 1.5, -1, 2][i % 4]}deg`}
 					>
 						{/* one line: whitespace-pre-wrap would render source indentation */}
-						<span class="mb-1 flex justify-between gap-3 text-[10px] text-slate-400"><span>#{String(i + 1).padStart(2, '0')}</span><span class="flex items-center gap-1.5">{note.category}<button type="button" data-copy={note.text} aria-label="Copy note" title="Copy" class="cursor-pointer hover:text-slate-700"><Icon name="tabler:copy" size={12} /><Icon name="tabler:check" size={12} class="hidden" /></button></span></span>{note.text}
+						<span class="mb-1 flex justify-between gap-3 text-[10px] text-slate-400">
+							<>
+								<span>#{String(i + 1).padStart(2, '0')}</span>
+								<span class="flex items-center gap-1.5">
+									{note.category}
+									<button
+										type="button"
+										data-copy={note.text}
+										aria-label="Copy note"
+										title="Copy"
+										class="cursor-pointer hover:text-slate-700"
+									>
+										<>
+											<Icon name="tabler:copy" size={12} />
+											<Icon name="tabler:check" size={12} class="hidden" />
+										</>
+									</button>
+								</span>
+							</>
+						</span>
+						{note.text}
 					</p>
 				))
 			}
@@ -189,19 +251,24 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 <script>
 	// ponytail: moods hardcoded by WIB hour; move to profile.ts if it ever changes
 	let timer: ReturnType<typeof setInterval> | undefined;
-	const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+	const fmt = new Intl.DateTimeFormat('en-GB', {
+		timeZone: 'Asia/Jakarta',
+		hour: '2-digit',
+		minute: '2-digit',
+		hourCycle: 'h23',
+	});
 	// [fromHour, label, awake] — first entry whose fromHour <= current hour wins (checked from the end)
 	const moods: [number, string, boolean][] = [
-		[0, 'dreaming in TypeScript 😴', false],
-		[4, 'sleeping, do not deploy 💤', false],
-		[7, 'booting up, need coffee ☕', true],
-		[9, 'pretending to be productive 💻', true],
-		[12, 'hunting for nasi gudeg 🍛', true],
-		[13, 'fighting a post-lunch coma 😵‍💫', true],
-		[16, 'fixing bugs I made this morning 🐛', true],
-		[19, 'eating at angkringan 🍢', true],
-		[21, 'pushing one more commit, I swear 🌙', true],
-		[23, 'supposed to be asleep 🦉', true],
+		[0, 'dreaming in TypeScript.', false],
+		[4, 'sleeping, do not deploy.', false],
+		[7, 'booting up, need coffee.', true],
+		[9, 'pretending to be productive.', true],
+		[12, 'hunting for nasi gudeg.', true],
+		[13, 'fighting a post-lunch coma.', true],
+		[16, 'fixing bugs I made this morning.', true],
+		[19, 'eating at angkringan.', true],
+		[21, 'pushing one more commit, I swear.', true],
+		[23, 'supposed to be asleep.', true],
 	];
 
 	function render() {
@@ -210,9 +277,10 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		const time = fmt.format(new Date());
 		const hour = Number(time.slice(0, 2));
 		const [, label, awake] = moods.findLast(([from]) => from <= hour)!;
+		el.querySelector('[data-time]')!.textContent = `${time} WIB`;
 		el.querySelector('[data-text]')!.textContent = `Right now I'm ${label}`;
-		el.querySelector('[data-dot]')!.className = `relative inline-flex h-1.5 w-1.5 rounded-full ${awake ? 'bg-emerald-500' : 'bg-slate-400'}`;
-		el.querySelector('[data-ping]')!.classList.toggle('hidden', !awake);
+		el.querySelector('[data-dot]')!.className =
+			`inline-block h-2 w-2 shrink-0 rounded-full ${awake ? 'bg-emerald-500' : 'bg-slate-400'}`;
 	}
 
 	document.addEventListener('astro:page-load', () => {
