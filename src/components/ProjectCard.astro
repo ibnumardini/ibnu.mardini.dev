@@ -14,14 +14,25 @@ const screenshots = import.meta.glob<ImageMetadata>('/src/assets/project-preview
 });
 const cover = images?.[0] && screenshots[`/src/assets/project-preview/${images[0].src}`];
 
-// on a photo the translucent accent turns muddy, so go solid
+const pastelFill: Record<string, string> = {
+	API: 'bg-accent/20 dark:bg-accent/4',
+	'CLI App': 'bg-amber-100/25 dark:bg-amber-200/4',
+	Library: 'bg-rose-100/25 dark:bg-rose-200/4',
+};
+const headerFill = !cover && (pastelFill[type] ?? 'bg-accent/20 dark:bg-accent/4');
+
+// on a photo or pastel fill, keep the type badge crisp
 const typeClass = cover
 	? 'bg-accent text-slate-800'
-	: 'bg-accent/60 dark:bg-accent/15 dark:text-accent text-slate-700';
+	: 'bg-accent text-slate-800 dark:bg-accent/20 dark:text-accent';
+
+const tagClass = cover
+	? 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
+	: 'bg-white/85 text-slate-600 dark:bg-slate-800/90 dark:text-slate-300';
 
 const iconClass = cover
 	? 'pointer-events-auto text-white/70 hover:text-white'
-	: 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300';
+	: 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200';
 ---
 
 <div
@@ -32,7 +43,7 @@ const iconClass = cover
 	<div
 		class:list={[
 			'group relative isolate flex min-h-36 flex-col justify-between gap-4 overflow-hidden border-b border-slate-200 p-5 dark:border-slate-800',
-			cover && 'text-white',
+			cover ? 'text-white' : headerFill,
 		]}
 	>
 		{
@@ -90,7 +101,7 @@ const iconClass = cover
 			}
 			{
 				tags.map((tag) => (
-					<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+					<span class:list={[tagClass, 'rounded-full px-2 py-0.5 text-xs']}>
 						{tag}
 					</span>
 				))
