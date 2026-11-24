@@ -15,11 +15,11 @@ const screenshots = import.meta.glob<ImageMetadata>('/src/assets/project-preview
 const cover = images?.[0] && screenshots[`/src/assets/project-preview/${images[0].src}`];
 
 const pastelFill: Record<string, string> = {
-	API: 'bg-accent/20 dark:bg-accent/4',
-	'CLI App': 'bg-amber-100/25 dark:bg-amber-200/4',
-	Library: 'bg-rose-100/25 dark:bg-rose-200/4',
+	API: 'bg-accent/20 dark:bg-accent/9',
+	'CLI App': 'bg-amber-100/25 dark:bg-amber-200/9',
+	Library: 'bg-rose-100/25 dark:bg-rose-200/9',
 };
-const headerFill = !cover && (pastelFill[type] ?? 'bg-accent/20 dark:bg-accent/4');
+const headerFill = !cover && (pastelFill[type] ?? 'bg-accent/20 dark:bg-accent/9');
 
 // on a photo or pastel fill, keep the type badge crisp
 const typeClass = cover
