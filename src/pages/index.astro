@@ -56,7 +56,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 				href="/about"
 				class="inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
 			>
-				More about me
+				About & experience
 				<Icon name="tabler:arrow-right" size={18} />
 			</a>
 			<a
@@ -80,7 +80,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 			<span data-ping class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden"></span>
 			<span data-dot class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 		</span>
-		<span data-text>Right Now I'm Probably Coding 💻</span>
+		<span data-text>Right now I'm probably coding 💻</span>
 	</p>
 
 	<blockquote
@@ -92,7 +92,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 	<section id="projects" class="py-10">
 		<div class="flex items-baseline justify-between">
 			<h2 class="font-heading text-xl font-semibold">Featured Projects</h2>
-			<a href="/projects" class="text-sm hover:underline">View all &rarr;</a>
+			<a href="/projects" class="text-sm hover:underline">All projects &rarr;</a>
 		</div>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2">
 			{pinnedProjects.map((project) => <ProjectCard {...project} />)}
@@ -101,8 +101,8 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 
 	<section class="py-10">
 		<div class="flex items-baseline justify-between">
-			<h2 class="font-heading text-xl font-semibold">Recent Post</h2>
-			<a href="/blog" class="text-sm hover:underline">View all &rarr;</a>
+			<h2 class="font-heading text-xl font-semibold">Recent Posts</h2>
+			<a href="/blog" class="text-sm hover:underline">All posts &rarr;</a>
 		</div>
 		<div class="mt-4 space-y-4">
 			{
@@ -192,16 +192,16 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 	const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 	// [fromHour, label, awake] — first entry whose fromHour <= current hour wins (checked from the end)
 	const moods: [number, string, boolean][] = [
-		[0, 'Dreaming in TypeScript 😴', false],
-		[4, 'Sleeping, Do Not Deploy 💤', false],
-		[7, 'Booting Up, Need Coffee ☕', true],
-		[9, 'Pretending to Be Productive 💻', true],
-		[12, 'Hunting for Nasi Gudeg 🍛', true],
-		[13, 'Fighting Post-Lunch Coma 😵‍💫', true],
-		[16, 'Fixing Bugs I Made This Morning 🐛', true],
-		[19, 'Eating at Angkringan 🍢', true],
-		[21, 'Pushing One More Commit, I Swear 🌙', true],
-		[23, 'Supposed to Be Asleep 🦉', true],
+		[0, 'dreaming in TypeScript 😴', false],
+		[4, 'sleeping, do not deploy 💤', false],
+		[7, 'booting up, need coffee ☕', true],
+		[9, 'pretending to be productive 💻', true],
+		[12, 'hunting for nasi gudeg 🍛', true],
+		[13, 'fighting a post-lunch coma 😵‍💫', true],
+		[16, 'fixing bugs I made this morning 🐛', true],
+		[19, 'eating at angkringan 🍢', true],
+		[21, 'pushing one more commit, I swear 🌙', true],
+		[23, 'supposed to be asleep 🦉', true],
 	];
 
 	function render() {
@@ -210,7 +210,7 @@ const pinnedProjects = profile.projects.filter((project) => project.pinned);
 		const time = fmt.format(new Date());
 		const hour = Number(time.slice(0, 2));
 		const [, label, awake] = moods.findLast(([from]) => from <= hour)!;
-		el.querySelector('[data-text]')!.textContent = `Right Now I'm ${label}`;
+		el.querySelector('[data-text]')!.textContent = `Right now I'm ${label}`;
 		el.querySelector('[data-dot]')!.className = `relative inline-flex h-1.5 w-1.5 rounded-full ${awake ? 'bg-emerald-500' : 'bg-slate-400'}`;
 		el.querySelector('[data-ping]')!.classList.toggle('hidden', !awake);
 	}

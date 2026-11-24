@@ -93,7 +93,7 @@ export const profile = {
 		},
 	] satisfies ExternalLink[],
 	notes: [
-		{ category: 'quote', text: '"Talk is cheap. Show me the code." — Linus Torvalds' },
+		{ category: 'quote', text: '"Talk is cheap. Show me the code." - Linus Torvalds' },
 		{ category: 'quote', text: '"With great power comes great responsibility."' },
 		{ category: 'snippet', text: 'echo "Taskfile.yml" >> .git/info/exclude' },
 		{ category: 'config', text: 'nix profile upgrade --all' },
@@ -328,7 +328,7 @@ export const profile = {
 		{
 			title: 'SIMALU',
 			description:
-				'SIMALU is specialized software crafted to assist educational institutions and organizations in effectively overseeing alumni relations',
+				'A web app for schools and organizations to manage alumni directories and work histories.',
 			tags: ['PHP', 'Laravel 11', 'MySQL 8', 'JavaScript', 'Bootstrap 5', 'Tabler.io'],
 			repoUrl: 'https://github.com/ibnumardini/simalu',
 			liveUrl: 'https://simalu.mardini.dev/',
@@ -349,7 +349,7 @@ export const profile = {
 		{
 			title: 'My UMBY Profile API',
 			description:
-				'An API Gateway for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta, including scraping and validating data from official academic sources.',
+				'An API gateway that fetches and validates Universitas Mercu Buana Yogyakarta student records from official academic sources.',
 			tags: ['JavaScript', 'Node.js', 'Express.js'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile-api',
 			liveUrl: 'https://my-umby-profile-api.vercel.app/',
@@ -358,7 +358,7 @@ export const profile = {
 		{
 			title: 'My UMBY Profile',
 			description:
-				'A web interface for securely verifying and retrieving student records at Universitas Mercu Buana Yogyakarta.',
+				'A web interface for looking up and verifying Universitas Mercu Buana Yogyakarta student records.',
 			tags: ['JavaScript', 'React.js', 'Vite'],
 			repoUrl: 'https://github.com/ibnumardini/my-umby-profile',
 			liveUrl: 'https://umby.mardini.dev/',
@@ -378,7 +378,7 @@ export const profile = {
 		{
 			title: 'Wilayah ID API',
 			description:
-				'A RESTful API that provides structured Indonesian administrative region data from provinces to villages, designed to simplify integration of regional data into various applications.',
+				'A REST API serving Indonesian administrative region data from provinces down to villages.',
 			tags: ['Go', 'MySQL', 'go-chi'],
 			repoUrl: 'https://github.com/ibnumardini/wilayah-indonesia-api',
 			liveUrl: 'https://wilayah-indonesia-api.mardini.dev/swagger/index.html',
@@ -418,7 +418,7 @@ export const profile = {
 		},
 		{
 			title: 'NoteSpace',
-			description: 'A personal note-taking and organization app for writing, thinking, and staying organized.',
+			description: 'A personal web app for writing and organizing notes.',
 			tags: ['PHP', 'CodeIgniter 4', 'MySQL'],
 			repoUrl: 'https://github.com/ibnumardini/NoteSpace',
 			images: [
@@ -432,7 +432,7 @@ export const profile = {
 		},
 		{
 			title: 'My Portfolio',
-			description: 'A personal portfolio website showcasing my skills, experience, and projects.',
+			description: 'This site: my projects, work history, and blog.',
 			tags: ['TypeScript', 'Astro', 'Tailwind CSS'],
 			repoUrl: 'https://github.com/ibnumardini/ibnu.mardini.dev',
 			liveUrl: 'https://ibnu.mardini.dev/',

@@ -15,7 +15,7 @@ Pernah nambahin rule baru di `.gitignore`, tapi pas bikin branch baru dari main,
 
 Hal itu wajar. Rule di `.gitignore` baru akan berlaku di branch lain setelah di-merge ke main. Selama belum di-merge, branch baru akan mewarisi `.gitignore` versi lama, sehingga working tree kembali kotor.
 
-Sebagai solusi sementara, Anda bisa menggunakan Git Exclude (Saudara Kembarnya `.gitignore` 😅). Format isinya sama persis dengan `.gitignore`, tetapi file ini tidak akan ikut ter-commit dan hanya berlaku di mesin lokal Anda.
+Sebagai solusi sementara, kamu bisa pakai Git Exclude (saudara kembarnya `.gitignore` 😅). Format isinya sama persis dengan `.gitignore`, tapi file ini gak ikut ter-commit dan cuma berlaku di mesin lokal kamu.
 
 ## Ada Dua Opsi Penggunaan
 
@@ -36,12 +36,12 @@ Dengan cara ini, working tree tetap bersih di branch mana pun tanpa harus menung
 
 ## Tips Tambahan
 
-Jika file tersebut memang hanya milik pribadi (seperti konfig lokal, catatan pribadi, atau file bawaan editor), sebaiknya jangan dimasukkan ke `.gitignore` utama. Masukkan saja ke exclude agar `.gitignore` tim tetap bersih dan hanya berisi aturan yang relevan untuk semua orang.
+Kalau file tersebut memang cuma milik pribadi (seperti konfig lokal, catatan pribadi, atau file bawaan editor), sebaiknya jangan dimasukkan ke `.gitignore` utama. Masukkan aja ke exclude biar `.gitignore` tim tetap bersih dan cuma berisi aturan yang relevan buat semua orang.
 
-Catatan: karena exclude tidak ikut ter-clone, Anda perlu mengaturnya kembali jika berpindah mesin atau laptop baru. Jika sering berganti device, memasukkannya ke `.gitignore` tetap menjadi pilihan yang lebih praktis.
+Catatan: karena exclude gak ikut ter-clone, kamu perlu atur ulang kalau pindah mesin atau laptop baru. Kalau sering ganti device, memasukkannya ke `.gitignore` tetap lebih praktis.
 
 ## Ringkasnya
 
 - `.gitignore`: untuk aturan bersama yang berlaku bagi seluruh tim.
 - `.git/info/exclude`: untuk file pribadi khusus di satu repo lokal.
-- `~/.gitignore_global`: untuk file pribadi yang berlaku di semua repo di mesin Anda.
+- `~/.gitignore_global`: buat file pribadi yang berlaku di semua repo di mesin kamu.

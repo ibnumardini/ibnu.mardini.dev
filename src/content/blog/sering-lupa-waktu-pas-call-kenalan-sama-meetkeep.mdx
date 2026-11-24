@@ -18,11 +18,9 @@ Lagi asyik ngobrol, eh tau-tau pas liat jam dinding udah bablas sejam lebih. Pad
 
 Sebelum memutuskan bikin sesuatu sendiri, saya udah coba jalan ninja yang biasa dilakukan netizen: berburu extension di Chrome Web Store. Saya cobain tuh sekitar 2–3 extension timer yang ratingnya lumayan. Tapi ya gitu, rasanya masih "kureng" banget. Ada yang fiturnya malah seribet kalkulator saintifik, ada juga yang UI-nya off banget, malah ngerusak pemandangan visual Google Meet yang udah estetik dan minimalis.
 
-Daripada terus-terusan ngerasa gak puas dan ngedumel sendiri, ya sudah: I built my own solution.
+Daripada terus-terusan gak puas dan ngedumel sendiri, ya sudah, saya bikin sendiri aja: MeetKeep.
 
-**Perkenalkan: MeetKeep**
-
-## Kenapa Harus MeetKeep?
+## Apa yang Beda dari Extension Lain?
 
 Goal saya pas bikin tool ini simpel banget: bikin timer yang fungsional, tapi tampilannya jauh lebih elegan dan menyatu rapi dengan UI aslinya. Saya gak mau ada widget melayang-layang gak jelas yang nutupin muka orang pas lagi presentasi.
 
@@ -44,13 +42,13 @@ MeetKeep bakal otomatis ngebaca durasi panggilan kamu dan nampilin teks rangkuma
 
 Buat sesama developer yang penasaran atau pengen ngintip dapurnya, MeetKeep ini saya bikin seringan mungkin tanpa framework yang aneh-aneh. Cukup pake trio murni:
 
-- Vanilla JS (Buat ngatur logika timer dan obok-obok DOM-nya)
-- CSS (Biar visualnya pixel-perfect pas nempel di UI aslinya)
-- Manifest V3 (Mengikuti aturan terbaru dan paling aman dari Chrome Extension)
+- Vanilla JS buat ngatur logika timer dan manipulasi DOM-nya
+- CSS biar posisinya pas nempel di UI asli Google Meet
+- Manifest V3, standar extension Chrome saat ini
 
 Oh ya, status project ini Open-source (Apache-2.0 License). Jadi kalau kamu mau fork, modifikasi, atau ikutan kirim Pull Request (PR) buat nambahin fitur baru, monggo banget! Gass!
 
-## Cara Pasangnya Gampang Banget! (Gak Pake Ribet)
+## Cara Pasang
 
 Karena belum saya daftarin resmi ke Chrome Web Store (biar gak ribet urusan birokrasinya dulu, hehe), kamu bisa pakai jalur Developer Mode. Caranya gampang dan cepet banget kok:
 
@@ -59,7 +57,7 @@ Karena belum saya daftarin resmi ke Chrome Web Store (biar gak ribet urusan biro
 3. Buka Google Chrome, lalu ketik `chrome://extensions/` di URL bar.
 4. Jangan lupa aktifkan "Developer mode" di pojok kanan atas.
 5. Klik "Load unpacked" di pojok kiri atas, lalu arahkan ke folder dist yang udah kamu extract tadi.
-6. Boom! Selesai. Tinggal tes buka Google Meet.
+6. Selesai. Tinggal tes buka Google Meet.
 
 Kalau mau baca dokumentasi lengkap atau sekadar mampir ke halaman demonya, bisa langsung cek di [ibnumardini.github.io/meetkeep](https://ibnumardini.github.io/meetkeep/).
 
@@ -69,8 +67,8 @@ MeetKeep mengirim satu ping anonim (tanpa data pribadi, tanpa konten meeting) se
 
 Gak mau? Buka popup extension (klik icon MeetKeep di toolbar) dan matikan **Send anonymous usage data**. Defaultnya nyala, kamu bisa matikan kapan aja.
 
-## Akhir Kata
+## Penutup
 
-Bikin extension ini tuh seru banget karena bener-bener berangkat dari masalah pribadi yang ternyata juga dialami banyak orang. Kalau kamu tipe orang yang sering ilang arah soal durasi waktu pas lagi meet, cobain deh pasang MeetKeep ini.
+Extension ini berangkat dari masalah saya sendiri, tapi ternyata banyak juga yang ngalamin hal sama. Kalau kamu sering lupa waktu pas lagi call, cobain deh pasang MeetKeep.
 
-Kalau nemu bug atau punya ide fitur baru yang gokil, langsung colek saya lewat issue di GitHub ya. Happy meeting and stay productive!
+Kalau nemu bug atau punya ide fitur, langsung buka issue di GitHub ya.

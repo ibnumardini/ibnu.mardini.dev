@@ -1,7 +1,7 @@
 ---
 title: 'Hello, World'
 date: 2026-07-10
-description: "First post on this blog: why I built this site and what's next."
+description: "First post on this site and what I plan to write about."
 language: 'en'
 ---
 
